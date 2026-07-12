@@ -12,6 +12,8 @@ const SECTION_COLORS: Record<string, string> = {
   features: 'rgba(167,139,250,0.05)',
   pricing: 'rgba(79,209,197,0.05)',
   faq: 'rgba(96,165,250,0.04)',
+  stats: 'rgba(167,139,250,0.04)',
+  testimonials: 'rgba(251,146,60,0.04)',
   cta: 'rgba(124,58,237,0.08)',
 }
 

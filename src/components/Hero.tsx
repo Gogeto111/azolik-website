@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { HeroConsole } from './HeroConsole'
+import { HeroOrb } from './HeroOrb'
 import { GradientText } from './ui'
 
 export function Background() {
@@ -294,8 +295,11 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: Console */}
-          <div className="flex justify-center lg:justify-end">
+          {/* Right: Console + 3D Orb */}
+          <div className="flex justify-center lg:justify-end items-center gap-6">
+            <div className="hidden xl:block">
+              <HeroOrb />
+            </div>
             <HeroConsole />
           </div>
         </div>

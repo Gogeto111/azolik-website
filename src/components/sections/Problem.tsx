@@ -29,8 +29,35 @@ export function ProblemSection() {
   const team = ['Sales team', 'Support team', 'Marketing team', 'Finance dept.', 'Operations', 'HR team']
 
   return (
-    <section ref={ref} id="problem" className="reveal relative z-10 py-36 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section ref={ref} id="problem" className="reveal relative z-10 py-36 px-6 overflow-hidden">
+      {/* Perspective grid floor */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          perspective: '600px',
+          perspectiveOrigin: '50% 60%',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-20%',
+            left: '-20%',
+            right: '-20%',
+            height: '60%',
+            backgroundImage:
+              'linear-gradient(rgba(167,139,250,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(167,139,250,0.06) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+            transform: 'rotateX(65deg)',
+            transformOrigin: 'bottom center',
+            maskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 70%)',
+            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 70%)',
+          }}
+        />
+      </div>
+      <div className="max-w-6xl mx-auto relative">
         <SectionLabel>The problem</SectionLabel>
         <h2
           className="text-center font-bold text-white leading-tight mb-6"

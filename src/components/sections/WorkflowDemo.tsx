@@ -129,6 +129,7 @@ function WorkflowStep({
 
 export function WorkflowDemo() {
   const sectionRef = useScrollReveal<HTMLElement>()
+  const panelRef = useRef<HTMLDivElement>(null)
   const [currentStep, setCurrentStep] = useState(-1)
   const [selectedStep, setSelectedStep] = useState(-1)
   const [hasPlayed, setHasPlayed] = useState(false)
@@ -180,6 +181,23 @@ export function WorkflowDemo() {
     setCurrentStep(0)
   }
 
+  const onPanelMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = panelRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    el.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg) scale3d(1.01, 1.01, 1.01)`
+    el.style.transition = 'transform 0.08s ease'
+  }
+
+  const onPanelMouseLeave = () => {
+    const el = panelRef.current
+    if (!el) return
+    el.style.transform = ''
+    el.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+  }
+
   return (
     <section ref={sectionRef} id="workflow" className="reveal relative z-10 py-32 px-6">
       <div className="max-w-5xl mx-auto">
@@ -214,11 +232,16 @@ export function WorkflowDemo() {
           {/* Right: detail panel */}
           <div className="lg:sticky lg:top-28">
             <div
+              ref={panelRef}
+              onMouseMove={onPanelMouseMove}
+              onMouseLeave={onPanelMouseLeave}
               className="rounded-2xl p-8 transition-all duration-400"
               style={{
                 background: 'rgba(12,14,19,0.9)',
                 border: `1px solid ${step.color}25`,
                 boxShadow: `inset 0 1px 0 rgba(255,255,255,0.04), 0 0 60px ${step.color}08`,
+                transformStyle: 'preserve-3d',
+                willChange: 'transform',
               }}
               key={displayStep}
             >
