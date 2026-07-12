@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Background, Hero } from './components/Hero'
 import { Navbar } from './components/Navbar'
 import { Cursor } from './components/Cursor'
@@ -12,10 +13,12 @@ import { IndustriesSection } from './components/sections/Industries'
 import { IntegrationsSection } from './components/sections/Integrations'
 import { PricingSection } from './components/sections/Pricing'
 import { FAQSection } from './components/sections/FAQ'
-import { CTASection } from './components/sections/CTA'
 import { Footer } from './components/Footer'
 
 export default function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div
       className="min-h-screen overflow-x-hidden"
@@ -39,7 +42,6 @@ export default function App() {
         <IntegrationsSection />
         <PricingSection />
         <FAQSection />
-        <CTASection />
         <Footer />
       </div>
     </div>

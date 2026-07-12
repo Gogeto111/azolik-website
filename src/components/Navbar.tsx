@@ -47,7 +47,7 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="#contact"
+            href="#cta"
             className="shimmer-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
             style={{ background: '#f5f5f7' }}
           >
@@ -82,7 +82,7 @@ export function Navbar() {
             ))}
             <div className="mt-4 pt-4 border-t border-white/[0.06]">
               <a
-                href="#contact"
+                href="#cta"
                 onClick={() => setOpen(false)}
                 className="w-full text-center py-3 text-sm font-semibold text-[#08090c] rounded-lg"
                 style={{ background: '#f5f5f7' }}
