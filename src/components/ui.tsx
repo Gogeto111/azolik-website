@@ -69,16 +69,17 @@ export function SectionLabel({
   )
 }
 
-export function AzoliKLogo({ size = 28 }: { size?: number }) {
+export function AzoliKLogo({ size = 28, className = '', ...rest }: { size?: number; className?: string } & React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className="rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
+      className={`rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${className}`}
       style={{
         width: size,
         height: size,
         background: 'linear-gradient(135deg, #7c3aed, #0ea5e9)',
         boxShadow: '0 0 16px rgba(124,58,237,0.3)',
       }}
+      {...rest}
     >
       <svg width={size * 0.5} height={size * 0.5} viewBox="0 0 14 14" fill="none">
         <rect x="1" y="1" width="5" height="5" rx="1.2" fill="white" opacity="0.95" />

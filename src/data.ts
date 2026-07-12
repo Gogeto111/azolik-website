@@ -343,3 +343,42 @@ export const NAV_LINKS = [
   { label: 'Pricing', href: '#pricing' },
   { label: 'FAQ', href: '#faq' },
 ]
+
+export const TESTIMONIALS = [
+  {
+    quote: "AzoliK completely transformed our lead generation. We went from manually chasing prospects to having qualified meetings booked automatically. The AI voice agent sounds so natural our clients don't even realize it's AI.",
+    name: "Sarah Chen",
+    role: "Founder",
+    company: "TechFlow Solutions",
+    avatar: "SC",
+    color: "#a78bfa",
+    verified: true
+  },
+  {
+    quote: "The automation agency built us a custom CRM workflow that saves our sales team 20+ hours every week. What used to take days now happens in minutes. ROI was visible within the first month.",
+    name: "Marcus Johnson",
+    role: "VP of Sales",
+    company: "GrowthLabs",
+    avatar: "MJ",
+    color: "#4fd1c5",
+    verified: true
+  },
+  {
+    quote: "Their AI ad service produced creatives that outperformed our agency's work by 3x. The custom avatars match our brand perfectly, and the turnaround is incredible. Best marketing investment we've made.",
+    name: "Emily Rodriguez",
+    role: "Marketing Director",
+    company: "ScaleUp Inc",
+    avatar: "ER",
+    color: "#fb923c",
+    verified: true
+  },
+  {
+    quote: "Whop management gave us access to a network of creators we never could've reached on our own. The content goes viral consistently, and the fixed monthly cost makes budgeting simple.",
+    name: "David Park",
+    role: "CEO",
+    company: "FitLife App",
+    avatar: "DP",
+    color: "#34d399",
+    verified: true
+  },
+]

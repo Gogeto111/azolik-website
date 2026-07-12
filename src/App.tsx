@@ -10,11 +10,12 @@ import { QuoteSection } from './components/sections/Quote'
 import { HowItWorksSection } from './components/sections/HowItWorks'
 import { IndustriesSection } from './components/sections/Industries'
 import { IntegrationsSection } from './components/sections/Integrations'
-import { FeaturesSection } from './components/sections/Testimonials'
+import { TestimonialsSection } from './components/sections/Testimonials'
 import { PricingSection } from './components/sections/Pricing'
 import { FAQSection } from './components/sections/FAQ'
 import { CTASection } from './components/sections/CTA'
 import { Footer } from './components/Footer'
+import { ContactSection } from './components/sections/Contact'
 
 export default function App() {
   return (
@@ -63,9 +64,10 @@ export default function App() {
         <HowItWorksSection />
         <IndustriesSection />
         <IntegrationsSection />
-        <FeaturesSection />
+        <TestimonialsSection />
         <PricingSection />
         <FAQSection />
+        <ContactSection />
         <CTASection />
         <Footer />
       </div>
