@@ -230,7 +230,7 @@ export const FEATURES = [
     id: 'your-stack',
     title: 'Plugs into your existing stack',
     description:
-      'Connects to the tools you already use — HubSpot, Gmail, Shopify, Slack, Stripe, and 145+ more. No migration. No disruption.',
+      'Connects to the tools you already use — HubSpot, Gmail, Shopify, Slack, Stripe, and 150+ more. No migration. No disruption.',
     hex: '#34d399',
   },
   {
@@ -270,7 +270,7 @@ export const PRICING = [
     name: 'Team',
     monthly: 399,
     annual: 3899,
-    description: 'For growing teams that need more hands. 14-day free trial. Coffee not included.',
+    description: 'For growing teams that need more hands. 14-day free trial.',
     features: [
       'All 6 AI Departments',
       'Unlimited tasks',
@@ -325,7 +325,15 @@ export const FAQS = [
   },
   {
     q: 'How is this different from hiring?',
-    a: 'A single full-time marketing hire costs £60–90k/year. A full AI marketing department with AzoliK costs a fraction of that, works 24/7, never calls in sick, and scales instantly.',
+    a: 'A single full-time marketing hire costs $60–90k/year. A full AI marketing department with AzoliK costs a fraction of that, works 24/7, never calls in sick, and scales instantly.',
+  },
+  {
+    q: 'Can I try before I commit?',
+    a: 'Yes. Solo plan includes 6 months free. Team plan includes a 14-day free trial. No credit card required to start.',
+  },
+  {
+    q: 'What kind of support do you offer?',
+    a: 'All plans include email support. Team and Enterprise plans get priority support with dedicated Slack channels. Enterprise gets a dedicated success manager.',
   },
 ]
 
@@ -335,4 +343,3 @@ export const NAV_LINKS = [
   { label: 'Pricing', href: '#pricing' },
   { label: 'FAQ', href: '#faq' },
 ]
-

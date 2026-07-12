@@ -17,13 +17,13 @@ export function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        backgroundColor: scrolled ? 'rgba(8,9,12,0.88)' : 'transparent',
+        backgroundColor: scrolled ? 'rgba(8,9,12,0.95)' : 'transparent',
         backdropFilter: scrolled ? 'blur(28px) saturate(180%)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid transparent',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5 group" aria-label="AzoliK home">
+      <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
+        <a href="#hero" className="flex items-center gap-2.5 group" aria-label="AzoliK home">
           <AzoliKLogo />
           <span
             className="font-semibold text-lg text-white tracking-[-0.02em] group-hover:opacity-80 transition-opacity"
@@ -33,12 +33,12 @@ export function Navbar() {
           </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6 lg:gap-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-sm text-white/42 hover:text-white/85 transition-colors duration-200"
+              className="text-sm text-white/55 hover:text-white/90 transition-colors duration-200 font-medium"
             >
               {link.label}
             </a>
@@ -46,17 +46,12 @@ export function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="https://azolik.vercel.app/" target="_blank" rel="noreferrer" className="text-sm text-white/38 hover:text-white/68 transition-colors duration-200">
-            Sign in
-          </a>
           <a
-            href="https://azolik.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            className="shimmer-btn px-4 py-2 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+            href="#contact"
+            className="shimmer-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
             style={{ background: '#f5f5f7' }}
           >
-            Start free
+            Let's Talk
           </a>
         </div>
 
@@ -72,7 +67,7 @@ export function Navbar() {
       {open && (
         <div
           className="md:hidden border-t border-white/[0.06] py-4 px-6"
-          style={{ background: 'rgba(8,9,12,0.97)', backdropFilter: 'blur(24px)' }}
+          style={{ background: 'rgba(8,9,12,0.98)', backdropFilter: 'blur(24px)' }}
         >
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
@@ -85,18 +80,14 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="flex gap-3 mt-4">
-              <a href="https://azolik.vercel.app/" target="_blank" rel="noreferrer" className="flex-1 text-center py-2.5 text-sm text-white/55 border border-white/[0.08] rounded-lg hover:text-white/80 transition-colors">
-                Sign in
-              </a>
+            <div className="mt-4 pt-4 border-t border-white/[0.06]">
               <a
-                href="https://azolik.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="flex-1 text-center py-2.5 text-sm font-semibold text-[#08090c] rounded-lg"
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="w-full text-center py-3 text-sm font-semibold text-[#08090c] rounded-lg"
                 style={{ background: '#f5f5f7' }}
               >
-                Start free
+                Let's Talk
               </a>
             </div>
           </div>
