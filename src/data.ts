@@ -252,8 +252,8 @@ export const FEATURES = [
 export const PRICING = [
   {
     name: 'Solo',
-    monthly: 199,
-    annual: 1899,
+    monthly: 499,
+    annual: 4999,
     description: 'For solopreneurs who need a team but have one brain. Free for 6 months.',
     features: [
       '2 AI Departments of your choice',
@@ -268,8 +268,8 @@ export const PRICING = [
   },
   {
     name: 'Team',
-    monthly: 399,
-    annual: 3899,
+    monthly: 999,
+    annual: 9999,
     description: 'For growing teams that need more hands. 14-day free trial.',
     features: [
       'All 6 AI Departments',

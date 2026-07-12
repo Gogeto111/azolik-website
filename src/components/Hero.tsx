@@ -205,7 +205,7 @@ export function Background() {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-16 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-16 pb-16 overflow-hidden">
       <div className="relative z-10 w-full max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
           {/* Left */}
