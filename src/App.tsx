@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar'
 import { Cursor } from './components/Cursor'
 import { ScrollProgress } from './components/ScrollProgress'
 import { AmbientBackground } from './components/AmbientBackground'
+import { StatsSection } from './components/sections/Stats'
 import { ServicesSection } from './components/sections/ServicesSection'
 import { ProblemSection } from './components/sections/Problem'
 import { DepartmentsSection } from './components/sections/Departments'
@@ -14,6 +15,7 @@ import { IndustriesSection } from './components/sections/Industries'
 import { IntegrationsSection } from './components/sections/Integrations'
 import { PricingSection } from './components/sections/Pricing'
 import { FAQSection } from './components/sections/FAQSection'
+import { CTASection } from './components/sections/CTA'
 import { Footer } from './components/Footer'
 
 export default function App() {
@@ -31,6 +33,7 @@ export default function App() {
         <Navbar />
         <Hero />
 
+        <StatsSection />
         <ServicesSection />
         <FloatingOrbs />
         <ProblemSection />
@@ -42,6 +45,7 @@ export default function App() {
         <IntegrationsSection />
         <PricingSection />
         <FAQSection />
+        <CTASection />
         <Footer />
       </div>
     </div>

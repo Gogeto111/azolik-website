@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { INDUSTRIES } from '../../data'
 import { SectionLabel } from '../ui'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
@@ -6,7 +6,22 @@ import { useScrollReveal } from '../../hooks/useScrollReveal'
 export function IndustriesSection() {
   const ref = useScrollReveal<HTMLElement>()
   const [active, setActive] = useState(0)
+  const [fade, setFade] = useState(true)
   const cardRef = useRef<HTMLDivElement>(null)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>()
+
+  const switchTab = (i: number) => {
+    if (i === active) return
+    setFade(false)
+    timeoutRef.current = setTimeout(() => {
+      setActive(i)
+      setFade(true)
+    }, 200)
+  }
+
+  useEffect(() => {
+    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }
+  }, [])
 
   const onCardMove = (e: React.MouseEvent) => {
     const el = cardRef.current
@@ -41,7 +56,7 @@ export function IndustriesSection() {
           {INDUSTRIES.map((ind, i) => (
             <button
               key={ind.name}
-              onClick={() => setActive(i)}
+              onClick={() => switchTab(i)}
               className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
               style={{
                 background: active === i ? 'rgba(251,146,60,0.15)' : 'rgba(255,255,255,0.03)',
@@ -71,19 +86,25 @@ export function IndustriesSection() {
             style={{ background: '#0c0e13' }}
           >
             <div
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium mb-6"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium mb-6 transition-opacity duration-200"
               style={{
                 background: 'rgba(251,146,60,0.1)',
                 border: '1px solid rgba(251,146,60,0.25)',
                 color: '#fb923c',
                 fontFamily: "'JetBrains Mono', monospace",
+                opacity: fade ? 1 : 0,
               }}
             >
               {INDUSTRIES[active].name}
             </div>
             <p
-              className="text-white/62 leading-[1.75] max-w-2xl mx-auto"
-              style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(16px, 2.2vw, 20px)' }}
+              className="text-white/62 leading-[1.75] max-w-2xl mx-auto transition-all duration-300"
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: 'clamp(16px, 2.2vw, 20px)',
+                opacity: fade ? 1 : 0,
+                transform: fade ? 'translateY(0)' : 'translateY(8px)',
+              }}
             >
               {INDUSTRIES[active].text}
             </p>

@@ -756,6 +756,25 @@ export function Hero() {
           <HeroConsole />
         </div>
       )}
+      {phase > PHASE_TIMING.holdEnd + 2000 && (
+        <div
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1.5"
+          style={{
+            opacity: Math.min(0.4, (phase - PHASE_TIMING.holdEnd - 2000) / 2000),
+            animation: 'scrollBounce 2s ease-in-out infinite',
+          }}
+        >
+          <span
+            className="text-[10px] tracking-[0.2em] uppercase"
+            style={{ fontFamily: "'JetBrains Mono', monospace", color: 'rgba(255,255,255,0.35)' }}
+          >
+            Scroll
+          </span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </div>
+      )}
     </section>
   )
 }

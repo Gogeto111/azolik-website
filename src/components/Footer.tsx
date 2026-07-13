@@ -1,4 +1,4 @@
-import { FOOTER_LINKS, SOCIAL_LINKS } from '../data'
+import { FOOTER_LINKS, FOOTER_LINK_MAP, SOCIAL_LINKS } from '../data'
 import { AzoliKLogo } from './ui'
 import { Mail } from 'lucide-react'
 
@@ -33,7 +33,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-white/28 text-sm leading-[1.65] max-w-[240px]">
-              Each project we undertake is a unique opportunity. Ready to transform your vision into reality?
+              A full AI workforce — deployed in 48 hours, running 24/7.
             </p>
           </div>
 
@@ -49,7 +49,7 @@ export function Footer() {
                 {items.map((item) => (
                   <li key={item}>
                     <a
-                      href="#"
+                      href={FOOTER_LINK_MAP[item] || '#'}
                       className="text-white/28 text-sm hover:text-white/55 transition-colors duration-200"
                     >
                       {item}

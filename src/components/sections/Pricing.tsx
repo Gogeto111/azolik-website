@@ -96,9 +96,7 @@ function PricingCard({ plan, annual }: { plan: typeof PRICING[0]; annual: boolea
         </ul>
 
         <a
-          href="https://azolik.vercel.app/"
-          target="_blank"
-          rel="noreferrer"
+          href="#cta"
           className="w-full block text-center py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:opacity-90 active:scale-[0.98] btn-press entrance-scale-up"
           style={
             plan.highlighted

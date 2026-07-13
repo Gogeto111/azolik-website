@@ -1,12 +1,28 @@
 import { useEffect, useRef, useState } from 'react'
 
+function isTouchDevice() {
+  return typeof window !== 'undefined' && (
+    'ontouchstart' in window || navigator.maxTouchPoints > 0
+  )
+}
+
 export function Cursor() {
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
   const glowRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
 
   useEffect(() => {
+    if (isTouchDevice()) {
+      setIsTouch(true)
+      return
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isTouch) return
+
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
     const target = { x: 0, y: 0 }
     const current = { x: 0, y: 0 }
@@ -98,9 +114,9 @@ export function Cursor() {
       window.removeEventListener('mousemove', onMove)
       cancelAnimationFrame(raf)
     }
-  }, [visible])
+  }, [visible, isTouch])
 
-  if (!visible) return null
+  if (isTouch || !visible) return null
 
   return (
     <>

@@ -87,6 +87,23 @@ export const FOOTER_LINKS = {
   Resources: ['Documentation', 'FAQs', 'Privacy Policy', 'Terms & Conditions'],
 }
 
+export const FOOTER_LINK_MAP: Record<string, string> = {
+  'Automation Agency': '#services',
+  'AI Voice Agent': '#services',
+  'AI Ad Services': '#services',
+  'Whop Management': '#services',
+  'AI Customer Support': '#services',
+  'About': '#problem',
+  'Careers': '#',
+  'Blog': '#',
+  'Press': '#',
+  'Contact': '#cta',
+  'Documentation': '#',
+  'FAQs': '#faqs',
+  'Privacy Policy': '#',
+  'Terms & Conditions': '#',
+}
+
 export const PRICING = [
   {
     name: 'Solo',
