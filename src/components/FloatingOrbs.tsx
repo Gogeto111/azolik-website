@@ -36,7 +36,7 @@ export function FloatingOrbs() {
       {/* Left cluster */}
       <div
         data-orb
-        className="absolute animate-orb-1"
+        className="absolute animate-orb-1 animate-morph"
         style={{
           left: '5%',
           top: '-60px',
@@ -51,7 +51,7 @@ export function FloatingOrbs() {
       />
       <div
         data-orb
-        className="absolute animate-orb-2"
+        className="absolute animate-orb-2 animate-morph"
         style={{
           left: '8%',
           top: '-20px',
@@ -61,13 +61,14 @@ export function FloatingOrbs() {
           background: 'radial-gradient(circle at 40% 40%, rgba(79,209,197,0.1), rgba(79,209,197,0.02))',
           border: '1px solid rgba(79,209,197,0.08)',
           willChange: 'transform',
+          animationDelay: '-2s',
         }}
       />
 
       {/* Right cluster */}
       <div
         data-orb
-        className="absolute animate-orb-3"
+        className="absolute animate-orb-3 animate-morph"
         style={{
           right: '6%',
           top: '-80px',
@@ -77,11 +78,12 @@ export function FloatingOrbs() {
           background: 'radial-gradient(circle at 60% 40%, rgba(251,146,60,0.1), rgba(251,146,60,0.02))',
           border: '1px solid rgba(251,146,60,0.08)',
           willChange: 'transform',
+          animationDelay: '-4s',
         }}
       />
       <div
         data-orb
-        className="absolute animate-orb-1"
+        className="absolute animate-orb-1 animate-morph"
         style={{
           right: '12%',
           top: '-30px',
@@ -91,7 +93,7 @@ export function FloatingOrbs() {
           background: 'radial-gradient(circle, rgba(96,165,250,0.1), rgba(96,165,250,0.02))',
           border: '1px solid rgba(96,165,250,0.08)',
           willChange: 'transform',
-          animationDelay: '-3s',
+          animationDelay: '-6s',
         }}
       />
     </div>

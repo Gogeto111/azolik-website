@@ -147,13 +147,21 @@ export function ContactForm({ type = 'demo', title, description, buttonText, onS
             type="text"
             value={formData.business_name}
             onChange={handleChange}
-            onBlur={handleBlur}
             placeholder="Acme Inc."
-            className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border transition-colors duration-200 text-white placeholder-white/20 focus:outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border transition-all duration-300 text-white placeholder-white/20 focus:outline-none"
             style={{
               borderColor: touched.business_name && validateField('business_name', formData.business_name)
                 ? 'rgba(239,68,68,0.5)'
                 : 'rgba(255,255,255,0.07)',
+              boxShadow: 'none',
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(167,139,250,0.4)'
+              e.currentTarget.style.boxShadow = '0 0 0 3px rgba(167,139,250,0.08), 0 0 20px rgba(167,139,250,0.05)'
+            }}
+            onBlur={(e) => {
+              handleBlur(e)
+              e.currentTarget.style.boxShadow = 'none'
             }}
             autoComplete="organization"
             disabled={status === 'loading'}
@@ -172,13 +180,20 @@ export function ContactForm({ type = 'demo', title, description, buttonText, onS
             type="email"
             value={formData.email}
             onChange={handleChange}
-            onBlur={handleBlur}
             placeholder="you@company.com"
-            className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border transition-colors duration-200 text-white placeholder-white/20 focus:outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border transition-all duration-300 text-white placeholder-white/20 focus:outline-none"
             style={{
               borderColor: touched.email && validateField('email', formData.email)
                 ? 'rgba(239,68,68,0.5)'
                 : 'rgba(255,255,255,0.07)',
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(167,139,250,0.4)'
+              e.currentTarget.style.boxShadow = '0 0 0 3px rgba(167,139,250,0.08), 0 0 20px rgba(167,139,250,0.05)'
+            }}
+            onBlur={(e) => {
+              handleBlur(e)
+              e.currentTarget.style.boxShadow = 'none'
             }}
             autoComplete="email"
             disabled={status === 'loading'}
@@ -231,14 +246,21 @@ export function ContactForm({ type = 'demo', title, description, buttonText, onS
             name="message"
             value={formData.message}
             onChange={handleChange}
-            onBlur={handleBlur}
             placeholder="Tell us what you're looking for..."
             rows={4}
-            className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border transition-colors duration-200 text-white placeholder-white/20 focus:outline-none resize-none"
+            className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border transition-all duration-300 text-white placeholder-white/20 focus:outline-none resize-none"
             style={{
               borderColor: touched.message && validateField('message', formData.message)
                 ? 'rgba(239,68,68,0.5)'
                 : 'rgba(255,255,255,0.07)',
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(167,139,250,0.4)'
+              e.currentTarget.style.boxShadow = '0 0 0 3px rgba(167,139,250,0.08), 0 0 20px rgba(167,139,250,0.05)'
+            }}
+            onBlur={(e) => {
+              handleBlur(e)
+              e.currentTarget.style.boxShadow = 'none'
             }}
             disabled={status === 'loading'}
           />
@@ -306,7 +328,7 @@ export function ContactForm({ type = 'demo', title, description, buttonText, onS
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+        className="w-full py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 ripple"
         style={{
           background: status === 'loading' ? 'rgba(255,255,255,0.05)' : '#f5f5f7',
           color: status === 'loading' ? 'rgba(255,255,255,0.5)' : '#08090c',

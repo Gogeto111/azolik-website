@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS } from '../data'
+import { useMagnetic } from '../hooks/useAdvancedAnimations'
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const magnetic = useMagnetic<HTMLAnchorElement>(0.25)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -51,7 +53,7 @@ export function Navbar() {
               key={link.label}
               href={link.href}
               className={link.cta
-                ? 'hidden md:flex shimmer-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]'
+                ? 'hidden md:flex shimmer-btn ripple px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]'
                 : 'text-sm text-white/55 hover:text-white/90 transition-colors duration-200 font-medium'}
               style={link.cta
                 ? {
@@ -67,11 +69,13 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-3">
           <a
+            ref={magnetic.ref}
             href="#cta"
-            className="shimmer-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+            className="shimmer-btn ripple px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] magnetic"
             style={{
               background: '#f5f5f7',
               boxShadow: '0 0 40px rgba(245,245,247,0.14), 0 8px 32px rgba(0,0,0,0.3)',
+              ...magnetic.style,
             }}
           >
             Let's Talk

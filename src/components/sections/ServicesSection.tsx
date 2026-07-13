@@ -30,7 +30,7 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: n
   return (
     <div
       ref={ref}
-      className="relative rounded-2xl p-8 group holo-card"
+      className="relative rounded-2xl p-8 group holo-card card-glow"
       style={{
         background: 'rgba(12,14,19,0.7)',
         border: '1px solid rgba(255,255,255,0.06)',
@@ -38,6 +38,7 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: n
         transformStyle: 'preserve-3d',
         willChange: 'transform',
         transition: 'border-color 0.3s ease',
+        ['--glow-color' as string]: `${service.color}20`,
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = `${service.color}44`

@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { PRICING } from '../../data'
 import { SectionLabel, CheckMark } from '../ui'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { ROICalculator } from './ROICalculator'
 
 function PricingCard({ plan, annual }: { plan: typeof PRICING[0]; annual: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -46,8 +47,8 @@ function PricingCard({ plan, annual }: { plan: typeof PRICING[0]; annual: boolea
         </div>
       )}
       <div
-        className="h-full rounded-2xl p-7 flex flex-col holo-card"
-        style={{ background: plan.highlighted ? 'rgba(10,8,24,0.98)' : '#0c0e13' }}
+        className="h-full rounded-2xl p-7 flex flex-col holo-card card-glow"
+        style={{ background: plan.highlighted ? 'rgba(10,8,24,0.98)' : '#0c0e13', ['--glow-color' as string]: plan.highlighted ? 'rgba(124,58,237,0.15)' : 'rgba(255,255,255,0.06)' }}
       >
         <div className="mb-6 entrance-fade-up">
           <h3 className="font-bold text-white text-2xl mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
@@ -97,7 +98,7 @@ function PricingCard({ plan, annual }: { plan: typeof PRICING[0]; annual: boolea
 
         <a
           href="#cta"
-          className="w-full block text-center py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:opacity-90 active:scale-[0.98] btn-press entrance-scale-up"
+          className="w-full block text-center py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:opacity-90 active:scale-[0.98] btn-press ripple entrance-scale-up"
           style={
             plan.highlighted
               ? { background: '#f5f5f7', color: '#08090c' }
@@ -168,6 +169,8 @@ export function PricingSection() {
         <p className="text-center text-white/22 text-sm mt-8 entrance-fade-up">
           Solo plan: 6 months free. Team plan: 14-day free trial. · No credit card required · Cancel anytime
         </p>
+
+        <ROICalculator />
       </div>
     </section>
   )

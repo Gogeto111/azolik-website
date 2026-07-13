@@ -33,12 +33,13 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
   return (
     <div
       ref={ref}
-      className="relative text-center p-8 rounded-2xl group holo-card entrance-scale-up"
+      className="relative text-center p-8 rounded-2xl group holo-card card-glow entrance-scale-up"
       style={{
         background: 'rgba(255,255,255,0.02)',
         border: '1px solid rgba(255,255,255,0.06)',
         transition: 'border-color 0.4s ease, background 0.4s ease',
         animationDelay: `${index * 100}ms`,
+        ['--glow-color' as string]: `${stat.color}18`,
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = `${stat.color}33`

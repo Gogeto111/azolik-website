@@ -369,12 +369,14 @@ export function DepartmentsSection() {
         {activeId && activeDept && (
           <div
             key={activeId}
-            className="mt-8 rounded-2xl p-7"
+            className="mt-8 rounded-2xl p-7 overflow-hidden"
             style={{
               background: 'rgba(12,14,19,0.92)',
               border: `1.5px solid ${activeDept.hex}28`,
               boxShadow: `0 0 60px ${activeDept.hex}0e, inset 0 1px 0 rgba(255,255,255,0.05)`,
               animation: 'panel-up 0.5s var(--ease) both',
+              maxHeight: bootDone ? '800px' : '200px',
+              transition: 'max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           >
             <div className="flex items-center justify-between mb-6">

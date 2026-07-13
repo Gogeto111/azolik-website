@@ -39,29 +39,80 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "AzoliK",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Cloud",
-      "offers": {
-        "@type": "Offer",
-        "price": "199",
-        "priceCurrency": "INR",
-        "availability": "https://schema.org/InStock",
-        "description": "Solo plan: 2 AI departments, up to 500 tasks/month, 6 months free"
-      },
-      "description": "Six AI departments — Support, Sales, Marketing, Finance, Operations, HR — that handle the work autonomously. Live in 48 hours. No engineers needed.",
-      "featureList": [
-        "AI Support Department",
-        "AI Sales Department",
-        "AI Marketing Department",
-        "AI Finance Department",
-        "AI Operations Department",
-        "AI HR Department"
-      ],
-      "url": "https://azolik.ai",
-      "logo": "https://azolik.ai/favicon.svg",
-      "screenshot": "https://azolik.ai/og-image.svg"
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "AzoliK",
+          "url": "https://azolik.ai",
+          "logo": "https://azolik.ai/favicon.svg",
+          "description": "Six AI departments that handle business work autonomously.",
+          "sameAs": []
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "AzoliK",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Cloud",
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Solo",
+              "price": "299",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "description": "1 AI Agent, basic automation, email support"
+            },
+            {
+              "@type": "Offer",
+              "name": "Team",
+              "price": "799",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "description": "5 AI Agents, advanced automation, priority support, analytics"
+            }
+          ],
+          "description": "Six AI departments — Support, Sales, Marketing, Finance, Operations, HR — that handle the work autonomously. Live in 48 hours. No engineers needed.",
+          "featureList": [
+            "AI Support Department",
+            "AI Sales Department",
+            "AI Marketing Department",
+            "AI Finance Department",
+            "AI Operations Department",
+            "AI HR Department"
+          ],
+          "url": "https://azolik.ai",
+          "logo": "https://azolik.ai/favicon.svg"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What's in it for me?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You get a dedicated team of experts across every domain — from high-end editing to fully automated content workflows. We deliver end-to-end solutions tailored to scale your brand."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How much do we charge?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Solo plan at ₹299/month, Team plan at ₹799/month, Enterprise custom pricing. Solo: 6 months free. Team: 14-day free trial."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can AzoliK manage my social presence?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Our content management service handles end-to-end social presence — strategy, creation, scheduling, engagement, and analytics across all major platforms."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 

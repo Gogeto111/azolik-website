@@ -1,7 +1,28 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { INTEGRATIONS } from '../../data'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { ScrollRevealText } from '../ScrollRevealText'
+
+const INTEGRATION_DETAILS: Record<string, string> = {
+  'Slack': 'Team messaging & notifications',
+  'HubSpot': 'CRM, marketing & sales hub',
+  'Notion': 'Docs, wikis & project tracking',
+  'Gmail': 'Email communication & automation',
+  'Stripe': 'Payment processing & billing',
+  'Shopify': 'E-commerce store management',
+  'Salesforce': 'Enterprise CRM platform',
+  'Zapier': 'Workflow automation connector',
+  'Intercom': 'Customer messaging platform',
+  'Linear': 'Issue tracking & project mgmt',
+  'Jira': 'Agile project management',
+  'Airtable': 'Database & spreadsheet hybrid',
+  'Mailchimp': 'Email marketing automation',
+  'Calendly': 'Scheduling & booking links',
+  'QuickBooks': 'Accounting & bookkeeping',
+  'WhatsApp': 'Business messaging API',
+  'Twilio': 'Communications API platform',
+  'DocuSign': 'Electronic signature platform',
+}
 
 function TickerRow({ items, reverse = false }: { items: typeof INTEGRATIONS; reverse?: boolean }) {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -11,7 +32,7 @@ function TickerRow({ items, reverse = false }: { items: typeof INTEGRATIONS; rev
     if (!el) return
 
     const width = el.scrollWidth / 2
-    const duration = width / 0.012 // ultra slow: ~0.012px per ms
+    const duration = width / 0.012
     let start: number | null = null
     let raf: number
 
@@ -44,7 +65,8 @@ function TickerRow({ items, reverse = false }: { items: typeof INTEGRATIONS; rev
         {doubled.map((t, i) => (
           <div
             key={i}
-            className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.07] bg-white/[0.03] text-white/40 text-sm font-medium hover:text-white/68 hover:border-white/[0.12] hover:bg-white/[0.05] transition-all duration-200"
+            className="tooltip-trigger flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.07] bg-white/[0.03] text-white/40 text-sm font-medium hover:text-white/68 hover:border-white/[0.12] hover:bg-white/[0.05] transition-all duration-200"
+            data-tooltip={INTEGRATION_DETAILS[t.name] || t.name}
             style={{ cursor: 'none' }}
           >
             <span
