@@ -71,7 +71,7 @@ export function IntegrationsSection() {
           className="text-white/25 text-[11px] tracking-[0.22em] uppercase"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
-          <ScrollRevealText>Connects with your entire stack — 150+ integrations</ScrollRevealText>
+          <ScrollRevealText>Connects with your entire stack</ScrollRevealText>
         </p>
       </div>
 

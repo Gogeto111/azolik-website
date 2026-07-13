@@ -6,12 +6,6 @@ export const NAV_LINKS = [
   { label: 'Let\'s Talk', href: '#cta', cta: true },
 ]
 
-export const STATS = [
-  { value: '1000+', label: 'Projects Completed' },
-  { value: '95%', label: 'Client Retention' },
-  { value: '100+', label: 'Satisfied Clients' },
-]
-
 export const SERVICES = [
   {
     id: 'automation-agency',
@@ -47,71 +41,6 @@ export const SERVICES = [
     description: 'Deploy 24/7 AI customer service agents to manage tickets, answer FAQs, update customers, and store user data — all with unmatched consistency.',
     icon: 'Support',
     color: '#60a5fa',
-  },
-]
-
-export const WORK_CATEGORIES = [
-  'Ghostwriting',
-  'Content Planning',
-  'Video Production',
-  'Content Management',
-  'Podcasts',
-]
-
-export const WORK_ITEMS = [
-  { category: 'Ghostwriting', title: 'Brand Story Campaign', desc: 'LinkedIn thought leadership series' },
-  { category: 'Content Planning', title: 'Content Calendar Design', desc: 'Quarterly strategy for SaaS brand' },
-  { category: 'Video Production', title: 'Product Launch Video', desc: 'Short-form + long-form asset pack' },
-  { category: 'Content Management', title: 'Multi-Channel Distribution', desc: 'Automated publishing workflow' },
-  { category: 'Podcasts', title: 'Podcast Episode Production', desc: 'End-to-end editing & distribution' },
-  { category: 'Ghostwriting', title: 'CEO Newsletter', desc: 'Weekly audience-building emails' },
-  { category: 'Content Planning', title: 'Viral Hook Research', desc: 'Data-driven content ideation' },
-  { category: 'Video Production', title: 'UGC Ad Creative Batch', desc: '15+ variants for A/B testing' },
-  { category: 'Content Management', title: 'Repurposing Engine', desc: 'Long-form to short-form automation' },
-  { category: 'Podcasts', title: 'Guest Outreach & Booking', desc: 'High-profile interview pipeline' },
-  { category: 'Ghostwriting', title: 'Twitter Thread Series', desc: 'Growth-focused thread strategy' },
-  { category: 'Video Production', title: 'Brand Documentary', desc: 'Founder story long-form piece' },
-]
-
-export const RESULTS = [
-  { metric: '300%+', label: 'Average ROI Increase' },
-  { metric: '50+', label: 'Hours Saved Monthly' },
-  { metric: '10x', label: 'Content Output Scale' },
-  { metric: '95%', label: 'Client Retention Rate' },
-]
-
-export const TESTIMONIALS = [
-  {
-    quote: 'Azolic completely transformed our content workflow. What used to take our team weeks now happens in days. The automation agency built us a system that runs itself.',
-    name: 'Sarah Chen',
-    role: 'Founder',
-    company: 'TechFlow Solutions',
-    avatar: 'SC',
-    color: '#a78bfa',
-  },
-  {
-    quote: 'The AI voice agent handles our inbound calls flawlessly. Our lead qualification rate went up 40% and we never miss a call. Best investment we\'ve made this year.',
-    name: 'Marcus Johnson',
-    role: 'VP of Sales',
-    company: 'GrowthLabs',
-    avatar: 'MJ',
-    color: '#4fd1c5',
-  },
-  {
-    quote: 'Their AI ad service produced creatives that outperformed our agency\'s work by 3x. The custom avatars match our brand perfectly, and the turnaround is incredible.',
-    name: 'Emily Rodriguez',
-    role: 'Marketing Director',
-    company: 'ScaleUp Inc',
-    avatar: 'ER',
-    color: '#fb923c',
-  },
-  {
-    quote: 'Whop management gave us access to a network of creators we never could\'ve reached on our own. The content goes viral consistently, and the fixed monthly cost makes budgeting simple.',
-    name: 'David Park',
-    role: 'CEO',
-    company: 'FitLife App',
-    avatar: 'DP',
-    color: '#34d399',
   },
 ]
 
@@ -214,11 +143,7 @@ export const PRICING = [
 ]
 
 export const SOCIAL_LINKS = [
-  { name: 'Instagram', href: 'https://instagram.com', icon: 'Instagram' },
-  { name: 'LinkedIn', href: 'https://linkedin.com', icon: 'LinkedIn' },
-  { name: 'Discord', href: 'https://discord.com', icon: 'Discord' },
-  { name: 'Email', href: 'mailto:hello@azolic.com', icon: 'Email' },
-  { name: 'Calendly', href: 'https://calendly.com', icon: 'Calendar' },
+  { name: 'Email', href: 'mailto:hello@azolik.com', icon: 'Email' },
 ]
 
 export const DEPARTMENTS = [

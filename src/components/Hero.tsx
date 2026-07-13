@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
+import { HeroConsole } from './HeroConsole'
 
 /* ═══════════════════════════════════════════════════════════════
    CINEMATIC HERO — Azolik
@@ -55,6 +56,8 @@ const PHASE_TIMING = {
 /* ─── Canvas Particle System ──────────────────────────────── */
 function ParticleCanvas({ phase }: { phase: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const phaseRef = useRef(phase)
+  phaseRef.current = phase
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -71,7 +74,7 @@ function ParticleCanvas({ phase }: { phase: number }) {
     }
     window.addEventListener('resize', onResize, { passive: true })
 
-    const particleCount = Math.min(120, Math.floor((w * h) / 12000))
+    const particleCount = Math.min(40, Math.floor((w * h) / 25000))
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -90,8 +93,8 @@ function ParticleCanvas({ phase }: { phase: number }) {
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h)
-
-      const globalAlpha = phase >= PHASE_TIMING.done ? 0 : 1
+      const currentPhase = phaseRef.current
+      const globalAlpha = currentPhase >= PHASE_TIMING.done ? 0 : 1
 
       particles.forEach((p) => {
         p.x += p.vx
@@ -108,23 +111,6 @@ function ParticleCanvas({ phase }: { phase: number }) {
         ctx.fill()
       })
 
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 100) {
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = COLORS.cyan
-            ctx.globalAlpha = (1 - dist / 100) * 0.08 * globalAlpha
-            ctx.lineWidth = 0.5
-            ctx.stroke()
-          }
-        }
-      }
-
       sparks.forEach((s, i) => {
         s.x += s.vx
         s.y += s.vy
@@ -138,7 +124,7 @@ function ParticleCanvas({ phase }: { phase: number }) {
         if (s.life <= 0) sparks.splice(i, 1)
       })
 
-      if (phase >= PHASE_TIMING.impact && phase < PHASE_TIMING.impact + 500) {
+      if (currentPhase >= PHASE_TIMING.impact && currentPhase < PHASE_TIMING.impact + 500) {
         for (let i = 0; i < 3; i++) {
           sparks.push({
             x: w / 2 + (Math.random() - 0.5) * 200,
@@ -159,7 +145,7 @@ function ParticleCanvas({ phase }: { phase: number }) {
       cancelAnimationFrame(raf)
       window.removeEventListener('resize', onResize)
     }
-  }, [phase])
+  }, [])
 
   return (
     <canvas
@@ -676,7 +662,7 @@ function BrandingText({ phase }: { phase: number }) {
             fontSize: 'clamp(9px, 1.2vw, 12px)',
           }}
         >
-          FOUR AGENTS · ONE INTELLIGENCE
+          SIX DEPARTMENTS · ONE INTELLIGENCE
         </p>
       </div>
     </div>
@@ -705,9 +691,14 @@ export function Hero() {
   const startTime = useRef<number>(0)
   const rafRef = useRef<number>(0)
 
+  const frameCount = useRef(0)
   const tick = useCallback(() => {
+    frameCount.current++
+    if (frameCount.current % 2 === 0) {
+      const elapsed = performance.now() - startTime.current
+      setPhase(elapsed)
+    }
     const elapsed = performance.now() - startTime.current
-    setPhase(elapsed)
     if (elapsed < PHASE_TIMING.done + 500) {
       rafRef.current = requestAnimationFrame(tick)
     }
@@ -754,6 +745,17 @@ export function Hero() {
       <Vignette phase={phase} />
       <FilmGrain phase={phase} />
       <ExposureLayer phase={phase} />
+      {phase > PHASE_TIMING.holdEnd && (
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-4"
+          style={{
+            opacity: Math.min(1, (phase - PHASE_TIMING.holdEnd) / 1000),
+            transform: `translateX(-50%) translateY(${Math.max(0, 20 - ((phase - PHASE_TIMING.holdEnd) / 1000) * 20)}px)`,
+          }}
+        >
+          <HeroConsole />
+        </div>
+      )}
     </section>
   )
 }
@@ -829,24 +831,6 @@ export function Background() {
         ctx.fill()
         ctx.globalAlpha = 1
       })
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 110) {
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = 'rgba(167,139,250,0.035)'
-            ctx.globalAlpha = 1 - dist / 110
-            ctx.lineWidth = 0.5
-            ctx.stroke()
-            ctx.globalAlpha = 1
-          }
-        }
-      }
 
       raf = requestAnimationFrame(draw)
     }

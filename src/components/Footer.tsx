@@ -1,14 +1,10 @@
 import { FOOTER_LINKS, SOCIAL_LINKS } from '../data'
 import { AzoliKLogo } from './ui'
-import { Instagram, Linkedin, MessageCircle, Mail, Calendar } from 'lucide-react'
+import { Mail } from 'lucide-react'
 
 function SocialIcon({ name, href }: { name: string; href: string }) {
   const icons: Record<string, React.ReactNode> = {
-    Instagram: <Instagram size={18} />,
-    LinkedIn: <Linkedin size={18} />,
-    Discord: <MessageCircle size={18} />,
     Email: <Mail size={18} />,
-    Calendar: <Calendar size={18} />,
   }
 
   return (

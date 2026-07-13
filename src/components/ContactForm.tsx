@@ -116,8 +116,9 @@ export function ContactForm({ type = 'demo', title, description, buttonText, onS
 
         if (error) throw error
       } else {
-        console.log('Form submission (no Supabase configured):', formData)
-        await new Promise(resolve => setTimeout(resolve, 1000))
+        setErrorMessage('Form is not configured yet. Please try again later.')
+        setStatus('idle')
+        return
       }
 
       setStatus('success')

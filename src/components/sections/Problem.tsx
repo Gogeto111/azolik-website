@@ -81,7 +81,7 @@ export function ProblemSection() {
                   className="text-white/38 text-[11px]"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
                 >
-                  Enterprise Corp — 200 employees
+                   Enterprise company — full team
                 </span>
               </div>
               <div className="space-y-2">
