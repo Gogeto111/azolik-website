@@ -29,7 +29,7 @@ export function Footer() {
             <div className="flex items-center gap-2.5 mb-5">
               <AzoliKLogo size={32} />
               <span className="font-semibold text-white" style={{ fontFamily: "'Outfit', sans-serif", fontSize: '20px' }}>
-                azolic
+                AzoliK
               </span>
             </div>
             <p className="text-white/28 text-sm leading-[1.65] max-w-[240px]">
@@ -62,7 +62,7 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-between pt-7 gap-3" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
-          <p className="text-white/18 text-sm">© 2026 azolic™. All rights reserved.</p>
+          <p className="text-white/18 text-sm">© 2026 AzoliK™. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4">
               {SOCIAL_LINKS.map((social) => (

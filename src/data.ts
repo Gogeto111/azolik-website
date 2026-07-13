@@ -66,7 +66,7 @@ export const FAQS = [
     a: 'We include revision rounds in every engagement. Our workflows are built for iteration — you review, we refine, until it\'s perfect. For ongoing services, we have built-in feedback loops and QA processes.',
   },
   {
-    q: 'Can Azolic manage my social presence?',
+    q: 'Can AzoliK manage my social presence?',
     a: 'Yes. Our content management service handles end-to-end social presence — strategy, creation, scheduling, engagement, and analytics across all major platforms. You stay hands-off while we grow your audience.',
   },
 ]

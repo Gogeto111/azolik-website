@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import { HeroConsole } from './HeroConsole'
 
 /* ═══════════════════════════════════════════════════════════════
-   CINEMATIC HERO — Azolik
+   CINEMATIC HERO — AzoliK
    Pure black · Particles · Logo reveal · HUD · Fog · Grain
    ═══════════════════════════════════════════════════════════════ */
 
@@ -23,7 +23,7 @@ const AGENTS = [
 ]
 
 const BOOT_LOG = [
-  '> azolik v3.0 — initializing core',
+  '> AzoliK v3.0 — initializing core',
   '> loading AI departments...',
   '> SUPPORT agent [online]',
   '> SALES agent [online]',

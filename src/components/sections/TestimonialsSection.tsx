@@ -111,7 +111,7 @@ export function TestimonialsSection() {
             Trusted by growing teams
           </h2>
           <p className="text-white/35 max-w-lg mx-auto leading-[1.65]">
-            See what teams experience when they deploy Azolic.
+            See what teams experience when they deploy AzoliK.
           </p>
         </div>
 
