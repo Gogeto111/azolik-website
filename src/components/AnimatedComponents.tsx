@@ -16,10 +16,9 @@ export function PageTransition({ children, isLoading = false }: {
     if (isLoading) {
       setShowOverlay(true)
       setOverlayClass('enter')
-      const timer = setTimeout(() => {
-        setOverlayClass('exit')
-        setTimeout(() => setShowOverlay(false), 600)
-      }, 800)
+    } else if (showOverlay) {
+      setOverlayClass('exit')
+      const timer = setTimeout(() => setShowOverlay(false), 600)
       return () => clearTimeout(timer)
     }
   }, [isLoading])
