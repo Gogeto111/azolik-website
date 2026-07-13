@@ -220,3 +220,209 @@ export const SOCIAL_LINKS = [
   { name: 'Email', href: 'mailto:hello@azolic.com', icon: 'Email' },
   { name: 'Calendly', href: 'https://calendly.com', icon: 'Calendar' },
 ]
+
+export const DEPARTMENTS = [
+  {
+    id: 'support',
+    name: 'Support',
+    tagline: 'Resolves tickets, handles refunds, answers questions — 24/7, with genuine care.',
+    hex: '#4fd1c5',
+    tasks: [
+      'Reply to customer messages on WhatsApp, email, and chat',
+      'Process returns and issue refund confirmations',
+      'Answer product questions with up-to-date inventory data',
+      'Escalate complex cases with full context attached',
+      'Log every interaction to CRM automatically',
+    ],
+    integrations: ['WhatsApp Business', 'Gmail', 'Intercom', 'Zendesk', 'Shopify'],
+    workflow: [
+      'Customer sends a message',
+      'Support reads history and product data',
+      'Drafts a personalised reply in your brand voice',
+      'Sends response — or flags for human review if needed',
+    ],
+    stat: '24/7',
+    statLabel: 'always active',
+  },
+  {
+    id: 'sales',
+    name: 'Sales',
+    tagline: 'Qualifies leads, writes outreach, follows up, and books meetings automatically.',
+    hex: '#a78bfa',
+    tasks: [
+      'Research and score inbound leads against your ICP',
+      'Write personalised cold emails referencing real context',
+      'Send multi-touch follow-up sequences automatically',
+      'Book discovery calls directly into your calendar',
+      'Update CRM pipeline after every touchpoint',
+    ],
+    integrations: ['HubSpot', 'Salesforce', 'Calendly', 'LinkedIn', 'Gmail'],
+    workflow: [
+      'New lead enters the pipeline',
+      'Sales researches company and identifies hook',
+      'Sends personalised outreach with tailored subject line',
+      'Follows up 3x over 10 days, stops on reply',
+    ],
+    stat: 'Auto',
+    statLabel: 'lead follow-up',
+  },
+  {
+    id: 'marketing',
+    name: 'Marketing',
+    tagline: 'Builds campaigns, writes copy, and grows your audience across every channel.',
+    hex: '#fb923c',
+    tasks: [
+      'Write SEO blog posts and social media content',
+      'Plan and schedule full content calendars',
+      'Draft email campaigns with subject-line variants',
+      'Analyse campaign performance and suggest changes',
+      'Repurpose long-form content into social snippets',
+    ],
+    integrations: ['Mailchimp', 'Buffer', 'Notion', 'WordPress', 'Airtable'],
+    workflow: [
+      'You describe the goal or product update',
+      'Marketing builds a content plan for the week',
+      'Drafts copy for every channel simultaneously',
+      'Schedules and publishes — you approve optional review',
+    ],
+    stat: 'Multi',
+    statLabel: 'channel publishing',
+  },
+  {
+    id: 'finance',
+    name: 'Finance',
+    tagline: 'Tracks expenses, reconciles accounts, and surfaces insights before they hurt.',
+    hex: '#34d399',
+    tasks: [
+      'Categorise and reconcile transactions daily',
+      'Generate weekly and monthly P&L summaries',
+      'Flag unusual expenses and duplicate charges',
+      'Match invoices to payments automatically',
+      'Prepare data export for your accountant',
+    ],
+    integrations: ['QuickBooks', 'Stripe', 'Xero', 'Mercury', 'Notion'],
+    workflow: [
+      'New transaction hits your account',
+      'Finance categorises and tags it instantly',
+      'Checks against budget and flags anomalies',
+      'Updates your weekly dashboard in real time',
+    ],
+    stat: 'Daily',
+    statLabel: 'reconciliation',
+  },
+  {
+    id: 'operations',
+    name: 'Operations',
+    tagline: 'Coordinates vendors, manages schedules, and keeps everything running smoothly.',
+    hex: '#60a5fa',
+    tasks: [
+      'Coordinate vendor communications and follow-ups',
+      'Manage and update project timelines',
+      'Automate recurring admin and compliance tasks',
+      'Send internal status updates and summaries',
+      'Optimise workflows by spotting bottlenecks',
+    ],
+    integrations: ['Slack', 'Notion', 'Linear', 'Jira', 'Google Calendar'],
+    workflow: [
+      'New project or task lands in your system',
+      'Operations breaks it into steps with owners',
+      'Sends reminders and chases blockers automatically',
+      'Reports progress daily — you only see exceptions',
+    ],
+    stat: 'Auto',
+    statLabel: 'task coordination',
+  },
+  {
+    id: 'hr',
+    name: 'HR',
+    tagline: 'Screens candidates, onboards hires, and keeps your team running smoothly.',
+    hex: '#f472b6',
+    tasks: [
+      'Screen CVs and score candidates against your criteria',
+      'Schedule interviews and send calendar invites',
+      'Send onboarding checklists to new hires',
+      'Track leave requests and flag conflicts',
+      'Remind team of reviews and compliance deadlines',
+    ],
+    integrations: ['Greenhouse', 'Slack', 'Google Calendar', 'Notion', 'DocuSign'],
+    workflow: [
+      'Application arrives in your inbox or ATS',
+      'HR scores it against your job brief',
+      'Sends a screening email to top candidates',
+      'Books interviews and preps briefing docs for you',
+    ],
+    stat: 'Auto',
+    statLabel: 'candidate screening',
+  },
+]
+
+export const TIMELINE_STEPS = [
+  {
+    num: '01',
+    title: 'Describe your business',
+    body: 'Tell us what you do, how you work, and what tasks eat your time. Takes under 5 minutes.',
+  },
+  {
+    num: '02',
+    title: 'We staff your team',
+    body: 'AzoliK deploys purpose-built AI agents for each department — pre-trained on your industry and brand voice.',
+  },
+  {
+    num: '03',
+    title: 'Your workforce operates',
+    body: 'Your AI team handles tasks autonomously, escalating to you only when a human decision is genuinely needed.',
+  },
+  {
+    num: '04',
+    title: 'You focus on vision',
+    body: 'Review a clean dashboard, approve key decisions, and spend your energy on what only you can do.',
+  },
+]
+
+export const INDUSTRIES = [
+  {
+    name: 'E-commerce',
+    text: "Support handles returns 24/7. Marketing runs product launches. Finance reconciles Shopify payouts. Operations coordinates fulfilment partners.",
+  },
+  {
+    name: 'Legal',
+    text: "Support triages client enquiries and books consultations. Finance tracks billable hours and chases invoices. HR manages associate scheduling.",
+  },
+  {
+    name: 'Healthcare',
+    text: "Support answers appointment questions and sends reminders. Operations coordinates clinic scheduling. Finance tracks insurance claims.",
+  },
+  {
+    name: 'Real Estate',
+    text: "Sales researches and qualifies buyer leads. Support answers listing enquiries immediately. Marketing creates property content.",
+  },
+  {
+    name: 'Consulting',
+    text: "Sales follows up with warm leads and books intro calls. Marketing builds thought-leadership content. Finance tracks retainers.",
+  },
+  {
+    name: 'Restaurants',
+    text: "Support handles reservations and customer messages. Marketing builds campaigns around seasonal specials. Finance tracks daily revenue.",
+  },
+]
+
+export const INTEGRATIONS = [
+  { name: 'Slack', hex: '#4a154b', i: 'Sl' },
+  { name: 'HubSpot', hex: '#ff7a59', i: 'Hs' },
+  { name: 'Notion', hex: '#ffffff', i: 'No' },
+  { name: 'Gmail', hex: '#ea4335', i: 'Gm' },
+  { name: 'Stripe', hex: '#635bff', i: 'St' },
+  { name: 'Shopify', hex: '#96bf48', i: 'Sh' },
+  { name: 'Salesforce', hex: '#00a1e0', i: 'Sf' },
+  { name: 'Zapier', hex: '#ff4a00', i: 'Za' },
+  { name: 'Intercom', hex: '#1f8ded', i: 'Ic' },
+  { name: 'Linear', hex: '#5e6ad2', i: 'Li' },
+  { name: 'Jira', hex: '#0052cc', i: 'Ji' },
+  { name: 'Airtable', hex: '#18bfff', i: 'At' },
+  { name: 'Mailchimp', hex: '#ffe01b', i: 'Mc' },
+  { name: 'Calendly', hex: '#006bff', i: 'Ca' },
+  { name: 'QuickBooks', hex: '#2ca01c', i: 'QB' },
+  { name: 'WhatsApp', hex: '#25d366', i: 'WA' },
+  { name: 'Twilio', hex: '#f22f46', i: 'Tw' },
+  { name: 'DocuSign', hex: '#ffb900', i: 'DS' },
+]
