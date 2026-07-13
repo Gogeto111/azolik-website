@@ -121,8 +121,10 @@ function ParticleCanvas({ phase }: { phase: number }) {
         ctx.fillStyle = COLORS.cyan
         ctx.globalAlpha = lifeRatio * 0.8 * globalAlpha
         ctx.fill()
-        if (s.life <= 0) sparks.splice(i, 1)
       })
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        if (sparks[i].life <= 0) sparks.splice(i, 1)
+      }
 
       if (currentPhase >= PHASE_TIMING.impact && currentPhase < PHASE_TIMING.impact + 500) {
         for (let i = 0; i < 3; i++) {
@@ -298,7 +300,7 @@ function AnimatedLogo({ phase }: { phase: number }) {
       {/* Impact flash */}
       {impactFlash > 0 && (
         <div
-          className="absolute inset-0 z-60"
+          className="absolute inset-0 z-[60]"
           style={{
             background: `radial-gradient(circle at 50% 50%, ${COLORS.white}${Math.round(impactFlash * 90).toString(16).padStart(2, '0')}, transparent 60%)`,
           }}
@@ -585,7 +587,6 @@ function HudElements({ phase }: { phase: number }) {
           color: 'rgba(255,255,255,0.4)',
         }}
       >
-        <span>M Mute</span>
         <span>Space Replay</span>
       </div>
     </div>
@@ -605,7 +606,7 @@ function BrandingText({ phase }: { phase: number }) {
 
   return (
     <div
-      className="absolute inset-0 flex flex-col items-center justify-center z-35 pointer-events-none"
+      className="absolute inset-0 flex flex-col items-center justify-center z-[35] pointer-events-none"
       style={{ opacity: fadeOut }}
     >
       {/* AZOLIK wordmark */}
@@ -676,7 +677,7 @@ function ExposureLayer({ phase }: { phase: number }) {
   const t = Math.min(1, (phase - PHASE_TIMING.fadeFromBlack) / 1200)
   return (
     <div
-      className="absolute inset-0 bg-black pointer-events-none z-55"
+      className="absolute inset-0 bg-black pointer-events-none z-[55]"
       style={{ opacity: 1 - t }}
     />
   )
@@ -687,7 +688,6 @@ function ExposureLayer({ phase }: { phase: number }) {
    ═══════════════════════════════════════════════════════════════ */
 export function Hero() {
   const [phase, setPhase] = useState(0)
-  const [muted, setMuted] = useState(false)
   const startTime = useRef<number>(0)
   const rafRef = useRef<number>(0)
 
@@ -712,23 +712,21 @@ export function Hero() {
 
   const handleReplay = useCallback(() => {
     cancelAnimationFrame(rafRef.current)
+    frameCount.current = 0
     startTime.current = performance.now()
     rafRef.current = requestAnimationFrame(tick)
   }, [tick])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.code === 'Space') {
+      if (e.code === 'Space' && phase < PHASE_TIMING.done) {
         e.preventDefault()
         handleReplay()
-      }
-      if (e.key === 'm' || e.key === 'M') {
-        setMuted((m) => !m)
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [handleReplay])
+  }, [handleReplay, phase])
 
   return (
     <section
@@ -895,38 +893,38 @@ export function Background() {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-      <div
-        ref={blob1Ref}
-        className="absolute rounded-full animate-aurora"
-        style={{
-          width: '1000px', height: '1000px',
-          top: '-25%', left: '-12%',
-          background: 'radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 65%)',
-          willChange: 'transform',
-        }}
-      />
-      <div
-        ref={blob2Ref}
-        className="absolute rounded-full animate-aurora"
-        style={{
-          width: '800px', height: '800px',
-          top: '8%', right: '-10%',
-          background: 'radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 65%)',
-          animationDelay: '-5s',
-          willChange: 'transform',
-        }}
-      />
-      <div
-        ref={blob3Ref}
-        className="absolute rounded-full animate-aurora"
-        style={{
-          width: '600px', height: '600px',
-          bottom: '22%', left: '28%',
-          background: 'radial-gradient(circle, rgba(79,209,197,0.07) 0%, transparent 65%)',
-          animationDelay: '-9s',
-          willChange: 'transform',
-        }}
-      />
+      <div ref={blob1Ref} className="absolute will-change-transform">
+        <div
+          className="absolute rounded-full animate-aurora"
+          style={{
+            width: '1000px', height: '1000px',
+            top: '-25%', left: '-12%',
+            background: 'radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 65%)',
+          }}
+        />
+      </div>
+      <div ref={blob2Ref} className="absolute will-change-transform">
+        <div
+          className="absolute rounded-full animate-aurora"
+          style={{
+            width: '800px', height: '800px',
+            top: '8%', right: '-10%',
+            background: 'radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 65%)',
+            animationDelay: '-5s',
+          }}
+        />
+      </div>
+      <div ref={blob3Ref} className="absolute will-change-transform">
+        <div
+          className="absolute rounded-full animate-aurora"
+          style={{
+            width: '600px', height: '600px',
+            bottom: '22%', left: '28%',
+            background: 'radial-gradient(circle, rgba(79,209,197,0.07) 0%, transparent 65%)',
+            animationDelay: '-9s',
+          }}
+        />
+      </div>
       <div
         ref={gridRef}
         className="absolute inset-0 opacity-[0.016]"

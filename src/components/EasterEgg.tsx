@@ -11,6 +11,7 @@ export function EasterEgg() {
   const [progress, setProgress] = useState(0)
 
   const handler = useCallback((e: KeyboardEvent) => {
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
     const key = e.code
     const expected = KONAMI[progress]
     if (key === expected) {

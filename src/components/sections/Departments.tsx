@@ -133,7 +133,7 @@ function NeuralNetwork({
       </svg>
 
       {/* Department nodes (absolutely positioned over SVG) */}
-      {NODES.map((node) => {
+      {NODES.map((node, idx) => {
         const isActive = activeId === node.id
         const dept = DEPARTMENTS.find((d) => d.id === node.id)
         // Convert SVG coords to percent
@@ -190,7 +190,7 @@ function NeuralNetwork({
                 className="absolute inset-0 rounded-2xl animate-breathe"
                 style={{
                   background: `radial-gradient(circle at 50% 50%, ${node.color}08 0%, transparent 70%)`,
-                  animationDelay: `${Math.random() * 3}s`,
+                  animationDelay: `${idx * 0.5}s`,
                 }}
               />
             )}

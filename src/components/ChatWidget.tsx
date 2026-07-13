@@ -63,7 +63,6 @@ export function ChatWidget() {
             ? 'none'
             : '0 0 40px rgba(124,58,237,0.3), 0 8px 32px rgba(0,0,0,0.4)',
           border: open ? '1px solid rgba(255,255,255,0.08)' : 'none',
-          cursor: 'none',
         }}
         aria-label={open ? 'Close chat' : 'Open chat'}
       >

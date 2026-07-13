@@ -117,7 +117,7 @@ export function ContactForm({ type = 'demo', title, description, buttonText, onS
         if (error) throw error
       } else {
         setErrorMessage('Form is not configured yet. Please try again later.')
-        setStatus('idle')
+        setStatus('error')
         return
       }
 
@@ -318,7 +318,7 @@ export function ContactForm({ type = 'demo', title, description, buttonText, onS
       )}
       {renderFields()}
 
-      {errorMessage && status === 'error' && (
+      {errorMessage && (
         <div className="flex items-center gap-2 text-sm text-red-400" role="alert">
           <AlertCircle size={14} />
           <span>{errorMessage}</span>
@@ -340,10 +340,6 @@ export function ContactForm({ type = 'demo', title, description, buttonText, onS
         {status === 'loading' && <Loader2 size={20} className="animate-spin" />}
         {status !== 'loading' && (buttonText || (type === 'demo' ? 'Start free trial' : type === 'signup' ? 'Create account' : 'Send message'))}
       </button>
-
-      {description && (
-        <p className="text-center text-white/22 text-xs">{description}</p>
-      )}
 
       <p className="text-center text-white/14 text-[10px] font-mono">
         By submitting, you agree to our <a href="/privacy" className="underline hover:text-white/40">Privacy Policy</a> and <a href="/terms" className="underline hover:text-white/40">Terms of Service</a>.

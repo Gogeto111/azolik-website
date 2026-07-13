@@ -24,7 +24,7 @@ export function Navbar() {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
-        <a href="#hero" className="flex items-center gap-2.5 group" aria-label="AzoliK home">
+        <a href="#home" className="flex items-center gap-2.5 group" aria-label="AzoliK home">
           <div className="w-9 h-9 rounded-xl flex items-center justify-center"
             style={{
               background: 'conic-gradient(from 180deg, #4fd1c5, #a78bfa, #fb923c, #34d399, #60a5fa, #f472b6, #4fd1c5)',

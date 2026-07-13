@@ -1,6 +1,6 @@
 export const NAV_LINKS = [
   { label: 'Automation Agency', href: '#services' },
-  { label: 'AI Salesforce', href: '#services' },
+  { label: 'AI Voice Agent', href: '#services' },
   { label: 'Whop Management', href: '#services' },
   { label: 'FAQs', href: '#faqs' },
   { label: 'Let\'s Talk', href: '#cta', cta: true },

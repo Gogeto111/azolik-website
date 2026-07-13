@@ -10,8 +10,6 @@ function SocialIcon({ name, href }: { name: string; href: string }) {
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       className="p-2 text-white/40 hover:text-white/80 transition-colors rounded-lg hover:bg-white/5"
       aria-label={name}
     >
@@ -70,9 +68,9 @@ export function Footer() {
               ))}
             </div>
             <p className="text-white/14 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-              Terms & Conditions
+              <a href="/terms" className="hover:text-white/40 transition-colors">Terms & Conditions</a>
               <span className="mx-2">·</span>
-              Privacy Policy
+              <a href="/privacy" className="hover:text-white/40 transition-colors">Privacy Policy</a>
             </p>
           </div>
         </div>

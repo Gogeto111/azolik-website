@@ -4,7 +4,7 @@ import { SectionLabel, CheckMark } from '../ui'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { ROICalculator } from './ROICalculator'
 
-function PricingCard({ plan, annual }: { plan: typeof PRICING[0]; annual: boolean }) {
+function PricingCard({ plan, annual, style }: { plan: typeof PRICING[0]; annual: boolean; style?: React.CSSProperties }) {
   const ref = useRef<HTMLDivElement>(null)
 
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -36,6 +36,7 @@ function PricingCard({ plan, annual }: { plan: typeof PRICING[0]; annual: boolea
           : 'rgba(255,255,255,0.07)',
         transformStyle: 'preserve-3d',
         willChange: 'transform',
+        ...style,
       }}
     >
       {plan.badge && (
