@@ -1,23 +1,17 @@
-import { useEffect } from 'react'
-import { Background, Hero } from './components/Hero'
+import { useEffect, useState } from 'react'
+import { Hero } from './components/Hero'
 import { Navbar } from './components/Navbar'
 import { Cursor } from './components/Cursor'
 import { ScrollProgress } from './components/ScrollProgress'
 import { AmbientBackground } from './components/AmbientBackground'
 import { FloatingOrbs } from './components/FloatingOrbs'
-import { ProblemSection } from './components/sections/Problem'
-import { DepartmentsSection } from './components/sections/Departments'
-import { FeaturesSection } from './components/sections/Features'
-import { WorkflowDemo } from './components/sections/WorkflowDemo'
-import { QuoteSection } from './components/sections/Quote'
-import { HowItWorksSection } from './components/sections/HowItWorks'
-import { StatsSection } from './components/sections/Stats'
-import { IndustriesSection } from './components/sections/Industries'
-import { IntegrationsSection } from './components/sections/Integrations'
-import { TestimonialsSection } from './components/sections/Testimonials'
-import { PricingSection } from './components/sections/Pricing'
-import { FAQSection } from './components/sections/FAQ'
-import { CTASection } from './components/sections/CTA'
+import { StatsSection } from './components/sections/StatsSection'
+import { ServicesSection } from './components/sections/ServicesSection'
+import { WorkSection } from './components/sections/WorkSection'
+import { ResultsSection } from './components/sections/ResultsSection'
+import { TestimonialsSection } from './components/sections/TestimonialsSection'
+import { FAQSection } from './components/sections/FAQSection'
+import { CTASection } from './components/sections/CTASection'
 import { Footer } from './components/Footer'
 import { PageTransition } from './components/AnimatedComponents'
 
@@ -47,19 +41,12 @@ export default function App() {
 
           <StatsSection />
           <FloatingOrbs />
-          <ProblemSection />
-          <DepartmentsSection />
+          <ServicesSection />
           <FloatingOrbs />
-          <FeaturesSection />
-          <WorkflowDemo />
-          <QuoteSection />
+          <WorkSection />
           <FloatingOrbs />
-          <HowItWorksSection />
-          <IndustriesSection />
-          <IntegrationsSection />
+          <ResultsSection />
           <TestimonialsSection />
-          <FloatingOrbs />
-          <PricingSection />
           <FAQSection />
           <CTASection />
           <Footer />

@@ -1,30 +1,43 @@
+import { FOOTER_LINKS, SOCIAL_LINKS } from '../data'
 import { AzoliKLogo } from './ui'
+import { Instagram, Linkedin, MessageCircle, Mail, Calendar } from 'lucide-react'
 
-const FOOTER_LINKS: Record<string, string[]> = {
-  Product: ['AI Departments', 'Industries', 'Integrations', 'Pricing', 'Changelog'],
-  Company: ['About', 'Blog', 'Careers', 'Press', 'Contact'],
-  Resources: ['Documentation', 'Status', 'Security', 'Privacy', 'Terms'],
+function SocialIcon({ name, href }: { name: string; href: string }) {
+  const icons: Record<string, React.ReactNode> = {
+    Instagram: <Instagram size={18} />,
+    LinkedIn: <Linkedin size={18} />,
+    Discord: <MessageCircle size={18} />,
+    Email: <Mail size={18} />,
+    Calendar: <Calendar size={18} />,
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 text-white/40 hover:text-white/80 transition-colors rounded-lg hover:bg-white/5"
+      aria-label={name}
+    >
+      {icons[name]}
+    </a>
+  )
 }
 
 export function Footer() {
   return (
-    <footer className="relative z-10 border-t border-white/[0.05] pt-16 pb-10 px-6">
+    <footer className="relative z-10 border-t border-white/[0.05] pt-16 pb-10 px-6" style={{ background: '#08090c' }}>
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-14">
-          <div className="col-span-2">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-10 mb-14">
+          <div className="col-span-2 md:col-span-2">
             <div className="flex items-center gap-2.5 mb-5">
-              <AzoliKLogo />
-              <span
-                className="font-semibold text-white"
-                style={{ fontFamily: "'Outfit', sans-serif" }}
-              >
-                AzoliK
+              <AzoliKLogo size={32} />
+              <span className="font-semibold text-white" style={{ fontFamily: "'Outfit', sans-serif", fontSize: '20px' }}>
+                azolic
               </span>
             </div>
-            <p className="text-white/28 text-sm leading-[1.65] max-w-[200px]">
-              AI Departments. On Demand.
-              <br />
-              Every business deserves a team.
+            <p className="text-white/28 text-sm leading-[1.65] max-w-[240px]">
+              Each project we undertake is a unique opportunity. Ready to transform your vision into reality?
             </p>
           </div>
 
@@ -52,19 +65,20 @@ export function Footer() {
           ))}
         </div>
 
-        <div
-          className="flex flex-col md:flex-row items-center justify-between pt-7 gap-3"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
-        >
-          <p className="text-white/18 text-sm">© 2024 AzoliK, Inc. All rights reserved.</p>
-          <p
-            className="text-white/14 text-xs"
-            style={{ fontFamily: "'JetBrains Mono', monospace" }}
-          >
-            Built for the exhausted owner.
-          <br />
-          Powered by AI that doesn't know what burnout is.
-          </p>
+        <div className="flex flex-col md:flex-row items-center justify-between pt-7 gap-3" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+          <p className="text-white/18 text-sm">© 2026 azolic™. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
+              {SOCIAL_LINKS.map((social) => (
+                <SocialIcon key={social.name} name={social.icon} href={social.href} />
+              ))}
+            </div>
+            <p className="text-white/14 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              Terms & Conditions
+              <span className="mx-2">·</span>
+              Privacy Policy
+            </p>
+          </div>
         </div>
       </div>
     </footer>
