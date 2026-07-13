@@ -30,7 +30,6 @@ export default function App() {
         className="min-h-screen overflow-x-hidden"
         style={{ backgroundColor: '#08090c', color: '#f5f5f7', fontFamily: "'Inter', sans-serif" }}
       >
-        <Background />
         <AmbientBackground />
         <Cursor />
         <ScrollProgress />
