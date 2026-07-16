@@ -77,7 +77,7 @@ export const FAQS = [
   },
   {
     q: 'How does pricing work?',
-    a: 'Simple monthly plans: Solo at ₹24,900/mo (1 department), Team at ₹66,500/mo (4 departments), Enterprise custom. All plans include setup, integrations, and ongoing optimization. Solo gets 6 months free. Team gets 14-day trial. No contracts, cancel anytime.',
+    a: 'Simple monthly plans: Solo at ₹299/mo (1 department), Team at ₹799/mo (4 departments), Enterprise custom. All plans include setup, integrations, and ongoing optimization. Solo gets 6 months free. Team gets 14-day trial. No contracts, cancel anytime.',
   },
   {
     q: 'What if the AI makes a mistake?',
@@ -132,8 +132,8 @@ export const PRICING = [
   {
     name: 'Solo',
     description: 'One AI department for solo founders',
-    monthly: 24900,
-    annual: 249000,
+    monthly: 299,
+    annual: 2990,
     badge: null,
     highlighted: false,
     features: [
@@ -149,8 +149,8 @@ export const PRICING = [
   {
     name: 'Team',
     description: 'Full AI workforce for growing teams',
-    monthly: 66500,
-    annual: 665000,
+    monthly: 799,
+    annual: 6990,
     badge: 'Most Popular',
     highlighted: true,
     features: [
