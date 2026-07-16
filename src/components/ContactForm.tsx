@@ -47,6 +47,7 @@ export function ContactForm({
   const [formData, setFormData] = useState({
     business_name: '',
     email: '',
+    phone: '',
     industry: '',
     message: '',
   });
@@ -71,6 +72,10 @@ export function ContactForm({
         break;
       case 'message':
         if (type === 'contact' && !value.trim()) return 'Message is required';
+        break;
+      case 'phone':
+        if (type === 'contact' && !value.trim()) return 'Phone number is required';
+        if (value.trim() && !/^[\+]?[\d\s\-\(\)]{10,}$/.test(value)) return 'Enter a valid phone number';
         break;
     }
     return null;
@@ -257,6 +262,27 @@ export function ContactForm({
     }
 
     if (type === 'contact') {
+      fields.push(
+        <div key="phone" className="relative">
+          <label htmlFor="phone" className="block text-white/40 text-xs mb-1.5">
+            Phone number *
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            value={formData.phone}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onFocus={e => Object.assign(e.currentTarget.style, focusStyle)}
+            placeholder="+91 97117 00199"
+            className={baseInputClass}
+            style={{ borderColor: getBorderColor('phone') }}
+            disabled={status === 'loading'}
+          />
+        </div>
+      );
+
       fields.push(
         <div key="message" className="relative">
           <label htmlFor="message" className="block text-white/40 text-xs mb-1.5">

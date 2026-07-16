@@ -1,19 +1,19 @@
-import { Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { NAV_LINKS } from '../data';
-import { useMagnetic } from '../hooks/useAdvancedAnimations';
-import { AzoliKLogo } from './ui';
+import { Menu, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { NAV_LINKS } from '../data'
+import { useMagnetic } from '../hooks/useAdvancedAnimations'
+import { AzoliKLogo } from './ui'
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const magnetic = useMagnetic<HTMLAnchorElement>(0.25);
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
+  const magnetic = useMagnetic<HTMLAnchorElement>(0.25)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <nav
@@ -25,34 +25,30 @@ export function Navbar() {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2.5 group" aria-label="AzoliK home">
+        <a href="#home" className="flex items-center gap-2.5 group" aria-label="Azolic AI Media Agency home">
           <AzoliKLogo size={36} />
           <span
             className="font-semibold text-lg text-white tracking-[-0.02em] group-hover:opacity-80 transition-opacity"
             style={{ fontFamily: "'Outfit', sans-serif" }}
           >
-            AzoliK
+            Azolic AI Media Agency
           </span>
         </a>
 
         <div className="hidden lg:flex items-center gap-6 lg:gap-8">
-          {NAV_LINKS.map(link => (
+          {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className={
-                link.cta
-                  ? 'hidden md:flex shimmer-btn ripple px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]'
-                  : 'text-sm text-white/55 hover:text-white/90 transition-colors duration-200 font-medium'
-              }
-              style={
-                link.cta
-                  ? {
-                      background: '#f5f5f7',
-                      boxShadow: '0 0 40px rgba(245,245,247,0.14), 0 8px 32px rgba(0,0,0,0.3)',
-                    }
-                  : undefined
-              }
+              className={link.cta
+                ? 'hidden md:flex shimmer-btn ripple px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]'
+                : 'text-sm text-white/55 hover:text-white/90 transition-colors duration-200 font-medium'}
+              style={link.cta
+                ? {
+                    background: '#f5f5f7',
+                    boxShadow: '0 0 40px rgba(245,245,247,0.14), 0 8px 32px rgba(0,0,0,0.3)',
+                  }
+                : undefined}
             >
               {link.label}
             </a>
@@ -62,7 +58,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <a
             ref={magnetic.ref}
-            href="#cta"
+            href="#lets-talk"
             className="shimmer-btn ripple px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] magnetic"
             style={{
               background: '#f5f5f7',
@@ -89,7 +85,7 @@ export function Navbar() {
           style={{ background: 'rgba(8,9,12,0.98)', backdropFilter: 'blur(24px)' }}
         >
           <div className="flex flex-col gap-1">
-            {NAV_LINKS.map(link => (
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -103,5 +99,5 @@ export function Navbar() {
         </div>
       )}
     </nav>
-  );
+  )
 }

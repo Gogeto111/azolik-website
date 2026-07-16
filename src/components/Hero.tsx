@@ -738,7 +738,7 @@ export function Hero() {
       <Vignette phase={phase} />
       <FilmGrain phase={phase} />
       <ExposureLayer phase={phase} />
-      {phase > PHASE_TIMING.holdEnd && (
+      {phase > PHASE_TIMING.holdEnd + 8000 && (
         <div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-4"
           style={{
@@ -749,7 +749,7 @@ export function Hero() {
           <HeroConsole />
         </div>
       )}
-      {phase > PHASE_TIMING.holdEnd + 2000 && (
+      {phase > PHASE_TIMING.holdEnd + 10000 && (
         <div
           className="absolute bottom-3 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1.5"
           style={{

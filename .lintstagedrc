@@ -1,13 +1,8 @@
 {
   "*.{ts,tsx,js,jsx}": [
-    "biome check --write --no-errors-on-unmatched",
-    "eslint --fix"
+    "biome check --write --no-errors-on-unmatched"
   ],
   "*.{json,md,css,html}": [
-    "biome format --write",
-    "prettier --write"
-  ],
-  "*.{ts,tsx}": [
-    "prettier --write"
+    "biome format --write"
   ]
 }
