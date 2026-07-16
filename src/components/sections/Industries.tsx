@@ -1,44 +1,46 @@
-import { useState, useRef, useEffect } from 'react'
-import { INDUSTRIES } from '../../data'
-import { SectionLabel } from '../ui'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { useEffect, useRef, useState } from 'react';
+import { INDUSTRIES } from '../../data';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { SectionLabel } from '../ui';
 
 export function IndustriesSection() {
-  const ref = useScrollReveal<HTMLElement>()
-  const [active, setActive] = useState(0)
-  const [fade, setFade] = useState(true)
-  const cardRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>()
+  const ref = useScrollReveal<HTMLElement>();
+  const [active, setActive] = useState(0);
+  const [fade, setFade] = useState(true);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   const switchTab = (i: number) => {
-    if (i === active) return
-    setFade(false)
+    if (i === active) return;
+    setFade(false);
     timeoutRef.current = setTimeout(() => {
-      setActive(i)
-      setFade(true)
-    }, 200)
-  }
+      setActive(i);
+      setFade(true);
+    }, 200);
+  };
 
   useEffect(() => {
-    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }
-  }, [])
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const onCardMove = (e: React.MouseEvent) => {
-    const el = cardRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(1000px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg)`
-    el.style.transition = 'transform 0.1s ease'
-  }
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    el.style.transform = `perspective(1000px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg)`;
+    el.style.transition = 'transform 0.1s ease';
+  };
 
   const onCardLeave = () => {
-    const el = cardRef.current
-    if (!el) return
-    el.style.transform = ''
-    el.style.transition = 'transform 0.6s var(--ease)'
-  }
+    const el = cardRef.current;
+    if (!el) return;
+    el.style.transform = '';
+    el.style.transition = 'transform 0.6s var(--ease)';
+  };
 
   return (
     <section ref={ref} id="industries" className="reveal relative z-10 py-32 px-6">
@@ -74,17 +76,15 @@ export function IndustriesSection() {
           ref={cardRef}
           className="relative rounded-2xl p-px"
           style={{
-            background: 'linear-gradient(135deg, rgba(251,146,60,0.25), rgba(167,139,250,0.2), rgba(79,209,197,0.15))',
+            background:
+              'linear-gradient(135deg, rgba(251,146,60,0.25), rgba(167,139,250,0.2), rgba(79,209,197,0.15))',
             transformStyle: 'preserve-3d',
             willChange: 'transform',
           }}
           onMouseMove={onCardMove}
           onMouseLeave={onCardLeave}
         >
-          <div
-            className="rounded-2xl px-10 py-12 text-center"
-            style={{ background: '#0c0e13' }}
-          >
+          <div className="rounded-2xl px-10 py-12 text-center" style={{ background: '#0c0e13' }}>
             <div
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium mb-6 transition-opacity duration-200"
               style={{
@@ -112,5 +112,5 @@ export function IndustriesSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

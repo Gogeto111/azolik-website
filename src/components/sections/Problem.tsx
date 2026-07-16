@@ -1,14 +1,18 @@
-import { GlassCard, GradientText, SectionLabel, CheckMark } from '../ui'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { useTilt } from '../../hooks/useTilt'
-import { ScrollRevealText } from '../ScrollRevealText'
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { useTilt } from '../../hooks/useTilt';
+import { ScrollRevealText } from '../ScrollRevealText';
+import { CheckMark, GlassCard, GradientText, SectionLabel } from '../ui';
 
-function TiltCard({ children, className = '', style = {} }: {
-  children: React.ReactNode
-  className?: string
-  style?: React.CSSProperties
+function TiltCard({
+  children,
+  className = '',
+  style = {},
+}: {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
 }) {
-  const { ref, onMouseMove, onMouseLeave } = useTilt<HTMLDivElement>()
+  const { ref, onMouseMove, onMouseLeave } = useTilt<HTMLDivElement>();
   return (
     <div
       ref={ref}
@@ -19,14 +23,21 @@ function TiltCard({ children, className = '', style = {} }: {
     >
       {children}
     </div>
-  )
+  );
 }
 
 export function ProblemSection() {
-  const ref = useScrollReveal<HTMLElement>()
-  const stagger = useScrollReveal<HTMLDivElement>()
+  const ref = useScrollReveal<HTMLElement>();
+  const stagger = useScrollReveal<HTMLDivElement>();
 
-  const team = ['Sales team', 'Support team', 'Marketing team', 'Finance dept.', 'Operations', 'HR team']
+  const team = [
+    'Sales team',
+    'Support team',
+    'Marketing team',
+    'Finance dept.',
+    'Operations',
+    'HR team',
+  ];
 
   return (
     <section ref={ref} id="problem" className="reveal relative z-10 py-36 px-6 overflow-hidden">
@@ -81,18 +92,21 @@ export function ProblemSection() {
                   className="text-white/38 text-[11px]"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
                 >
-                   Enterprise company — full team
+                  Enterprise company — full team
                 </span>
               </div>
               <div className="space-y-2">
-                {team.map((item) => (
+                {team.map(item => (
                   <div
                     key={item}
                     className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.04]"
                   >
                     <div
                       className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'rgba(52,211,153,0.15)', border: '1px solid rgba(52,211,153,0.22)' }}
+                      style={{
+                        background: 'rgba(52,211,153,0.15)',
+                        border: '1px solid rgba(52,211,153,0.22)',
+                      }}
                     >
                       <CheckMark color="#34d399" />
                     </div>
@@ -118,11 +132,17 @@ export function ProblemSection() {
               <div className="space-y-2">
                 <div
                   className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl"
-                  style={{ background: 'rgba(239,68,68,0.07)', border: '1px solid rgba(239,68,68,0.14)' }}
+                  style={{
+                    background: 'rgba(239,68,68,0.07)',
+                    border: '1px solid rgba(239,68,68,0.14)',
+                  }}
                 >
                   <div
                     className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.22)' }}
+                    style={{
+                      background: 'rgba(239,68,68,0.15)',
+                      border: '1px solid rgba(239,68,68,0.22)',
+                    }}
                   >
                     <span className="text-red-400 text-[9px] font-bold">!</span>
                   </div>
@@ -146,7 +166,8 @@ export function ProblemSection() {
           <div
             className="p-px rounded-2xl max-w-2xl w-full"
             style={{
-              background: 'linear-gradient(135deg, rgba(167,139,250,0.4), rgba(14,165,233,0.3), rgba(79,209,197,0.2))',
+              background:
+                'linear-gradient(135deg, rgba(167,139,250,0.4), rgba(14,165,233,0.3), rgba(79,209,197,0.2))',
             }}
           >
             <div className="px-8 py-7 rounded-2xl text-center" style={{ background: '#08090c' }}>
@@ -164,5 +185,5 @@ export function ProblemSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

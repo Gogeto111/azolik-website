@@ -1,38 +1,48 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react';
 
 const KONAMI = [
-  'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-  'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-  'KeyB', 'KeyA',
-]
+  'ArrowUp',
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowLeft',
+  'ArrowRight',
+  'KeyB',
+  'KeyA',
+];
 
 export function EasterEgg() {
-  const [unlocked, setUnlocked] = useState(false)
-  const [progress, setProgress] = useState(0)
+  const [unlocked, setUnlocked] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  const handler = useCallback((e: KeyboardEvent) => {
-    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
-    const key = e.code
-    const expected = KONAMI[progress]
-    if (key === expected) {
-      const next = progress + 1
-      setProgress(next)
-      if (next >= KONAMI.length) {
-        setUnlocked(true)
-        setProgress(0)
-        setTimeout(() => setUnlocked(false), 4000)
+  const handler = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      const key = e.code;
+      const expected = KONAMI[progress];
+      if (key === expected) {
+        const next = progress + 1;
+        setProgress(next);
+        if (next >= KONAMI.length) {
+          setUnlocked(true);
+          setProgress(0);
+          setTimeout(() => setUnlocked(false), 4000);
+        }
+      } else {
+        setProgress(0);
       }
-    } else {
-      setProgress(0)
-    }
-  }, [progress])
+    },
+    [progress]
+  );
 
   useEffect(() => {
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [handler])
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [handler]);
 
-  if (!unlocked) return null
+  if (!unlocked) return null;
 
   return (
     <div
@@ -58,13 +68,10 @@ export function EasterEgg() {
         <p className="text-white/40 text-sm mb-4">
           You found the Konami code. You clearly have excellent taste.
         </p>
-        <p
-          className="text-white/20 text-xs"
-          style={{ fontFamily: "'JetBrains Mono', monospace" }}
-        >
+        <p className="text-white/20 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
           ↑ ↑ ↓ ↓ ← → ← → B A
         </p>
       </div>
     </div>
-  )
+  );
 }

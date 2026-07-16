@@ -1,26 +1,26 @@
-import { Background, Hero } from './components/Hero'
-import { Navbar } from './components/Navbar'
-import { Cursor } from './components/Cursor'
-import { ScrollProgress } from './components/ScrollProgress'
-import { AmbientBackground } from './components/AmbientBackground'
-import { ScrollSpy } from './components/ScrollSpy'
-import { ChatWidget } from './components/ChatWidget'
-import { EasterEgg } from './components/EasterEgg'
-import { StatsSection } from './components/sections/Stats'
-import { ServicesSection } from './components/sections/ServicesSection'
-import { ProblemSection } from './components/sections/Problem'
-import { DepartmentsSection } from './components/sections/Departments'
-import { WorkflowDemo } from './components/sections/WorkflowDemo'
-import { FloatingOrbs } from './components/FloatingOrbs'
-import { QuoteSection } from './components/sections/Quote'
-import { HowItWorksSection } from './components/sections/HowItWorks'
-import { IndustriesSection } from './components/sections/Industries'
-import { IntegrationsSection } from './components/sections/Integrations'
-import { PricingSection } from './components/sections/Pricing'
-import { TestimonialsSection } from './components/sections/Testimonials'
-import { FAQSection } from './components/sections/FAQSection'
-import { CTASection } from './components/sections/CTA'
-import { Footer } from './components/Footer'
+import { AmbientBackground } from './components/AmbientBackground';
+import { ChatWidget } from './components/ChatWidget';
+import { Cursor } from './components/Cursor';
+import { EasterEgg } from './components/EasterEgg';
+import { FloatingOrbs } from './components/FloatingOrbs';
+import { Footer } from './components/Footer';
+import { Background, Hero } from './components/Hero';
+import { Navbar } from './components/Navbar';
+import { ScrollProgress } from './components/ScrollProgress';
+import { ScrollSpy } from './components/ScrollSpy';
+import { CTASection } from './components/sections/CTA';
+import { DepartmentsSection } from './components/sections/Departments';
+import { FAQSection } from './components/sections/FAQSection';
+import { HowItWorksSection } from './components/sections/HowItWorks';
+import { IndustriesSection } from './components/sections/Industries';
+import { IntegrationsSection } from './components/sections/Integrations';
+import { PricingSection } from './components/sections/Pricing';
+import { ProblemSection } from './components/sections/Problem';
+import { QuoteSection } from './components/sections/Quote';
+import { ServicesSection } from './components/sections/ServicesSection';
+import { StatsSection } from './components/sections/Stats';
+import { TestimonialsSection } from './components/sections/Testimonials';
+import { WorkflowDemo } from './components/sections/WorkflowDemo';
 
 export default function App() {
   return (
@@ -70,5 +70,5 @@ export default function App() {
       <ChatWidget />
       <EasterEgg />
     </div>
-  )
+  );
 }

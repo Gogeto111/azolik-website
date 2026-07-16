@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react';
 
 const SCENARIOS = [
   {
@@ -12,14 +12,14 @@ const SCENARIOS = [
       'CRM updated · Ticket resolved',
     ],
     response:
-      "Great news! We have this product in blue, size 9 — 3 left in stock. Want me to reserve one for you?",
+      'Great news! We have this product in blue, size 9 — 3 left in stock. Want me to reserve one for you?',
     time: '2.4s',
     count: 4,
   },
   {
     department: 'Sales',
     color: '#a78bfa',
-    customer: 'New lead: Hi, I\'d like a demo of your platform',
+    customer: "New lead: Hi, I'd like a demo of your platform",
     tasks: [
       'Researching lead profile and company data',
       'Lead scored 94/100 · Buying signals detected on pricing page',
@@ -41,102 +41,108 @@ const SCENARIOS = [
       'Cash position updated',
       'P&L refreshed · Revenue up month-over-month',
     ],
-    response:
-      "Payment reconciled. Invoice marked paid. P&L report ready for your review.",
+    response: 'Payment reconciled. Invoice marked paid. P&L report ready for your review.',
     time: '1.8s',
     count: 4,
   },
-]
+];
 
 function CheckIcon({ color }: { color: string }) {
   return (
     <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-      <path d="M1.5 4.5L3.8 7L7.5 2.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M1.5 4.5L3.8 7L7.5 2.5"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
-  )
+  );
 }
 
 export function HeroConsole() {
-  const [idx, setIdx] = useState(0)
-  const [customerText, setCustomerText] = useState('')
-  const [phase, setPhase] = useState<'idle' | 'customer' | 'thinking' | 'tasks' | 'response' | 'stats'>('idle')
-  const [tasksVisible, setTasksVisible] = useState(0)
-  const [responseText, setResponseText] = useState('')
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const [idx, setIdx] = useState(0);
+  const [customerText, setCustomerText] = useState('');
+  const [phase, setPhase] = useState<
+    'idle' | 'customer' | 'thinking' | 'tasks' | 'response' | 'stats'
+  >('idle');
+  const [tasksVisible, setTasksVisible] = useState(0);
+  const [responseText, setResponseText] = useState('');
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scenario = SCENARIOS[idx]
+  const scenario = SCENARIOS[idx];
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [customerText, tasksVisible, responseText, phase])
+  }, [customerText, tasksVisible, responseText, phase]);
 
   useEffect(() => {
-    let cancelled = false
-    const delay = (ms: number) =>
-      new Promise<void>((resolve) => setTimeout(resolve, ms))
+    let cancelled = false;
+    const delay = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
 
     const run = async () => {
-      await delay(600)
-      if (cancelled) return
-      setCustomerText('')
-      setTasksVisible(0)
-      setResponseText('')
-      setPhase('customer')
+      await delay(600);
+      if (cancelled) return;
+      setCustomerText('');
+      setTasksVisible(0);
+      setResponseText('');
+      setPhase('customer');
 
-      const msg = scenario.customer
+      const msg = scenario.customer;
       for (let i = 1; i <= msg.length; i++) {
-        await delay(55 + Math.random() * 30)
-        if (cancelled) return
-        setCustomerText(msg.slice(0, i))
+        await delay(55 + Math.random() * 30);
+        if (cancelled) return;
+        setCustomerText(msg.slice(0, i));
       }
 
-      await delay(700)
-      if (cancelled) return
-      setPhase('thinking')
+      await delay(700);
+      if (cancelled) return;
+      setPhase('thinking');
 
-      await delay(1400)
-      if (cancelled) return
-      setPhase('tasks')
+      await delay(1400);
+      if (cancelled) return;
+      setPhase('tasks');
 
       for (let i = 1; i <= scenario.tasks.length; i++) {
-        await delay(900 + i * 80)
-        if (cancelled) return
-        setTasksVisible(i)
+        await delay(900 + i * 80);
+        if (cancelled) return;
+        setTasksVisible(i);
       }
 
-      await delay(800)
-      if (cancelled) return
-      setPhase('response')
+      await delay(800);
+      if (cancelled) return;
+      setPhase('response');
 
-      const resp = scenario.response
+      const resp = scenario.response;
       for (let i = 1; i <= resp.length; i++) {
-        await delay(35 + Math.random() * 20)
-        if (cancelled) return
-        setResponseText(resp.slice(0, i))
+        await delay(35 + Math.random() * 20);
+        if (cancelled) return;
+        setResponseText(resp.slice(0, i));
       }
 
-      await delay(900)
-      if (cancelled) return
-      setPhase('stats')
+      await delay(900);
+      if (cancelled) return;
+      setPhase('stats');
 
-      await delay(5000)
-      if (cancelled) return
-      setIdx((prev) => (prev + 1) % SCENARIOS.length)
-    }
+      await delay(5000);
+      if (cancelled) return;
+      setIdx(prev => (prev + 1) % SCENARIOS.length);
+    };
 
-    run()
+    run();
     return () => {
-      cancelled = true
-    }
-  }, [idx, scenario])
+      cancelled = true;
+    };
+  }, [idx, scenario]);
 
-  const showCustomer = phase !== 'idle' && customerText.length > 0
-  const showThinking = phase === 'thinking'
-  const showTasks = ['tasks', 'response', 'stats'].includes(phase)
-  const showResponse = ['response', 'stats'].includes(phase) && responseText.length > 0
-  const showStats = phase === 'stats'
+  const showCustomer = phase !== 'idle' && customerText.length > 0;
+  const showThinking = phase === 'thinking';
+  const showTasks = ['tasks', 'response', 'stats'].includes(phase);
+  const showResponse = ['response', 'stats'].includes(phase) && responseText.length > 0;
+  const showStats = phase === 'stats';
 
   return (
     <div
@@ -157,8 +163,12 @@ export function HeroConsole() {
       >
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">
-            {['#ff5f57', '#febc2e', '#28c840'].map((c) => (
-              <div key={c} className="w-2.5 h-2.5 rounded-full" style={{ background: c, opacity: 0.65 }} />
+            {['#ff5f57', '#febc2e', '#28c840'].map(c => (
+              <div
+                key={c}
+                className="w-2.5 h-2.5 rounded-full"
+                style={{ background: c, opacity: 0.65 }}
+              />
             ))}
           </div>
           <span
@@ -175,7 +185,11 @@ export function HeroConsole() {
           />
           <span
             className="text-[10px]"
-            style={{ fontFamily: "'JetBrains Mono', monospace", color: scenario.color, opacity: 0.7 }}
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              color: scenario.color,
+              opacity: 0.7,
+            }}
           >
             ONLINE
           </span>
@@ -221,17 +235,25 @@ export function HeroConsole() {
         {showThinking && (
           <div className="flex items-center gap-2.5 pl-1">
             <div className="flex gap-1">
-              {[0, 1, 2].map((i) => (
+              {[0, 1, 2].map(i => (
                 <div
                   key={i}
                   className="w-1.5 h-1.5 rounded-full animate-bounce"
-                  style={{ background: scenario.color, opacity: 0.7, animationDelay: `${i * 150}ms` }}
+                  style={{
+                    background: scenario.color,
+                    opacity: 0.7,
+                    animationDelay: `${i * 150}ms`,
+                  }}
                 />
               ))}
             </div>
             <span
               className="text-[11px]"
-              style={{ fontFamily: "'JetBrains Mono', monospace", color: scenario.color, opacity: 0.6 }}
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                color: scenario.color,
+                opacity: 0.6,
+              }}
             >
               Analyzing...
             </span>
@@ -249,7 +271,10 @@ export function HeroConsole() {
               >
                 <div
                   className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                  style={{ background: `${scenario.color}20`, border: `1px solid ${scenario.color}45` }}
+                  style={{
+                    background: `${scenario.color}20`,
+                    border: `1px solid ${scenario.color}45`,
+                  }}
                 >
                   <CheckIcon color={scenario.color} />
                 </div>
@@ -301,7 +326,11 @@ export function HeroConsole() {
         >
           <span
             className="text-[10px]"
-            style={{ fontFamily: "'JetBrains Mono', monospace", color: scenario.color, opacity: 0.65 }}
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              color: scenario.color,
+              opacity: 0.65,
+            }}
           >
             ✓ {scenario.count} tasks automated in {scenario.time}
           </span>
@@ -323,5 +352,5 @@ export function HeroConsole() {
         </div>
       )}
     </div>
-  )
+  );
 }

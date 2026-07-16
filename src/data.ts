@@ -1,167 +1,197 @@
 export const NAV_LINKS = [
-  { label: 'Automation Agency', href: '#services' },
-  { label: 'AI Voice Agent', href: '#services' },
-  { label: 'Whop Management', href: '#services' },
-  { label: 'FAQs', href: '#faqs' },
-  { label: 'Let\'s Talk', href: '#cta', cta: true },
-]
+  { label: 'Departments', href: '#departments' },
+  { label: 'How It Works', href: '#howitworks' },
+  { label: 'Industries', href: '#industries' },
+  { label: 'Integrations', href: '#integrations' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: "Let's Talk", href: '#cta', cta: true },
+];
 
 export const SERVICES = [
   {
-    id: 'automation-agency',
-    title: 'Automation Agency',
-    description: 'We create custom automation systems for lead generation, outreach, client onboarding, CRM workflows, and more — built to save you time and scale efficiently.',
-    icon: 'Automation',
+    id: 'ai-support',
+    title: 'AI Support Department',
+    description:
+      '24/7 autonomous customer support across WhatsApp, email, chat. Resolves tickets, handles refunds, answers questions with your brand voice.',
+    icon: 'Support',
     color: '#4fd1c5',
   },
   {
-    id: 'ai-voice-agent',
-    title: 'AI Voice Agent',
-    description: 'Our AI-powered voice agents can answer calls, qualify leads, book appointments, and handle support — giving your business a professional voice 24/7.',
+    id: 'ai-sales',
+    title: 'AI Sales Department',
+    description:
+      'Qualifies leads, writes personalized outreach, follows up automatically, books meetings. Your pipeline runs while you sleep.',
     icon: 'Voice',
     color: '#a78bfa',
   },
   {
-    id: 'ai-ad-services',
-    title: 'AI Ad Services',
-    description: 'We design AI-generated ad creatives using custom characters, realistic voices, lip-sync, and editing — optimized to match your brand and drive results.',
+    id: 'ai-marketing',
+    title: 'AI Marketing Department',
+    description:
+      'Writes SEO content, plans campaigns, drafts emails, analyzes performance, repurposes content across channels. Full-stack marketing, zero headcount.',
     icon: 'Ad',
     color: '#fb923c',
   },
   {
-    id: 'whop-management',
-    title: 'Whop Management',
-    description: 'Run organic, ad-like campaigns with UGC creators and editors through our Whop service — a scalable, cost-effective way to grow with viral content.',
+    id: 'ai-finance',
+    title: 'AI Finance Department',
+    description:
+      'Categorizes transactions daily, generates P&L summaries, flags anomalies, matches invoices, prepares accountant-ready exports.',
     icon: 'Whop',
     color: '#34d399',
   },
   {
-    id: 'ai-customer-support',
-    title: 'AI Customer Support',
-    description: 'Deploy 24/7 AI customer service agents to manage tickets, answer FAQs, update customers, and store user data — all with unmatched consistency.',
-    icon: 'Support',
+    id: 'ai-operations',
+    title: 'AI Operations Department',
+    description:
+      'Coordinates vendors, manages project timelines, automates admin, sends status updates, spots bottlenecks before they block you.',
+    icon: 'Automation',
     color: '#60a5fa',
   },
-]
+  {
+    id: 'ai-hr',
+    title: 'AI HR Department',
+    description:
+      'Screens candidates, schedules interviews, onboards new hires, tracks leave, reminds of reviews and compliance deadlines.',
+    icon: 'Support',
+    color: '#f472b6',
+  },
+];
 
 export const FAQS = [
   {
-    q: 'What\'s in it for me?',
-    a: 'You get a dedicated team of experts across every domain — from high-end editing to fully automated content workflows. We deliver end-to-end solutions tailored to scale your brand, saving you time and maximizing ROI.',
+    q: 'What exactly do I get with AzoliK?',
+    a: 'You get six pre-trained AI departments — Support, Sales, Marketing, Finance, Operations, HR — that handle real work autonomously. They connect to your existing tools (Slack, Gmail, HubSpot, QuickBooks, etc.) and start working within 48 hours of onboarding.',
   },
   {
-    q: 'What\'s our expertise?',
-    a: 'We specialize in automation systems, AI voice agents, AI-generated ad creatives, Whop management for UGC campaigns, and 24/7 AI customer support. Our team has deep experience across content, advertising, and sales automation.',
+    q: 'Do I need engineers to set this up?',
+    a: 'No. Our onboarding team handles the entire setup. You describe your business, we configure the agents, connect your integrations, and deploy. Zero engineering required on your end.',
   },
   {
-    q: 'What makes us different?',
-    a: 'Unlike traditional agencies, we build systems that run autonomously. You\'re not just buying services — you\'re investing in infrastructure that compounds value over time. We combine human expertise with AI efficiency.',
+    q: 'How is this different from hiring a virtual assistant or agency?',
+    a: "Virtual assistants and agencies rely on human hours — they're limited by capacity, availability, and cost. AzoliK departments are AI agents that work 24/7, scale instantly, and cost a fraction. You're not buying hours; you're buying outcomes.",
   },
   {
-    q: 'How much do we charge?',
-    a: 'Pricing is custom based on your needs and scale. We offer flexible models from project-based to ongoing retainers. Book a call and we\'ll give you a clear quote tailored to your goals — no hidden fees.',
+    q: 'What tools do the AI departments integrate with?',
+    a: 'Each department connects to 15+ tools out of the box: Slack, Gmail, HubSpot, Salesforce, Notion, Linear, QuickBooks, Stripe, Shopify, WhatsApp, Calendly, and more. Custom integrations are available on Enterprise plans.',
   },
   {
-    q: 'What if I need Corrections?',
-    a: 'We include revision rounds in every engagement. Our workflows are built for iteration — you review, we refine, until it\'s perfect. For ongoing services, we have built-in feedback loops and QA processes.',
+    q: 'How does pricing work?',
+    a: 'Simple monthly plans: Solo at $299/mo (1 department), Team at $799/mo (5 departments), Enterprise custom. All plans include setup, integrations, and ongoing optimization. Solo gets 6 months free. Team gets 14-day trial. No contracts, cancel anytime.',
   },
   {
-    q: 'Can AzoliK manage my social presence?',
-    a: 'Yes. Our content management service handles end-to-end social presence — strategy, creation, scheduling, engagement, and analytics across all major platforms. You stay hands-off while we grow your audience.',
+    q: 'What if the AI makes a mistake?',
+    a: 'Every department has built-in guardrails. For high-stakes actions (refunds, contracts, payments), the AI flags for your approval before executing. You set the autonomy thresholds. Full audit logs are always available.',
   },
-]
+  {
+    q: 'Can I start with just one department?',
+    a: 'Yes. The Solo plan gives you one department of your choice. Most customers start with Support or Sales, then expand as they see results.',
+  },
+];
 
 export const CTA_SERVICES = [
-  'YouTube Shorts',
-  'YouTube Videos',
-  'Instagram Reels',
-  'Blog',
-  'TikTok',
-  'Brandings',
-  'Ads',
-]
+  'Support Department',
+  'Sales Department',
+  'Marketing Department',
+  'Finance Department',
+  'Operations Department',
+  'HR Department',
+];
 
 export const FOOTER_LINKS = {
-  Product: ['Automation Agency', 'AI Voice Agent', 'AI Ad Services', 'Whop Management', 'AI Customer Support'],
-  Company: ['About', 'Careers', 'Blog', 'Press', 'Contact'],
-  Resources: ['Documentation', 'FAQs', 'Privacy Policy', 'Terms & Conditions'],
-}
+  Product: [
+    'Support Dept',
+    'Sales Dept',
+    'Marketing Dept',
+    'Finance Dept',
+    'Operations Dept',
+    'HR Dept',
+  ],
+  Company: ['About', 'Pricing', 'FAQ', 'Contact'],
+  Resources: ['Documentation', 'API Reference', 'Changelog', 'Blog'],
+};
 
 export const FOOTER_LINK_MAP: Record<string, string> = {
-  'Automation Agency': '#services',
-  'AI Voice Agent': '#services',
-  'AI Ad Services': '#services',
-  'Whop Management': '#services',
-  'AI Customer Support': '#services',
-  'About': '#problem',
-  'Careers': '#',
-  'Blog': '#',
-  'Press': '#',
-  'Contact': '#cta',
-  'Documentation': '#',
-  'FAQs': '#faqs',
-  'Privacy Policy': '#',
-  'Terms & Conditions': '#',
-}
+  'Support Dept': '#departments',
+  'Sales Dept': '#departments',
+  'Marketing Dept': '#departments',
+  'Finance Dept': '#departments',
+  'Operations Dept': '#departments',
+  'HR Dept': '#departments',
+  About: '#problem',
+  Pricing: '#pricing',
+  FAQ: '#faqs',
+  Contact: '#cta',
+  Documentation: '/docs',
+  'API Reference': '/docs/api',
+  Changelog: '/changelog',
+  Blog: '/blog',
+};
 
 export const PRICING = [
   {
     name: 'Solo',
-    description: 'Perfect for individual creators',
+    description: 'One AI department for solo founders',
     monthly: 299,
-    annual: 2999,
+    annual: 2990,
     badge: null,
     highlighted: false,
     features: [
-      '1 AI Agent',
-      'Basic automation workflows',
+      '1 AI Department (your choice)',
+      'Up to 10 integrations',
       'Email support',
-      '5,000 words/mo',
-      'Standard templates',
+      '10K tasks/month',
+      'Standard response time',
+      'Weekly insights report',
     ],
-    cta: 'Get Started',
+    cta: 'Start 6 Months Free',
   },
   {
     name: 'Team',
-    description: 'For growing teams & agencies',
+    description: 'Full AI workforce for growing teams',
     monthly: 799,
-    annual: 6000,
+    annual: 6990,
     badge: 'Most Popular',
     highlighted: true,
     features: [
-      '5 AI Agents',
-      'Advanced automation workflows',
-      'Priority support',
-      '50,000 words/mo',
-      'Custom templates',
-      'Team collaboration',
-      'Analytics dashboard',
+      'All 6 AI Departments',
+      'Unlimited integrations',
+      'Priority support + Slack channel',
+      '100K tasks/month',
+      'Fast-track response time',
+      'Daily insights + custom alerts',
+      'Team collaboration (up to 5 seats)',
+      'Custom workflow builder',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Start 14-Day Trial',
   },
   {
     name: 'Enterprise',
-    description: 'Custom solutions at scale',
+    description: 'Custom deployment for organizations',
     monthly: null,
     annual: null,
     badge: null,
     highlighted: false,
     features: [
-      'Unlimited AI Agents',
-      'Full automation suite',
-      'Dedicated account manager',
-      'Unlimited usage',
-      'Custom integrations',
-      'SLA guarantee',
-      'White-label options',
+      'Unlimited departments & tasks',
+      'Dedicated deployment engineer',
+      'Custom SLA & uptime guarantees',
+      'SSO / SCIM / audit logs',
+      'Private cloud / VPC option',
+      'Custom model fine-tuning',
+      'Unlimited seats',
+      'White-glove onboarding',
     ],
     cta: 'Contact Sales',
   },
-]
+];
 
 export const SOCIAL_LINKS = [
-  { name: 'Email', href: 'mailto:hello@azolik.com', icon: 'Email' },
-]
+  { name: 'Twitter', href: 'https://twitter.com/azolik_ai', icon: 'Twitter' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/company/azolik', icon: 'LinkedIn' },
+  { name: 'GitHub', href: 'https://github.com/azolik', icon: 'GitHub' },
+  { name: 'Email', href: 'mailto:aarishvimal1@gmail.com', icon: 'Email' },
+];
 
 export const DEPARTMENTS = [
   {
@@ -180,7 +210,7 @@ export const DEPARTMENTS = [
     workflow: [
       'Customer sends a message',
       'Support reads history and product data',
-      'Drafts a personalised reply in your brand voice',
+      'Drafts a personalized reply in your brand voice',
       'Sends response — or flags for human review if needed',
     ],
     stat: '24/7',
@@ -193,7 +223,7 @@ export const DEPARTMENTS = [
     hex: '#a78bfa',
     tasks: [
       'Research and score inbound leads against your ICP',
-      'Write personalised cold emails referencing real context',
+      'Write personalized cold emails referencing real context',
       'Send multi-touch follow-up sequences automatically',
       'Book discovery calls directly into your calendar',
       'Update CRM pipeline after every touchpoint',
@@ -202,7 +232,7 @@ export const DEPARTMENTS = [
     workflow: [
       'New lead enters the pipeline',
       'Sales researches company and identifies hook',
-      'Sends personalised outreach with tailored subject line',
+      'Sends personalized outreach with tailored subject line',
       'Follows up 3x over 10 days, stops on reply',
     ],
     stat: 'Auto',
@@ -217,7 +247,7 @@ export const DEPARTMENTS = [
       'Write SEO blog posts and social media content',
       'Plan and schedule full content calendars',
       'Draft email campaigns with subject-line variants',
-      'Analyse campaign performance and suggest changes',
+      'Analyze campaign performance and suggest changes',
       'Repurpose long-form content into social snippets',
     ],
     integrations: ['Mailchimp', 'Buffer', 'Notion', 'WordPress', 'Airtable'],
@@ -236,7 +266,7 @@ export const DEPARTMENTS = [
     tagline: 'Tracks expenses, reconciles accounts, and surfaces insights before they hurt.',
     hex: '#34d399',
     tasks: [
-      'Categorise and reconcile transactions daily',
+      'Categorize and reconcile transactions daily',
       'Generate weekly and monthly P&L summaries',
       'Flag unusual expenses and duplicate charges',
       'Match invoices to payments automatically',
@@ -245,7 +275,7 @@ export const DEPARTMENTS = [
     integrations: ['QuickBooks', 'Stripe', 'Xero', 'Mercury', 'Notion'],
     workflow: [
       'New transaction hits your account',
-      'Finance categorises and tags it instantly',
+      'Finance categorizes and tags it instantly',
       'Checks against budget and flags anomalies',
       'Updates your weekly dashboard in real time',
     ],
@@ -262,7 +292,7 @@ export const DEPARTMENTS = [
       'Manage and update project timelines',
       'Automate recurring admin and compliance tasks',
       'Send internal status updates and summaries',
-      'Optimise workflows by spotting bottlenecks',
+      'Optimize workflows by spotting bottlenecks',
     ],
     integrations: ['Slack', 'Notion', 'Linear', 'Jira', 'Google Calendar'],
     workflow: [
@@ -296,7 +326,7 @@ export const DEPARTMENTS = [
     stat: 'Auto',
     statLabel: 'candidate screening',
   },
-]
+];
 
 export const TIMELINE_STEPS = [
   {
@@ -319,34 +349,34 @@ export const TIMELINE_STEPS = [
     title: 'You focus on vision',
     body: 'Review a clean dashboard, approve key decisions, and spend your energy on what only you can do.',
   },
-]
+];
 
 export const INDUSTRIES = [
   {
     name: 'E-commerce',
-    text: "Support handles returns 24/7. Marketing runs product launches. Finance reconciles Shopify payouts. Operations coordinates fulfilment partners.",
+    text: 'Support handles returns 24/7. Marketing runs product launches. Finance reconciles Shopify payouts. Operations coordinates fulfillment partners.',
   },
   {
     name: 'Legal',
-    text: "Support triages client enquiries and books consultations. Finance tracks billable hours and chases invoices. HR manages associate scheduling.",
+    text: 'Support triages client enquiries and books consultations. Finance tracks billable hours and chases invoices. HR manages associate scheduling.',
   },
   {
     name: 'Healthcare',
-    text: "Support answers appointment questions and sends reminders. Operations coordinates clinic scheduling. Finance tracks insurance claims.",
+    text: 'Support answers appointment questions and sends reminders. Operations coordinates clinic scheduling. Finance tracks insurance claims.',
   },
   {
     name: 'Real Estate',
-    text: "Sales researches and qualifies buyer leads. Support answers listing enquiries immediately. Marketing creates property content.",
+    text: 'Sales researches and qualifies buyer leads. Support answers listing enquiries immediately. Marketing creates property content.',
   },
   {
     name: 'Consulting',
-    text: "Sales follows up with warm leads and books intro calls. Marketing builds thought-leadership content. Finance tracks retainers.",
+    text: 'Sales follows up with warm leads and books intro calls. Marketing builds thought-leadership content. Finance tracks retainers.',
   },
   {
     name: 'Restaurants',
-    text: "Support handles reservations and customer messages. Marketing builds campaigns around seasonal specials. Finance tracks daily revenue.",
+    text: 'Support handles reservations and customer messages. Marketing builds campaigns around seasonal specials. Finance tracks daily revenue.',
   },
-]
+];
 
 export const INTEGRATIONS = [
   { name: 'Slack', hex: '#4a154b', i: 'Sl' },
@@ -367,4 +397,44 @@ export const INTEGRATIONS = [
   { name: 'WhatsApp', hex: '#25d366', i: 'WA' },
   { name: 'Twilio', hex: '#f22f46', i: 'Tw' },
   { name: 'DocuSign', hex: '#ffb900', i: 'DS' },
-]
+];
+
+// Real stats - update these with actual numbers when available
+export const STATS = [
+  { value: 0, suffix: '+', label: 'Businesses using AzoliK', color: '#a78bfa' },
+  { value: 0, suffix: '+', label: 'Tasks completed by AI', color: '#4fd1c5' },
+  { value: 48, suffix: 'h', label: 'Average deploy time', color: '#fb923c' },
+  { value: 99.9, suffix: '%', label: 'Uptime SLA', color: '#34d399' },
+];
+
+// Placeholder testimonials - replace with real customer quotes when available
+export const TESTIMONIALS = [
+  {
+    quote:
+      "We're currently onboarding our first customers. This space will feature real testimonials from teams using AzoliK.",
+    name: '—',
+    role: 'Coming soon',
+    metric: '—',
+  },
+  {
+    quote:
+      'Early access customers are seeing 80%+ ticket resolution rates and 3x faster response times. Real results coming soon.',
+    name: '—',
+    role: 'Beta program',
+    metric: '—',
+  },
+  {
+    quote:
+      'Join the waitlist to be among the first to deploy your AI workforce and share your results.',
+    name: '—',
+    role: 'Waitlist',
+    metric: '—',
+  },
+];
+
+export const CONTACT_INFO = {
+  phone: '+91 9711700199',
+  email: 'aarishvimal1@gmail.com',
+  phoneHref: 'tel:+919711700199',
+  emailHref: 'mailto:aarishvimal1@gmail.com',
+};

@@ -1,13 +1,14 @@
-import { useState, useEffect, useRef } from 'react'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { SectionLabel } from '../ui'
+import { useEffect, useRef, useState } from 'react';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { SectionLabel } from '../ui';
 
 const WORKFLOW_STEPS = [
   {
     label: 'Customer Message',
     color: '#4fd1c5',
     short: 'Arrives via email, chat, or WhatsApp',
-    detail: 'A customer asks about blue Nike shoes in size 9. The message lands in your support inbox at 2:47 AM. No human is awake to see it.',
+    detail:
+      'A customer asks about blue Nike shoes in size 9. The message lands in your support inbox at 2:47 AM. No human is awake to see it.',
     agents: ['Inbox Monitor', 'Intent Parser'],
     duration: 'Instant',
   },
@@ -15,7 +16,8 @@ const WORKFLOW_STEPS = [
     label: 'Support Agent',
     color: '#a78bfa',
     short: 'Reads history + interprets intent',
-    detail: 'The support agent reads the customer\'s full conversation history, identifies this as a product availability question, and determines the right workflow to handle it.',
+    detail:
+      "The support agent reads the customer's full conversation history, identifies this as a product availability question, and determines the right workflow to handle it.",
     agents: ['Context Retriever', 'Intent Classifier'],
     duration: '0.8s',
   },
@@ -23,7 +25,8 @@ const WORKFLOW_STEPS = [
     label: 'Inventory Check',
     color: '#fb923c',
     short: 'Queries stock database in real time',
-    detail: 'The agent queries your Shopify inventory in real time. Finds Nike Air Max 90 in blue, size 9 — 3 units in stock, located in the main warehouse.',
+    detail:
+      'The agent queries your Shopify inventory in real time. Finds Nike Air Max 90 in blue, size 9 — 3 units in stock, located in the main warehouse.',
     agents: ['Inventory Connector', 'Stock Validator'],
     duration: '1.2s',
   },
@@ -31,7 +34,8 @@ const WORKFLOW_STEPS = [
     label: 'Draft Response',
     color: '#34d399',
     short: 'Writes reply in your brand voice',
-    detail: 'Using your brand guidelines and tone, the agent drafts a warm, helpful response that matches how you\'d reply yourself — including an offer to reserve the item.',
+    detail:
+      "Using your brand guidelines and tone, the agent drafts a warm, helpful response that matches how you'd reply yourself — including an offer to reserve the item.",
     agents: ['Brand Voice Engine', 'Response Composer'],
     duration: '1.4s',
   },
@@ -39,7 +43,8 @@ const WORKFLOW_STEPS = [
     label: 'Customer Notified',
     color: '#60a5fa',
     short: 'Sent via preferred channel',
-    detail: 'The reply is sent through the customer\'s preferred channel (email in this case). They receive it before they\'ve even finished their morning coffee.',
+    detail:
+      "The reply is sent through the customer's preferred channel (email in this case). They receive it before they've even finished their morning coffee.",
     agents: ['Channel Router', 'Delivery Manager'],
     duration: '0.5s',
   },
@@ -47,11 +52,12 @@ const WORKFLOW_STEPS = [
     label: 'CRM Updated',
     color: '#f472b6',
     short: 'Ticket closed · data logged',
-    detail: 'Ticket #2847 marked resolved. Customer record updated with the interaction. Inventory adjusted. Your dashboard reflects the new state — all automatically.',
+    detail:
+      'Ticket #2847 marked resolved. Customer record updated with the interaction. Inventory adjusted. Your dashboard reflects the new state — all automatically.',
     agents: ['CRM Sync', 'Analytics Logger'],
     duration: '0.6s',
   },
-]
+];
 
 function WorkflowStep({
   step,
@@ -60,11 +66,11 @@ function WorkflowStep({
   index,
   onClick,
 }: {
-  step: (typeof WORKFLOW_STEPS)[0]
-  active: boolean
-  done: boolean
-  index: number
-  onClick: () => void
+  step: (typeof WORKFLOW_STEPS)[0];
+  active: boolean;
+  done: boolean;
+  index: number;
+  onClick: () => void;
 }) {
   return (
     <button
@@ -85,7 +91,13 @@ function WorkflowStep({
         >
           {done ? (
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M3 7L6.5 10.5L11 4.5" stroke={step.color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M3 7L6.5 10.5L11 4.5"
+                stroke={step.color}
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           ) : (
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px' }}>
@@ -124,79 +136,79 @@ function WorkflowStep({
         </div>
       </div>
     </button>
-  )
+  );
 }
 
 export function WorkflowDemo() {
-  const sectionRef = useScrollReveal<HTMLElement>()
-  const panelRef = useRef<HTMLDivElement>(null)
-  const [currentStep, setCurrentStep] = useState(-1)
-  const [selectedStep, setSelectedStep] = useState(-1)
-  const [hasPlayed, setHasPlayed] = useState(false)
-  const playRef = useRef(false)
+  const sectionRef = useScrollReveal<HTMLElement>();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [currentStep, setCurrentStep] = useState(-1);
+  const [selectedStep, setSelectedStep] = useState(-1);
+  const [hasPlayed, setHasPlayed] = useState(false);
+  const playRef = useRef(false);
 
   // Auto-play when scrolled into view
   useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
+    const el = sectionRef.current;
+    if (!el) return;
 
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !playRef.current) {
-          playRef.current = true
-          setCurrentStep(0)
+          playRef.current = true;
+          setCurrentStep(0);
         }
       },
       { threshold: 0.3 }
-    )
+    );
 
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [sectionRef])
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [sectionRef]);
 
   // Step progression (only when not manually selected)
   useEffect(() => {
-    if (currentStep < 0 || selectedStep >= 0) return
+    if (currentStep < 0 || selectedStep >= 0) return;
     if (currentStep >= WORKFLOW_STEPS.length - 1) {
-      const t = setTimeout(() => setHasPlayed(true), 4000)
-      return () => clearTimeout(t)
+      const t = setTimeout(() => setHasPlayed(true), 4000);
+      return () => clearTimeout(t);
     }
-    const t = setTimeout(() => setCurrentStep((s) => s + 1), 1600)
-    return () => clearTimeout(t)
-  }, [currentStep, selectedStep])
+    const t = setTimeout(() => setCurrentStep(s => s + 1), 1600);
+    return () => clearTimeout(t);
+  }, [currentStep, selectedStep]);
 
   // Display step: manual selection overrides auto-play
-  const displayStep = selectedStep >= 0 ? selectedStep : currentStep
-  const step = WORKFLOW_STEPS[displayStep] ?? WORKFLOW_STEPS[0]
+  const displayStep = selectedStep >= 0 ? selectedStep : currentStep;
+  const step = WORKFLOW_STEPS[displayStep] ?? WORKFLOW_STEPS[0];
 
   const handleStepClick = (i: number) => {
-    setSelectedStep(i)
-    setHasPlayed(false)
-  }
+    setSelectedStep(i);
+    setHasPlayed(false);
+  };
 
   const replay = () => {
-    playRef.current = true
-    setHasPlayed(false)
-    setSelectedStep(-1)
-    setCurrentStep(0)
-  }
+    playRef.current = true;
+    setHasPlayed(false);
+    setSelectedStep(-1);
+    setCurrentStep(0);
+  };
 
   const onPanelMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = panelRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg) scale3d(1.01, 1.01, 1.01)`
-    el.style.transition = 'transform 0.08s ease'
-  }
+    const el = panelRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    el.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg) scale3d(1.01, 1.01, 1.01)`;
+    el.style.transition = 'transform 0.08s ease';
+  };
 
   const onPanelMouseLeave = () => {
-    const el = panelRef.current
-    if (!el) return
-    el.style.transform = ''
-    el.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
-  }
+    const el = panelRef.current;
+    if (!el) return;
+    el.style.transform = '';
+    el.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+  };
 
   return (
     <section ref={sectionRef} id="workflow" className="reveal relative z-10 py-32 px-6">
@@ -209,7 +221,8 @@ export function WorkflowDemo() {
           From message to resolved.
         </h2>
         <p className="text-center text-white/38 text-base max-w-md mx-auto mb-16 leading-[1.65]">
-          Here's what happens when a customer sends a message — fully autonomous, no human in the loop.
+          Here's what happens when a customer sends a message — fully autonomous, no human in the
+          loop.
           <br />
           <span className="text-white/25 text-sm">Click any step to explore it in detail.</span>
         </p>
@@ -250,9 +263,19 @@ export function WorkflowDemo() {
                 <div className="flex items-center justify-between mb-3">
                   <span
                     className="text-[10px] tracking-[0.2em] uppercase"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", color: step.color, opacity: 0.6 }}
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      color: step.color,
+                      opacity: 0.6,
+                    }}
                   >
-                    {selectedStep >= 0 ? 'Manual view' : hasPlayed ? 'Completed' : currentStep < 0 ? 'Idle' : 'Processing...'}
+                    {selectedStep >= 0
+                      ? 'Manual view'
+                      : hasPlayed
+                        ? 'Completed'
+                        : currentStep < 0
+                          ? 'Idle'
+                          : 'Processing...'}
                   </span>
                   <span
                     className="text-[10px]"
@@ -301,9 +324,7 @@ export function WorkflowDemo() {
                   </div>
                 </div>
 
-                <p className="text-sm text-white/45 leading-[1.7] mb-6">
-                  {step.detail}
-                </p>
+                <p className="text-sm text-white/45 leading-[1.7] mb-6">{step.detail}</p>
 
                 {/* Agents involved */}
                 <div className="mb-6">
@@ -314,7 +335,7 @@ export function WorkflowDemo() {
                     Agents involved
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {step.agents.map((agent) => (
+                    {step.agents.map(agent => (
                       <span
                         key={agent}
                         className="px-3 py-1.5 rounded-lg text-xs font-medium"
@@ -359,9 +380,12 @@ export function WorkflowDemo() {
                   { v: '6', l: 'Steps automated' },
                   { v: '0', l: 'Human steps' },
                   { v: '24/7', l: 'Always on' },
-                ].map((s) => (
+                ].map(s => (
                   <div key={s.l} className="text-center">
-                    <div className="font-bold text-xl text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                    <div
+                      className="font-bold text-xl text-white"
+                      style={{ fontFamily: "'Outfit', sans-serif" }}
+                    >
                       {s.v}
                     </div>
                     <div className="text-[11px] text-white/30 mt-0.5">{s.l}</div>
@@ -407,5 +431,5 @@ export function WorkflowDemo() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,37 +1,46 @@
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 
 interface TextRevealProps {
-  children: string
-  className?: string
-  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
-  style?: React.CSSProperties
+  children: string;
+  className?: string;
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
+  style?: React.CSSProperties;
 }
 
-export function TextReveal({ children, className = '', as: Tag = 'h2', style = {} }: TextRevealProps) {
-  const ref = useRef<HTMLElement>(null)
-  const [visible, setVisible] = useState(false)
+export function TextReveal({
+  children,
+  className = '',
+  as: Tag = 'h2',
+  style = {},
+}: TextRevealProps) {
+  const ref = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
+    const el = ref.current;
+    if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true)
-          obs.disconnect()
+          setVisible(true);
+          obs.disconnect();
         }
       },
       { threshold: 0.2 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
-  const words = children.split(' ')
+  const words = children.split(' ');
 
   return (
     // @ts-expect-error Tag is a valid HTML tag
-    <Tag ref={ref} className={`text-reveal-container ${className}`} style={{ overflow: 'hidden', ...style }}>
+    <Tag
+      ref={ref}
+      className={`text-reveal-container ${className}`}
+      style={{ overflow: 'hidden', ...style }}
+    >
       {words.map((word, i) => (
         <span
           key={i}
@@ -47,5 +56,5 @@ export function TextReveal({ children, className = '', as: Tag = 'h2', style = {
         </span>
       ))}
     </Tag>
-  )
+  );
 }

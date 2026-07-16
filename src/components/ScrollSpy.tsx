@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react';
 
 const SECTIONS = [
   { id: 'home', label: 'Home' },
@@ -10,43 +10,43 @@ const SECTIONS = [
   { id: 'pricing', label: 'Pricing' },
   { id: 'faqs', label: 'FAQ' },
   { id: 'cta', label: 'Contact' },
-]
+];
 
 export function ScrollSpy() {
-  const [active, setActive] = useState('home')
-  const [visible, setVisible] = useState(false)
+  const [active, setActive] = useState('home');
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    let ticking = false
+    let ticking = false;
     const update = () => {
-      const scrollY = window.scrollY
-      setVisible(scrollY > 400)
+      const scrollY = window.scrollY;
+      setVisible(scrollY > 400);
 
-      let current = 'home'
+      let current = 'home';
       for (const section of SECTIONS) {
-        const el = document.getElementById(section.id)
+        const el = document.getElementById(section.id);
         if (el) {
-          const rect = el.getBoundingClientRect()
+          const rect = el.getBoundingClientRect();
           if (rect.top <= window.innerHeight * 0.4) {
-            current = section.id
+            current = section.id;
           }
         }
       }
-      setActive(current)
-      ticking = false
-    }
+      setActive(current);
+      ticking = false;
+    };
 
     const onScroll = () => {
       if (!ticking) {
-        ticking = true
-        requestAnimationFrame(update)
+        ticking = true;
+        requestAnimationFrame(update);
       }
-    }
+    };
 
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <nav
@@ -54,15 +54,15 @@ export function ScrollSpy() {
       style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none' }}
       aria-label="Section navigation"
     >
-      {SECTIONS.map((section) => (
+      {SECTIONS.map(section => (
         <a
           key={section.id}
           href={`#${section.id}`}
           className="group flex items-center gap-3 justify-end"
           aria-label={section.label}
-          onClick={(e) => {
-            e.preventDefault()
-            document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' })
+          onClick={e => {
+            e.preventDefault();
+            document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' });
           }}
         >
           <span
@@ -82,5 +82,5 @@ export function ScrollSpy() {
         </a>
       ))}
     </nav>
-  )
+  );
 }

@@ -1,20 +1,26 @@
-import { useState, useRef, useEffect } from 'react'
-import { Plus } from 'lucide-react'
-import { FAQS } from '../../data'
-import { SectionLabel } from '../ui'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { Plus } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { FAQS } from '../../data';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { SectionLabel } from '../ui';
 
-function AccordionItem({ faq, isOpen, onToggle }: {
-  faq: typeof FAQS[0]; isOpen: boolean; onToggle: () => void
+function AccordionItem({
+  faq,
+  isOpen,
+  onToggle,
+}: {
+  faq: (typeof FAQS)[0];
+  isOpen: boolean;
+  onToggle: () => void;
 }) {
-  const contentRef = useRef<HTMLDivElement>(null)
-  const [height, setHeight] = useState(0)
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
     if (contentRef.current) {
-      setHeight(contentRef.current.scrollHeight)
+      setHeight(contentRef.current.scrollHeight);
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
     <div
@@ -52,12 +58,12 @@ function AccordionItem({ faq, isOpen, onToggle }: {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export function FAQSection() {
-  const ref = useScrollReveal<HTMLElement>()
-  const [active, setActive] = useState<number | null>(null)
+  const ref = useScrollReveal<HTMLElement>();
+  const [active, setActive] = useState<number | null>(null);
 
   return (
     <section ref={ref} id="faqs" className="reveal relative z-10 py-24 px-6">
@@ -71,7 +77,8 @@ export function FAQSection() {
             You ask? We answer
           </h2>
           <p className="text-white/35 max-w-lg mx-auto leading-[1.65]">
-            Have questions? Our FAQ section has you covered with quick answers to the most common inquiries.
+            Have questions? Our FAQ section has you covered with quick answers to the most common
+            inquiries.
           </p>
         </div>
 
@@ -87,5 +94,5 @@ export function FAQSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

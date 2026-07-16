@@ -1,11 +1,11 @@
-import { TIMELINE_STEPS } from '../../data'
-import { SectionLabel } from '../ui'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { useParallax } from '../../hooks/useParallax'
-import { ScrollRevealText } from '../ScrollRevealText'
+import { TIMELINE_STEPS } from '../../data';
+import { useParallax } from '../../hooks/useParallax';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { ScrollRevealText } from '../ScrollRevealText';
+import { SectionLabel } from '../ui';
 
 function TimelineItem({ step, i }: { step: (typeof TIMELINE_STEPS)[0]; i: number }) {
-  const ref = useParallax<HTMLDivElement>((i + 1) * 0.04)
+  const ref = useParallax<HTMLDivElement>((i + 1) * 0.04);
 
   return (
     <div ref={ref} className="flex gap-8 items-start group" style={{ willChange: 'transform' }}>
@@ -24,17 +24,20 @@ function TimelineItem({ step, i }: { step: (typeof TIMELINE_STEPS)[0]; i: number
         {step.num}
       </div>
       <div className="pt-3.5">
-        <h3 className="font-semibold text-white text-xl mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>
+        <h3
+          className="font-semibold text-white text-xl mb-2"
+          style={{ fontFamily: "'Outfit', sans-serif" }}
+        >
           {step.title}
         </h3>
         <p className="text-white/40 leading-[1.65] text-sm max-w-sm">{step.body}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export function HowItWorksSection() {
-  const ref = useScrollReveal<HTMLElement>()
+  const ref = useScrollReveal<HTMLElement>();
 
   return (
     <section ref={ref} id="howitworks" className="reveal relative z-10 py-32 px-6">
@@ -45,7 +48,10 @@ export function HowItWorksSection() {
           style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(34px, 5vw, 56px)' }}
         >
           <ScrollRevealText>Up and running in 48 hours.</ScrollRevealText>
-          <span className="block mt-3 text-white/22 text-base" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <span
+            className="block mt-3 text-white/22 text-base"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
             (That's faster than your last hire finished their onboarding paperwork.)
           </span>
         </h2>
@@ -59,7 +65,8 @@ export function HowItWorksSection() {
               top: '28px',
               bottom: '28px',
               width: '1px',
-              background: 'linear-gradient(to bottom, rgba(124,58,237,0.55), rgba(14,165,233,0.25), transparent)',
+              background:
+                'linear-gradient(to bottom, rgba(124,58,237,0.55), rgba(14,165,233,0.25), transparent)',
             }}
           />
           <div className="space-y-10">
@@ -70,5 +77,5 @@ export function HowItWorksSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

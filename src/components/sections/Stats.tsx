@@ -1,34 +1,28 @@
-import { useRef, useState, useEffect } from 'react'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { useCountUp } from '../../hooks/useCountUp'
+import { useEffect, useRef, useState } from 'react';
+import { STATS } from '../../data';
+import { useCountUp } from '../../hooks/useCountUp';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
-const STATS = [
-  { value: 500, suffix: '+', label: 'Businesses onboarded', color: '#a78bfa' },
-  { value: 2, suffix: 'M+', label: 'Tasks completed', color: '#4fd1c5' },
-  { value: 48, suffix: 'h', label: 'Average deploy time', color: '#fb923c' },
-  { value: 99, suffix: '%', label: 'Uptime SLA', color: '#34d399' },
-]
-
-function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-  const count = useCountUp(visible ? stat.value : 0, 1800 + index * 200)
+function StatItem({ stat, index }: { stat: (typeof STATS)[0]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const count = useCountUp(visible ? stat.value : 0, 1800 + index * 200);
 
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
+    const el = ref.current;
+    if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true)
-          obs.disconnect()
+          setVisible(true);
+          obs.disconnect();
         }
       },
       { threshold: 0.3 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <div
@@ -41,13 +35,13 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
         animationDelay: `${index * 100}ms`,
         ['--glow-color' as string]: `${stat.color}18`,
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = `${stat.color}33`
-        e.currentTarget.style.background = `${stat.color}08`
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = `${stat.color}33`;
+        e.currentTarget.style.background = `${stat.color}08`;
       }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
-        e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
       }}
     >
       <div
@@ -69,7 +63,8 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
             backgroundClip: 'text',
           }}
         >
-          {count}{stat.suffix}
+          {count}
+          {stat.suffix}
         </div>
         <p
           className="text-white/40 text-sm tracking-wide"
@@ -79,23 +74,21 @@ function StatItem({ stat, index }: { stat: typeof STATS[0]; index: number }) {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 export function StatsSection() {
-  const ref = useScrollReveal<HTMLElement>()
+  const ref = useScrollReveal<HTMLElement>();
 
   return (
     <section ref={ref} id="stats" className="reveal relative z-10 py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5"
-        >
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
           {STATS.map((stat, i) => (
             <StatItem key={stat.label} stat={stat} index={i} />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

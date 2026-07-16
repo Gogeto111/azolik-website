@@ -1,44 +1,44 @@
-import { useRef, useEffect, useState } from 'react'
-import { GradientText } from '../ui'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { ScrollRevealText } from '../ScrollRevealText'
+import { useEffect, useRef, useState } from 'react';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { ScrollRevealText } from '../ScrollRevealText';
+import { GradientText } from '../ui';
 
 export function QuoteSection() {
-  const ref = useScrollReveal<HTMLElement>()
-  const sceneRef = useRef<HTMLDivElement>(null)
-  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+  const ref = useScrollReveal<HTMLElement>();
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const el = sceneRef.current
-    if (!el) return
-    let ticking = false
+    const el = sceneRef.current;
+    if (!el) return;
+    let ticking = false;
 
     const onMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect()
-      const cx = rect.left + rect.width / 2
-      const cy = rect.top + rect.height / 2
-      const dx = (e.clientX - cx) / (rect.width / 2)
-      const dy = (e.clientY - cy) / (rect.height / 2)
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
       if (!ticking) {
-        ticking = true
+        ticking = true;
         requestAnimationFrame(() => {
-          setTilt({ x: dy * -6, y: dx * 8 })
-          ticking = false
-        })
+          setTilt({ x: dy * -6, y: dx * 8 });
+          ticking = false;
+        });
       }
-    }
+    };
 
     const onLeave = () => {
-      setTilt({ x: 0, y: 0 })
-    }
+      setTilt({ x: 0, y: 0 });
+    };
 
-    window.addEventListener('mousemove', onMove, { passive: true })
-    el.addEventListener('mouseleave', onLeave)
+    window.addEventListener('mousemove', onMove, { passive: true });
+    el.addEventListener('mouseleave', onLeave);
     return () => {
-      window.removeEventListener('mousemove', onMove)
-      el.removeEventListener('mouseleave', onLeave)
-    }
-  }, [])
+      window.removeEventListener('mousemove', onMove);
+      el.removeEventListener('mouseleave', onLeave);
+    };
+  }, []);
 
   return (
     <section ref={ref} id="quote" className="reveal relative z-10 py-40 px-6 overflow-hidden">
@@ -52,7 +52,8 @@ export function QuoteSection() {
             style={{
               width: '600px',
               height: '400px',
-              background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.08) 0%, transparent 70%)',
+              background:
+                'radial-gradient(ellipse at center, rgba(124,58,237,0.08) 0%, transparent 70%)',
               filter: 'blur(40px)',
             }}
           />
@@ -79,10 +80,20 @@ export function QuoteSection() {
                 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(36px, 6vw, 84px)' }}
               >
                 <span className="text-white/30">Most AIs work </span>
-                <span className="text-white" style={{ transform: 'translateZ(30px)', display: 'inline-block' }}>with you.</span>
+                <span
+                  className="text-white"
+                  style={{ transform: 'translateZ(30px)', display: 'inline-block' }}
+                >
+                  with you.
+                </span>
                 <br />
                 <GradientText>AzoliK works </GradientText>
-                <span className="text-white" style={{ transform: 'translateZ(50px)', display: 'inline-block' }}>for you.</span>
+                <span
+                  className="text-white"
+                  style={{ transform: 'translateZ(50px)', display: 'inline-block' }}
+                >
+                  for you.
+                </span>
               </blockquote>
             </ScrollRevealText>
 
@@ -142,5 +153,5 @@ export function QuoteSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

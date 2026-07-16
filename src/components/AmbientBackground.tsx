@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 const SECTION_COLORS: Record<string, string> = {
   hero: 'rgba(124,58,237,0.06)',
@@ -15,55 +15,55 @@ const SECTION_COLORS: Record<string, string> = {
   stats: 'rgba(167,139,250,0.04)',
   testimonials: 'rgba(251,146,60,0.04)',
   cta: 'rgba(124,58,237,0.08)',
-}
+};
 
 export function AmbientBackground() {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
+    const el = ref.current;
+    if (!el) return;
 
-    let ticking = false
-    let currentColor = SECTION_COLORS.hero
+    let ticking = false;
+    let currentColor = SECTION_COLORS.hero;
 
     const update = () => {
-      const scrollTop = window.scrollY
-      const vh = window.innerHeight
-      const center = scrollTop + vh / 2
+      const scrollTop = window.scrollY;
+      const vh = window.innerHeight;
+      const center = scrollTop + vh / 2;
 
-      const sections = document.querySelectorAll('section')
-      let activeColor = SECTION_COLORS.hero
+      const sections = document.querySelectorAll('section');
+      let activeColor = SECTION_COLORS.hero;
 
-      sections.forEach((sec) => {
-        const rect = sec.getBoundingClientRect()
-        const top = rect.top + scrollTop
-        const bottom = top + rect.height
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        const top = rect.top + scrollTop;
+        const bottom = top + rect.height;
         if (center >= top && center < bottom) {
-          const id = sec.id || 'hero'
-          if (SECTION_COLORS[id]) activeColor = SECTION_COLORS[id]
+          const id = sec.id || 'hero';
+          if (SECTION_COLORS[id]) activeColor = SECTION_COLORS[id];
         }
-      })
+      });
 
       if (activeColor !== currentColor) {
-        currentColor = activeColor
-        el.style.background = `radial-gradient(ellipse at 50% 35%, ${activeColor} 0%, transparent 60%)`
+        currentColor = activeColor;
+        el.style.background = `radial-gradient(ellipse at 50% 35%, ${activeColor} 0%, transparent 60%)`;
       }
 
-      ticking = false
-    }
+      ticking = false;
+    };
 
     const onScroll = () => {
       if (!ticking) {
-        ticking = true
-        requestAnimationFrame(update)
+        ticking = true;
+        requestAnimationFrame(update);
       }
-    }
+    };
 
-    el.style.background = `radial-gradient(ellipse at 50% 35%, ${SECTION_COLORS.hero} 0%, transparent 60%)`
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    el.style.background = `radial-gradient(ellipse at 50% 35%, ${SECTION_COLORS.hero} 0%, transparent 60%)`;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <div
@@ -75,5 +75,5 @@ export function AmbientBackground() {
       }}
       aria-hidden="true"
     />
-  )
+  );
 }

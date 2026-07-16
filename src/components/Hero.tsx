@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
-import { HeroConsole } from './HeroConsole'
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { HeroConsole } from './HeroConsole';
 
 /* ═══════════════════════════════════════════════════════════════
    CINEMATIC HERO — AzoliK
@@ -13,14 +13,14 @@ const COLORS = {
   indigo: '#4B46E5',
   white: '#ffffff',
   black: '#000000',
-}
+};
 
 const AGENTS = [
   { name: 'SUPPORT', color: COLORS.cyan },
   { name: 'SALES', color: COLORS.sapphire },
   { name: 'FINANCE', color: COLORS.skyBlue },
   { name: 'OPERATIONS', color: COLORS.indigo },
-]
+];
 
 const BOOT_LOG = [
   '> AzoliK v3.0 — initializing core',
@@ -31,7 +31,7 @@ const BOOT_LOG = [
   '> OPERATIONS agent [online]',
   '> all systems operational',
   '> welcome.',
-]
+];
 
 const PHASE_TIMING = {
   fadeFromBlack: 0,
@@ -51,30 +51,30 @@ const PHASE_TIMING = {
   holdEnd: 14500,
   fadeOut: 15000,
   done: 16000,
-}
+};
 
 /* ─── Canvas Particle System ──────────────────────────────── */
 function ParticleCanvas({ phase }: { phase: number }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const phaseRef = useRef(phase)
-  phaseRef.current = phase
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const phaseRef = useRef(phase);
+  phaseRef.current = phase;
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-    let raf: number
-    let w = (canvas.width = window.innerWidth)
-    let h = (canvas.height = window.innerHeight)
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let raf: number;
+    let w = (canvas.width = window.innerWidth);
+    let h = (canvas.height = window.innerHeight);
 
     const onResize = () => {
-      w = canvas.width = window.innerWidth
-      h = canvas.height = window.innerHeight
-    }
-    window.addEventListener('resize', onResize, { passive: true })
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', onResize, { passive: true });
 
-    const particleCount = Math.min(40, Math.floor((w * h) / 25000))
+    const particleCount = Math.min(40, Math.floor((w * h) / 25000));
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -85,45 +85,50 @@ function ParticleCanvas({ phase }: { phase: number }) {
       color: [COLORS.cyan, COLORS.skyBlue, COLORS.sapphire, COLORS.indigo][
         Math.floor(Math.random() * 4)
       ],
-    }))
+    }));
 
     const sparks: Array<{
-      x: number; y: number; vx: number; vy: number; life: number; maxLife: number
-    }> = []
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      life: number;
+      maxLife: number;
+    }> = [];
 
     const draw = () => {
-      ctx.clearRect(0, 0, w, h)
-      const currentPhase = phaseRef.current
-      const globalAlpha = currentPhase >= PHASE_TIMING.done ? 0 : 1
+      ctx.clearRect(0, 0, w, h);
+      const currentPhase = phaseRef.current;
+      const globalAlpha = currentPhase >= PHASE_TIMING.done ? 0 : 1;
 
-      particles.forEach((p) => {
-        p.x += p.vx
-        p.y += p.vy
-        if (p.x < 0) p.x = w
-        if (p.x > w) p.x = 0
-        if (p.y < 0) p.y = h
-        if (p.y > h) p.y = 0
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
 
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = p.color
-        ctx.globalAlpha = p.opacity * globalAlpha
-        ctx.fill()
-      })
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity * globalAlpha;
+        ctx.fill();
+      });
 
-      sparks.forEach((s, i) => {
-        s.x += s.vx
-        s.y += s.vy
-        s.life--
-        const lifeRatio = s.life / s.maxLife
-        ctx.beginPath()
-        ctx.arc(s.x, s.y, 1.2 * lifeRatio, 0, Math.PI * 2)
-        ctx.fillStyle = COLORS.cyan
-        ctx.globalAlpha = lifeRatio * 0.8 * globalAlpha
-        ctx.fill()
-      })
+      sparks.forEach(s => {
+        s.x += s.vx;
+        s.y += s.vy;
+        s.life--;
+        const lifeRatio = s.life / s.maxLife;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, 1.2 * lifeRatio, 0, Math.PI * 2);
+        ctx.fillStyle = COLORS.cyan;
+        ctx.globalAlpha = lifeRatio * 0.8 * globalAlpha;
+        ctx.fill();
+      });
       for (let i = sparks.length - 1; i >= 0; i--) {
-        if (sparks[i].life <= 0) sparks.splice(i, 1)
+        if (sparks[i].life <= 0) sparks.splice(i, 1);
       }
 
       if (currentPhase >= PHASE_TIMING.impact && currentPhase < PHASE_TIMING.impact + 500) {
@@ -135,19 +140,19 @@ function ParticleCanvas({ phase }: { phase: number }) {
             vy: (Math.random() - 0.5) * 8,
             life: 30 + Math.random() * 20,
             maxLife: 50,
-          })
+          });
         }
       }
 
-      ctx.globalAlpha = 1
-      raf = requestAnimationFrame(draw)
-    }
-    draw()
+      ctx.globalAlpha = 1;
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
     return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', onResize)
-    }
-  }, [])
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
 
   return (
     <canvas
@@ -155,12 +160,12 @@ function ParticleCanvas({ phase }: { phase: number }) {
       className="absolute inset-0 w-full h-full pointer-events-none"
       style={{ opacity: 0.6 }}
     />
-  )
+  );
 }
 
 /* ─── Fog Layers ──────────────────────────────────────────── */
 function FogLayers({ phase }: { phase: number }) {
-  const opacity = phase >= PHASE_TIMING.done ? 0 : 1
+  const opacity = phase >= PHASE_TIMING.done ? 0 : 1;
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ opacity }}>
       <div
@@ -182,23 +187,19 @@ function FogLayers({ phase }: { phase: number }) {
         }}
       />
     </div>
-  )
+  );
 }
 
 /* ─── God Rays ────────────────────────────────────────────── */
 function GodRays({ phase }: { phase: number }) {
-  const visible = phase >= PHASE_TIMING.logoWireStart && phase < PHASE_TIMING.done
-  const opacity = visible
-    ? phase >= PHASE_TIMING.impact
-      ? 0.12
-      : 0.06
-    : 0
+  const visible = phase >= PHASE_TIMING.logoWireStart && phase < PHASE_TIMING.done;
+  const opacity = visible ? (phase >= PHASE_TIMING.impact ? 0.12 : 0.06) : 0;
   return (
     <div
       className="absolute inset-0 pointer-events-none transition-opacity duration-1000"
       style={{ opacity }}
     >
-      {[0, 60, 120, 180, 240, 300].map((deg) => (
+      {[0, 60, 120, 180, 240, 300].map(deg => (
         <div
           key={deg}
           className="absolute left-1/2 top-1/2 w-[2px] origin-top"
@@ -211,12 +212,12 @@ function GodRays({ phase }: { phase: number }) {
         />
       ))}
     </div>
-  )
+  );
 }
 
 /* ─── Film Grain ──────────────────────────────────────────── */
 function FilmGrain({ phase }: { phase: number }) {
-  if (phase >= PHASE_TIMING.done) return null
+  if (phase >= PHASE_TIMING.done) return null;
   return (
     <div
       className="absolute inset-0 pointer-events-none z-50 mix-blend-overlay"
@@ -227,27 +228,26 @@ function FilmGrain({ phase }: { phase: number }) {
         animation: 'grainShift 0.1s steps(2) infinite',
       }}
     />
-  )
+  );
 }
 
 /* ─── Vignette ────────────────────────────────────────────── */
 function Vignette({ phase }: { phase: number }) {
-  if (phase >= PHASE_TIMING.done) return null
+  if (phase >= PHASE_TIMING.done) return null;
   return (
     <div
       className="absolute inset-0 pointer-events-none z-40"
       style={{
-        background:
-          'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)',
+        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)',
       }}
     />
-  )
+  );
 }
 
 /* ─── Letterbox Bars ──────────────────────────────────────── */
 function Letterbox({ phase }: { phase: number }) {
-  const visible = phase >= PHASE_TIMING.impact && phase < PHASE_TIMING.done
-  const height = visible ? '8vh' : '0'
+  const visible = phase >= PHASE_TIMING.impact && phase < PHASE_TIMING.done;
+  const height = visible ? '8vh' : '0';
   return (
     <>
       <div
@@ -259,7 +259,7 @@ function Letterbox({ phase }: { phase: number }) {
         style={{ height }}
       />
     </>
-  )
+  );
 }
 
 /* ─── Animated Logo ───────────────────────────────────────── */
@@ -267,33 +267,33 @@ function AnimatedLogo({ phase }: { phase: number }) {
   const wireOpacity =
     phase >= PHASE_TIMING.logoWireStart
       ? Math.min(1, (phase - PHASE_TIMING.logoWireStart) / 800)
-      : 0
+      : 0;
 
   const materialOpacity =
     phase >= PHASE_TIMING.logoMaterialStart
       ? Math.min(1, (phase - PHASE_TIMING.logoMaterialStart) / 1200)
-      : 0
+      : 0;
 
   const coreGlow =
     phase >= PHASE_TIMING.logoWireStart
       ? Math.min(1, (phase - PHASE_TIMING.logoWireStart) / 2000)
-      : 0
+      : 0;
 
   const impactFlash =
     phase >= PHASE_TIMING.impact && phase < PHASE_TIMING.impact + 400
       ? 1 - (phase - PHASE_TIMING.impact) / 400
-      : 0
+      : 0;
 
   const scale =
     phase >= PHASE_TIMING.impact && phase < PHASE_TIMING.impact + 300
       ? 1 + 0.15 * (1 - (phase - PHASE_TIMING.impact) / 300)
       : phase >= PHASE_TIMING.logoWireStart
         ? 0.85 + 0.15 * Math.min(1, (phase - PHASE_TIMING.logoWireStart) / 3000)
-        : 0
+        : 0;
 
-  const showLogo = phase >= PHASE_TIMING.logoWireStart && phase < PHASE_TIMING.done
+  const showLogo = phase >= PHASE_TIMING.logoWireStart && phase < PHASE_TIMING.done;
 
-  if (!showLogo) return null
+  if (!showLogo) return null;
 
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
@@ -302,7 +302,11 @@ function AnimatedLogo({ phase }: { phase: number }) {
         <div
           className="absolute inset-0 z-[60]"
           style={{
-            background: `radial-gradient(circle at 50% 50%, ${COLORS.white}${Math.round(impactFlash * 90).toString(16).padStart(2, '0')}, transparent 60%)`,
+            background: `radial-gradient(circle at 50% 50%, ${COLORS.white}${Math.round(
+              impactFlash * 90
+            )
+              .toString(16)
+              .padStart(2, '0')}, transparent 60%)`,
           }}
         />
       )}
@@ -335,7 +339,11 @@ function AnimatedLogo({ phase }: { phase: number }) {
           style={{
             width: '180px',
             height: '180px',
-            background: `radial-gradient(circle, ${COLORS.cyan}${Math.round(coreGlow * 40).toString(16).padStart(2, '0')}, ${COLORS.sapphire}${Math.round(coreGlow * 20).toString(16).padStart(2, '0')}, transparent 70%)`,
+            background: `radial-gradient(circle, ${COLORS.cyan}${Math.round(coreGlow * 40)
+              .toString(16)
+              .padStart(2, '0')}, ${COLORS.sapphire}${Math.round(coreGlow * 20)
+              .toString(16)
+              .padStart(2, '0')}, transparent 70%)`,
             filter: `blur(30px)`,
           }}
         />
@@ -376,25 +384,25 @@ function AnimatedLogo({ phase }: { phase: number }) {
           />
           {/* Blueprint grid lines */}
           {wireOpacity < 0.9 &&
-            Array.from({ length: 8 }).map((_, i) => (
+            Array.from({ length: 8 }).map((_, _i) => (
               <line
-                key={`h${i}`}
+                key={`h${_i}`}
                 x1="0"
-                y1={20 * i}
+                y1={20 * _i}
                 x2="160"
-                y2={20 * i}
+                y2={20 * _i}
                 stroke={COLORS.cyan}
                 strokeWidth="0.3"
                 opacity={0.15 * (1 - materialOpacity)}
               />
             ))}
           {wireOpacity < 0.9 &&
-            Array.from({ length: 8 }).map((_, i) => (
+            Array.from({ length: 8 }).map((_, _i) => (
               <line
-                key={`v${i}`}
-                x1={20 * i}
+                key={`v${_i}`}
+                x1={20 * _i}
                 y1="0"
-                x2={20 * i}
+                x2={20 * _i}
                 y2="160"
                 stroke={COLORS.cyan}
                 strokeWidth="0.3"
@@ -428,24 +436,10 @@ function AnimatedLogo({ phase }: { phase: number }) {
             fill="url(#titanGrad)"
             filter="url(#glassEffect)"
           />
-          <line
-            x1="40"
-            y1="100"
-            x2="120"
-            y2="100"
-            stroke="#b0b0b0"
-            strokeWidth="1.5"
-          />
+          <line x1="40" y1="100" x2="120" y2="100" stroke="#b0b0b0" strokeWidth="1.5" />
           {/* Specular sweep */}
           {materialOpacity > 0.3 && (
-            <rect
-              x="0"
-              y="0"
-              width="160"
-              height="160"
-              fill="url(#specularSweep)"
-              opacity={0.15}
-            />
+            <rect x="0" y="0" width="160" height="160" fill="url(#specularSweep)" opacity={0.15} />
           )}
           <defs>
             <linearGradient
@@ -487,22 +481,25 @@ function AnimatedLogo({ phase }: { phase: number }) {
         />
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── HUD Elements ────────────────────────────────────────── */
 function HudElements({ phase }: { phase: number }) {
-  const agentsVisible = phase >= PHASE_TIMING.agentStart && phase < PHASE_TIMING.done
-  const bootVisible = phase >= PHASE_TIMING.bootStart && phase < PHASE_TIMING.agentEnd + 500
-  const showHint = phase >= PHASE_TIMING.holdEnd - 1000 && phase < PHASE_TIMING.done
+  const agentsVisible = phase >= PHASE_TIMING.agentStart && phase < PHASE_TIMING.done;
+  const bootVisible = phase >= PHASE_TIMING.bootStart && phase < PHASE_TIMING.agentEnd + 500;
+  const showHint = phase >= PHASE_TIMING.holdEnd - 1000 && phase < PHASE_TIMING.done;
 
   const visibleBootLines =
     phase >= PHASE_TIMING.bootStart
       ? Math.min(
           BOOT_LOG.length,
-          Math.floor(((phase - PHASE_TIMING.bootStart) / (PHASE_TIMING.bootEnd - PHASE_TIMING.bootStart)) * BOOT_LOG.length) + 1
+          Math.floor(
+            ((phase - PHASE_TIMING.bootStart) / (PHASE_TIMING.bootEnd - PHASE_TIMING.bootStart)) *
+              BOOT_LOG.length
+          ) + 1
         )
-      : 0
+      : 0;
 
   return (
     <div className="absolute inset-0 pointer-events-none z-40">
@@ -515,10 +512,10 @@ function HudElements({ phase }: { phase: number }) {
         }}
       >
         {AGENTS.map((agent, i) => {
-          const delay = i * 200
+          const delay = i * 200;
           const agentProgress = agentsVisible
             ? Math.min(1, Math.max(0, (phase - PHASE_TIMING.agentStart - delay) / 600))
-            : 0
+            : 0;
           return (
             <div
               key={agent.name}
@@ -547,7 +544,7 @@ function HudElements({ phase }: { phase: number }) {
                 {agent.name}
               </span>
             </div>
-          )
+          );
         })}
       </div>
 
@@ -563,10 +560,7 @@ function HudElements({ phase }: { phase: number }) {
               className="text-[11px] text-left"
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
-                color:
-                  i === visibleBootLines - 1
-                    ? COLORS.cyan
-                    : 'rgba(255,255,255,0.3)',
+                color: i === visibleBootLines - 1 ? COLORS.cyan : 'rgba(255,255,255,0.3)',
                 animation: 'bootLineIn 0.3s ease forwards',
               }}
             >
@@ -590,19 +584,23 @@ function HudElements({ phase }: { phase: number }) {
         <span>Space Replay</span>
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── Branding Text ───────────────────────────────────────── */
 function BrandingText({ phase }: { phase: number }) {
-  const logoDelay = phase >= PHASE_TIMING.revealStart ? Math.min(1, (phase - PHASE_TIMING.revealStart) / 600) : 0
-  const wordmarkDelay = phase >= PHASE_TIMING.wordmarkStart ? Math.min(1, (phase - PHASE_TIMING.wordmarkStart) / 600) : 0
-  const taglineDelay = phase >= PHASE_TIMING.taglineStart ? Math.min(1, (phase - PHASE_TIMING.taglineStart) / 800) : 0
-  const fadeOut = phase >= PHASE_TIMING.fadeOut ? Math.max(0, 1 - (phase - PHASE_TIMING.fadeOut) / 1000) : 1
+  const wordmarkDelay =
+    phase >= PHASE_TIMING.wordmarkStart
+      ? Math.min(1, (phase - PHASE_TIMING.wordmarkStart) / 600)
+      : 0;
+  const taglineDelay =
+    phase >= PHASE_TIMING.taglineStart ? Math.min(1, (phase - PHASE_TIMING.taglineStart) / 800) : 0;
+  const fadeOut =
+    phase >= PHASE_TIMING.fadeOut ? Math.max(0, 1 - (phase - PHASE_TIMING.fadeOut) / 1000) : 1;
 
-  const show = phase >= PHASE_TIMING.revealStart && phase < PHASE_TIMING.done
+  const show = phase >= PHASE_TIMING.revealStart && phase < PHASE_TIMING.done;
 
-  if (!show) return null
+  if (!show) return null;
 
   return (
     <div
@@ -667,72 +665,69 @@ function BrandingText({ phase }: { phase: number }) {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── Exposure Layer ──────────────────────────────────────── */
 function ExposureLayer({ phase }: { phase: number }) {
-  if (phase < PHASE_TIMING.fadeFromBlack + 1200 || phase >= PHASE_TIMING.done) return null
+  if (phase < PHASE_TIMING.fadeFromBlack + 1200 || phase >= PHASE_TIMING.done) return null;
 
-  const t = Math.min(1, (phase - PHASE_TIMING.fadeFromBlack) / 1200)
+  const t = Math.min(1, (phase - PHASE_TIMING.fadeFromBlack) / 1200);
   return (
     <div
       className="absolute inset-0 bg-black pointer-events-none z-[55]"
       style={{ opacity: 1 - t }}
     />
-  )
+  );
 }
 
 /* ═══════════════════════════════════════════════════════════════
    MAIN HERO COMPONENT
    ═══════════════════════════════════════════════════════════════ */
 export function Hero() {
-  const [phase, setPhase] = useState(0)
-  const startTime = useRef<number>(0)
-  const rafRef = useRef<number>(0)
+  const [phase, setPhase] = useState(0);
+  const startTime = useRef<number>(0);
+  const rafRef = useRef<number>(0);
 
-  const frameCount = useRef(0)
+  const frameCount = useRef(0);
   const tick = useCallback(() => {
-    frameCount.current++
+    frameCount.current++;
     if (frameCount.current % 2 === 0) {
-      const elapsed = performance.now() - startTime.current
-      setPhase(elapsed)
+      const elapsed = performance.now() - startTime.current;
+      setPhase(elapsed);
     }
-    const elapsed = performance.now() - startTime.current
+    const elapsed = performance.now() - startTime.current;
     if (elapsed < PHASE_TIMING.done + 500) {
-      rafRef.current = requestAnimationFrame(tick)
+      rafRef.current = requestAnimationFrame(tick);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    startTime.current = performance.now()
-    rafRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [tick])
+    startTime.current = performance.now();
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [tick]);
 
   const handleReplay = useCallback(() => {
-    cancelAnimationFrame(rafRef.current)
-    frameCount.current = 0
-    startTime.current = performance.now()
-    rafRef.current = requestAnimationFrame(tick)
-  }, [tick])
+    cancelAnimationFrame(rafRef.current);
+    frameCount.current = 0;
+    startTime.current = performance.now();
+    rafRef.current = requestAnimationFrame(tick);
+  }, [tick]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.code === 'Space' && phase < PHASE_TIMING.done) {
-        e.preventDefault()
-        handleReplay()
+        e.preventDefault();
+        handleReplay();
       }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [handleReplay, phase])
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [handleReplay, phase]);
 
   return (
-    <section
-      id="home"
-      className="relative w-full h-screen overflow-hidden bg-black"
-    >
+    <section id="home" className="relative w-full h-screen overflow-hidden bg-black">
       <ParticleCanvas phase={phase} />
       <FogLayers phase={phase} />
       <GodRays phase={phase} />
@@ -768,50 +763,59 @@ export function Hero() {
           >
             Scroll
           </span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="rgba(255,255,255,0.3)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </div>
       )}
     </section>
-  )
+  );
 }
 
 /* ═══════════════════════════════════════════════════════════════
    BACKGROUND — Aurora blobs + canvas particles + grid
    ═══════════════════════════════════════════════════════════════ */
 export function Background() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const blob1Ref = useRef<HTMLDivElement>(null)
-  const blob2Ref = useRef<HTMLDivElement>(null)
-  const blob3Ref = useRef<HTMLDivElement>(null)
-  const gridRef = useRef<HTMLDivElement>(null)
-  const mouse = useRef({ x: 0.5, y: 0.5 })
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const blob1Ref = useRef<HTMLDivElement>(null);
+  const blob2Ref = useRef<HTMLDivElement>(null);
+  const blob3Ref = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const mouse = useRef({ x: 0.5, y: 0.5 });
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
-      mouse.current.x = e.clientX / window.innerWidth
-      mouse.current.y = e.clientY / window.innerHeight
-    }
-    window.addEventListener('mousemove', onMove, { passive: true })
-    return () => window.removeEventListener('mousemove', onMove)
-  }, [])
+      mouse.current.x = e.clientX / window.innerWidth;
+      mouse.current.y = e.clientY / window.innerHeight;
+    };
+    window.addEventListener('mousemove', onMove, { passive: true });
+    return () => window.removeEventListener('mousemove', onMove);
+  }, []);
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-    let raf: number
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let raf: number;
 
     const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener('resize', resize, { passive: true })
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
 
-    const palette = ['#4fd1c5', '#a78bfa', '#fb923c', '#34d399', '#60a5fa', '#f472b6']
+    const palette = ['#4fd1c5', '#a78bfa', '#fb923c', '#34d399', '#60a5fa', '#f472b6'];
     const particles = Array.from({ length: 40 }, () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
@@ -820,75 +824,81 @@ export function Background() {
       r: Math.random() * 1.4 + 0.3,
       opacity: Math.random() * 0.15 + 0.03,
       color: palette[Math.floor(Math.random() * palette.length)],
-    }))
+    }));
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      const mx = mouse.current.x * canvas.width
-      const my = mouse.current.y * canvas.height
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const mx = mouse.current.x * canvas.width;
+      const my = mouse.current.y * canvas.height;
 
-      const grd = ctx.createRadialGradient(mx, my, 0, mx, my, 300)
-      grd.addColorStop(0, 'rgba(167,139,250,0.028)')
-      grd.addColorStop(1, 'transparent')
-      ctx.fillStyle = grd
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      const grd = ctx.createRadialGradient(mx, my, 0, mx, my, 300);
+      grd.addColorStop(0, 'rgba(167,139,250,0.028)');
+      grd.addColorStop(1, 'transparent');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach((p) => {
-        p.x += p.vx
-        p.y += p.vy
-        if (p.x < 0) p.x = canvas.width
-        if (p.x > canvas.width) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
 
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = p.color
-        ctx.globalAlpha = p.opacity
-        ctx.fill()
-        ctx.globalAlpha = 1
-      })
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
 
-      raf = requestAnimationFrame(draw)
-    }
-    draw()
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
     return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
 
   useEffect(() => {
-    let ticking = false
+    let ticking = false;
     const update = () => {
-      const sy = window.scrollY
-      const mx = (mouse.current.x - 0.5) * 2
-      const my = (mouse.current.y - 0.5) * 2
+      const sy = window.scrollY;
+      const mx = (mouse.current.x - 0.5) * 2;
+      const my = (mouse.current.y - 0.5) * 2;
 
       if (blob1Ref.current)
-        blob1Ref.current.style.transform = `translate3d(${-sy * 0.15 + mx * 20}px, ${-sy * 0.1 + my * 15}px, 0)`
+        blob1Ref.current.style.transform = `translate3d(${-sy * 0.15 + mx * 20}px, ${-sy * 0.1 + my * 15}px, 0)`;
       if (blob2Ref.current)
-        blob2Ref.current.style.transform = `translate3d(${sy * 0.12 - mx * 25}px, ${-sy * 0.08 - my * 20}px, 0)`
+        blob2Ref.current.style.transform = `translate3d(${sy * 0.12 - mx * 25}px, ${-sy * 0.08 - my * 20}px, 0)`;
       if (blob3Ref.current)
-        blob3Ref.current.style.transform = `translate3d(${mx * 30}px, ${-sy * 0.06 + my * 25}px, 0)`
+        blob3Ref.current.style.transform = `translate3d(${mx * 30}px, ${-sy * 0.06 + my * 25}px, 0)`;
       if (gridRef.current)
-        gridRef.current.style.transform = `translate3d(${mx * 10}px, ${-sy * 0.04 + my * 8}px, 0)`
-      ticking = false
-    }
+        gridRef.current.style.transform = `translate3d(${mx * 10}px, ${-sy * 0.04 + my * 8}px, 0)`;
+      ticking = false;
+    };
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update) }
-    }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
     const onMouse = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update) }
-    }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('mousemove', onMouse, { passive: true })
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('mousemove', onMouse, { passive: true });
     return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('mousemove', onMouse)
-    }
-  }, [])
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('mousemove', onMouse);
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -897,8 +907,10 @@ export function Background() {
         <div
           className="absolute rounded-full animate-aurora"
           style={{
-            width: '1000px', height: '1000px',
-            top: '-25%', left: '-12%',
+            width: '1000px',
+            height: '1000px',
+            top: '-25%',
+            left: '-12%',
             background: 'radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 65%)',
           }}
         />
@@ -907,8 +919,10 @@ export function Background() {
         <div
           className="absolute rounded-full animate-aurora"
           style={{
-            width: '800px', height: '800px',
-            top: '8%', right: '-10%',
+            width: '800px',
+            height: '800px',
+            top: '8%',
+            right: '-10%',
             background: 'radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 65%)',
             animationDelay: '-5s',
           }}
@@ -918,8 +932,10 @@ export function Background() {
         <div
           className="absolute rounded-full animate-aurora"
           style={{
-            width: '600px', height: '600px',
-            bottom: '22%', left: '28%',
+            width: '600px',
+            height: '600px',
+            bottom: '22%',
+            left: '28%',
             background: 'radial-gradient(circle, rgba(79,209,197,0.07) 0%, transparent 65%)',
             animationDelay: '-9s',
           }}
@@ -943,5 +959,5 @@ export function Background() {
         }}
       />
     </div>
-  )
+  );
 }

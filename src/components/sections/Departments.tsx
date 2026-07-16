@@ -1,21 +1,21 @@
-import { useState, useEffect, useCallback } from 'react'
-import { DEPARTMENTS } from '../../data'
-import { SectionLabel, CheckMark } from '../ui'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { ScrollRevealText } from '../ScrollRevealText'
+import { useCallback, useEffect, useState } from 'react';
+import { DEPARTMENTS } from '../../data';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { ScrollRevealText } from '../ScrollRevealText';
+import { CheckMark, SectionLabel } from '../ui';
 
 // Node positions in a 560×460 SVG
 const NODES = [
-  { id: 'marketing',  x: 280, y: 42,  label: 'Marketing',  color: '#fb923c' },
-  { id: 'support',    x: 72,  y: 138, label: 'Support',    color: '#4fd1c5' },
-  { id: 'sales',      x: 488, y: 138, label: 'Sales',      color: '#a78bfa' },
-  { id: 'finance',    x: 72,  y: 322, label: 'Finance',    color: '#34d399' },
+  { id: 'marketing', x: 280, y: 42, label: 'Marketing', color: '#fb923c' },
+  { id: 'support', x: 72, y: 138, label: 'Support', color: '#4fd1c5' },
+  { id: 'sales', x: 488, y: 138, label: 'Sales', color: '#a78bfa' },
+  { id: 'finance', x: 72, y: 322, label: 'Finance', color: '#34d399' },
   { id: 'operations', x: 488, y: 322, label: 'Operations', color: '#60a5fa' },
-  { id: 'hr',         x: 280, y: 418, label: 'HR',         color: '#f472b6' },
-]
-const CORE = { x: 280, y: 230, label: 'CORE' }
+  { id: 'hr', x: 280, y: 418, label: 'HR', color: '#f472b6' },
+];
+const CORE = { x: 280, y: 230, label: 'CORE' };
 
-const CONNECTIONS = NODES.map((n) => ({ from: n, to: CORE }))
+const CONNECTIONS = NODES.map(n => ({ from: n, to: CORE }));
 const CROSS_CONNECTIONS = [
   { from: NODES[0], to: NODES[1] }, // marketing-support
   { from: NODES[0], to: NODES[2] }, // marketing-sales
@@ -23,23 +23,59 @@ const CROSS_CONNECTIONS = [
   { from: NODES[2], to: NODES[4] }, // sales-operations
   { from: NODES[3], to: NODES[5] }, // finance-hr
   { from: NODES[4], to: NODES[5] }, // operations-hr
-]
+];
 
 const BOOT_STEPS: Record<string, string[]> = {
-  support:    ['Connecting Gmail Business...', 'Connecting WhatsApp...', 'Loading knowledge base...', 'Syncing Zendesk...', 'Ready — handling tickets now.'],
-  sales:      ['Connecting HubSpot CRM...', 'Connecting Calendly...', 'Loading prospect data...', 'Calibrating lead scoring...', 'Ready — prospecting now.'],
-  marketing:  ['Connecting Mailchimp...', 'Connecting Buffer...', 'Loading brand guidelines...', 'Syncing content calendar...', 'Ready — publishing now.'],
-  finance:    ['Connecting QuickBooks...', 'Connecting Stripe...', 'Loading chart of accounts...', 'Syncing transactions...', 'Ready — reconciling now.'],
-  operations: ['Connecting Slack...', 'Connecting Notion...', 'Loading project templates...', 'Syncing task backlog...', 'Ready — coordinating now.'],
-  hr:         ['Connecting Greenhouse...', 'Connecting DocuSign...', 'Loading job descriptions...', 'Syncing candidate pipeline...', 'Ready — screening now.'],
-}
+  support: [
+    'Connecting Gmail Business...',
+    'Connecting WhatsApp...',
+    'Loading knowledge base...',
+    'Syncing Zendesk...',
+    'Ready — handling tickets now.',
+  ],
+  sales: [
+    'Connecting HubSpot CRM...',
+    'Connecting Calendly...',
+    'Loading prospect data...',
+    'Calibrating lead scoring...',
+    'Ready — prospecting now.',
+  ],
+  marketing: [
+    'Connecting Mailchimp...',
+    'Connecting Buffer...',
+    'Loading brand guidelines...',
+    'Syncing content calendar...',
+    'Ready — publishing now.',
+  ],
+  finance: [
+    'Connecting QuickBooks...',
+    'Connecting Stripe...',
+    'Loading chart of accounts...',
+    'Syncing transactions...',
+    'Ready — reconciling now.',
+  ],
+  operations: [
+    'Connecting Slack...',
+    'Connecting Notion...',
+    'Loading project templates...',
+    'Syncing task backlog...',
+    'Ready — coordinating now.',
+  ],
+  hr: [
+    'Connecting Greenhouse...',
+    'Connecting DocuSign...',
+    'Loading job descriptions...',
+    'Syncing candidate pipeline...',
+    'Ready — screening now.',
+  ],
+};
 
 function NeuralNetwork({
   activeId,
   onSelect,
 }: {
-  activeId: string | null
-  onSelect: (id: string) => void
+  activeId: string | null;
+  onSelect: (id: string) => void;
 }) {
   return (
     <div className="relative w-full select-none" style={{ maxWidth: 560, margin: '0 auto' }}>
@@ -51,43 +87,48 @@ function NeuralNetwork({
       >
         {/* Cross connections */}
         {CROSS_CONNECTIONS.map(({ from, to }, i) => {
-          const active =
-            activeId === from.id || activeId === to.id
+          const active = activeId === from.id || activeId === to.id;
           return (
             <line
               key={`cross-${i}`}
-              x1={from.x} y1={from.y}
-              x2={to.x}   y2={to.y}
+              x1={from.x}
+              y1={from.y}
+              x2={to.x}
+              y2={to.y}
               stroke={active ? from.color : 'rgba(255,255,255,0.04)'}
               strokeWidth={active ? 1.2 : 0.8}
               strokeDasharray={active ? '4 6' : '3 10'}
               className={active ? 'animate-dash' : ''}
               style={{ transition: 'stroke 0.4s ease, stroke-width 0.4s ease' }}
             />
-          )
+          );
         })}
 
         {/* Core connections */}
         {CONNECTIONS.map(({ from, to }, i) => {
-          const active = activeId === from.id
+          const active = activeId === from.id;
           return (
             <line
               key={`core-${i}`}
-              x1={from.x} y1={from.y}
-              x2={to.x}   y2={to.y}
+              x1={from.x}
+              y1={from.y}
+              x2={to.x}
+              y2={to.y}
               stroke={active ? from.color : 'rgba(255,255,255,0.07)'}
               strokeWidth={active ? 2 : 1}
               strokeDasharray={active ? '5 5' : '0'}
               className={active ? 'animate-dash' : ''}
               style={{ transition: 'stroke 0.4s ease, stroke-width 0.4s ease' }}
             />
-          )
+          );
         })}
 
         {/* Core node */}
         <g>
           <circle
-            cx={CORE.x} cy={CORE.y} r={44}
+            cx={CORE.x}
+            cy={CORE.y}
+            r={44}
             fill="none"
             stroke={activeId ? 'rgba(255,255,255,0.08)' : 'rgba(124,58,237,0.3)'}
             strokeWidth={1}
@@ -96,19 +137,21 @@ function NeuralNetwork({
             style={{ transformOrigin: `${CORE.x}px ${CORE.y}px` }}
           />
           <circle
-            cx={CORE.x} cy={CORE.y} r={32}
+            cx={CORE.x}
+            cy={CORE.y}
+            r={32}
             fill="rgba(8,9,12,0.95)"
             stroke="rgba(124,58,237,0.45)"
             strokeWidth={1.5}
           />
-          <circle
-            cx={CORE.x} cy={CORE.y} r={32}
-            fill="url(#core-grd)"
-          />
+          <circle cx={CORE.x} cy={CORE.y} r={32} fill="url(#core-grd)" />
           <text
-            x={CORE.x} y={CORE.y + 1}
-            textAnchor="middle" dominantBaseline="middle"
-            fill="white" fontSize="11"
+            x={CORE.x}
+            y={CORE.y + 1}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="white"
+            fontSize="11"
             fontFamily="'Outfit', sans-serif"
             fontWeight="700"
             letterSpacing="-0.5"
@@ -116,9 +159,12 @@ function NeuralNetwork({
             A
           </text>
           <text
-            x={CORE.x} y={CORE.y + 14}
-            textAnchor="middle" dominantBaseline="middle"
-            fill="rgba(255,255,255,0.4)" fontSize="7"
+            x={CORE.x}
+            y={CORE.y + 14}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="rgba(255,255,255,0.4)"
+            fontSize="7"
             fontFamily="'JetBrains Mono', monospace"
           >
             CORE
@@ -134,11 +180,11 @@ function NeuralNetwork({
 
       {/* Department nodes (absolutely positioned over SVG) */}
       {NODES.map((node, idx) => {
-        const isActive = activeId === node.id
-        const dept = DEPARTMENTS.find((d) => d.id === node.id)
+        const isActive = activeId === node.id;
+        const dept = DEPARTMENTS.find(d => d.id === node.id);
         // Convert SVG coords to percent
-        const left = (node.x / 560) * 100
-        const top = (node.y / 460) * 100
+        const left = (node.x / 560) * 100;
+        const top = (node.y / 460) * 100;
 
         return (
           <button
@@ -195,26 +241,26 @@ function NeuralNetwork({
               />
             )}
           </button>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 function BootSequence({ deptId, color }: { deptId: string; color: string }) {
-  const [step, setStep] = useState(0)
-  const steps = BOOT_STEPS[deptId] ?? []
+  const [step, setStep] = useState(0);
+  const steps = BOOT_STEPS[deptId] ?? [];
 
   useEffect(() => {
-    setStep(0)
-    const timers: ReturnType<typeof setTimeout>[] = []
+    setStep(0);
+    const timers: ReturnType<typeof setTimeout>[] = [];
     steps.forEach((_, i) => {
-      timers.push(setTimeout(() => setStep(i + 1), 420 * (i + 1)))
-    })
-    return () => timers.forEach(clearTimeout)
-  }, [deptId]) // eslint-disable-line react-hooks/exhaustive-deps
+      timers.push(setTimeout(() => setStep(i + 1), 420 * (i + 1)));
+    });
+    return () => timers.forEach(clearTimeout);
+  }, [deptId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const done = step >= steps.length
+  const done = step >= steps.length;
 
   return (
     <div className="space-y-2" style={{ animation: 'panel-up 0.5s var(--ease) both' }}>
@@ -244,7 +290,8 @@ function BootSequence({ deptId, color }: { deptId: string; color: string }) {
             className="text-xs leading-snug"
             style={{
               color: i === steps.length - 1 ? color : 'rgba(255,255,255,0.50)',
-              fontFamily: i === steps.length - 1 ? "'Outfit', sans-serif" : "'JetBrains Mono', monospace",
+              fontFamily:
+                i === steps.length - 1 ? "'Outfit', sans-serif" : "'JetBrains Mono', monospace",
               fontWeight: i === steps.length - 1 ? 600 : 400,
               fontSize: i === steps.length - 1 ? '13px' : '11px',
             }}
@@ -254,12 +301,12 @@ function BootSequence({ deptId, color }: { deptId: string; color: string }) {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 function DeptDetail({ deptId }: { deptId: string }) {
-  const dept = DEPARTMENTS.find((d) => d.id === deptId)
-  if (!dept) return null
+  const dept = DEPARTMENTS.find(d => d.id === deptId);
+  if (!dept) return null;
 
   return (
     <div
@@ -275,7 +322,7 @@ function DeptDetail({ deptId }: { deptId: string }) {
           Tasks it handles
         </p>
         <ul className="space-y-2">
-          {dept.tasks.map((task) => (
+          {dept.tasks.map(task => (
             <li key={task} className="flex items-start gap-2">
               <div
                 className="w-3.5 h-3.5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
@@ -297,7 +344,7 @@ function DeptDetail({ deptId }: { deptId: string }) {
           Integrations
         </p>
         <div className="flex flex-wrap gap-1.5 mb-5">
-          {dept.integrations.map((t) => (
+          {dept.integrations.map(t => (
             <span
               key={t}
               className="px-2.5 py-1 rounded-md text-[11px] font-medium"
@@ -323,27 +370,30 @@ function DeptDetail({ deptId }: { deptId: string }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export function DepartmentsSection() {
-  const ref = useScrollReveal<HTMLElement>()
-  const [activeId, setActiveId] = useState<string | null>(null)
-  const [bootDone, setBootDone] = useState(false)
+  const ref = useScrollReveal<HTMLElement>();
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [bootDone, setBootDone] = useState(false);
 
-  const handleSelect = useCallback((id: string) => {
-    if (activeId === id) {
-      setActiveId(null)
-      setBootDone(false)
-      return
-    }
-    setActiveId(id)
-    setBootDone(false)
-    const steps = BOOT_STEPS[id] ?? []
-    setTimeout(() => setBootDone(true), 420 * steps.length + 200)
-  }, [activeId])
+  const handleSelect = useCallback(
+    (id: string) => {
+      if (activeId === id) {
+        setActiveId(null);
+        setBootDone(false);
+        return;
+      }
+      setActiveId(id);
+      setBootDone(false);
+      const steps = BOOT_STEPS[id] ?? [];
+      setTimeout(() => setBootDone(true), 420 * steps.length + 200);
+    },
+    [activeId]
+  );
 
-  const activeDept = DEPARTMENTS.find((d) => d.id === activeId)
+  const activeDept = DEPARTMENTS.find(d => d.id === activeId);
 
   return (
     <section ref={ref} id="departments" className="reveal relative z-10 py-32 px-6">
@@ -412,5 +462,5 @@ export function DepartmentsSection() {
         )}
       </div>
     </section>
-  )
+  );
 }

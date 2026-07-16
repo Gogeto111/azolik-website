@@ -1,32 +1,32 @@
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { useRef, useEffect } from 'react'
-import { ContactForm } from '../ContactForm'
+import { useEffect, useRef } from 'react';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { ContactForm } from '../ContactForm';
 
 export function CTASection() {
-  const ref = useScrollReveal<HTMLElement>()
-  const orbRef = useRef<HTMLDivElement>(null)
-  const glowRef = useRef<HTMLDivElement>(null)
+  const ref = useScrollReveal<HTMLElement>();
+  const orbRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
 
   // Subtle parallax on the CTA container
   useEffect(() => {
-    let ticking = false
+    let ticking = false;
     const update = () => {
       if (orbRef.current) {
-        const sy = window.scrollY
-        orbRef.current.style.transform = `translate3d(0, ${-sy * 0.02}px, 0)`
+        const sy = window.scrollY;
+        orbRef.current.style.transform = `translate3d(0, ${-sy * 0.02}px, 0)`;
       }
-      ticking = false
-    }
+      ticking = false;
+    };
     const onScroll = () => {
       if (!ticking) {
-        ticking = true
-        requestAnimationFrame(update)
+        ticking = true;
+        requestAnimationFrame(update);
       }
-    }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <section ref={ref} id="cta" className="reveal relative z-10 py-24 px-6">
@@ -72,7 +72,8 @@ export function CTASection() {
           <div
             className="absolute inset-0 opacity-20"
             style={{
-              background: 'radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.55) 0%, transparent 60%)',
+              background:
+                'radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.55) 0%, transparent 60%)',
             }}
           />
 
@@ -84,14 +85,15 @@ export function CTASection() {
               Your team is ready.
             </h2>
             <p className="text-white/45 text-lg mb-10 max-w-md mx-auto leading-[1.65]">
-              Give your business a full AI workforce. Six departments, working autonomously from day one — no engineers, no long setup.
+              Give your business a full AI workforce. Six departments, working autonomously from day
+              one — no engineers, no long setup.
             </p>
 
             <div className="max-w-md mx-auto">
               <ContactForm
                 type="demo"
                 title="Start your free trial"
-                description="Solo: 6 months free · Team: 14-day trial · No credit card required"
+                description="Enter your business details and we'll set up your AI departments. You'll hear from us within 24 hours."
                 buttonText="Start free trial"
               />
             </div>
@@ -103,5 +105,5 @@ export function CTASection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

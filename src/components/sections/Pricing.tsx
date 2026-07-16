@@ -1,28 +1,34 @@
-import { useState, useRef } from 'react'
-import { PRICING } from '../../data'
-import { SectionLabel, CheckMark } from '../ui'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { ROICalculator } from './ROICalculator'
+import { useRef, useState } from 'react';
+import { PRICING } from '../../data';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { CheckMark, SectionLabel } from '../ui';
+import { ROICalculator } from './ROICalculator';
 
-function PricingCard({ plan, annual, style }: { plan: typeof PRICING[0]; annual: boolean; style?: React.CSSProperties }) {
-  const ref = useRef<HTMLDivElement>(null)
+function PricingCard({
+  plan,
+  annual,
+  style,
+}: { plan: (typeof PRICING)[0]; annual: boolean; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLDivElement>(null);
 
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = ref.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) scale3d(1.02, 1.02, 1.02)`
-    el.style.transition = 'transform 0.08s ease'
-  }
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    el.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) scale3d(1.02, 1.02, 1.02)`;
+    el.style.transition = 'transform 0.08s ease';
+  };
 
   const onMouseLeave = () => {
-    const el = ref.current
-    if (!el) return
-    el.style.transform = ''
-    el.style.transition = 'transform 0.6s var(--ease)'
-  }
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = '';
+    el.style.transition = 'transform 0.6s var(--ease)';
+  };
+
+  const displayPrice = annual ? plan.annual : plan.monthly;
 
   return (
     <div
@@ -49,10 +55,18 @@ function PricingCard({ plan, annual, style }: { plan: typeof PRICING[0]; annual:
       )}
       <div
         className="h-full rounded-2xl p-7 flex flex-col holo-card card-glow"
-        style={{ background: plan.highlighted ? 'rgba(10,8,24,0.98)' : '#0c0e13', ['--glow-color' as string]: plan.highlighted ? 'rgba(124,58,237,0.15)' : 'rgba(255,255,255,0.06)' }}
+        style={{
+          background: plan.highlighted ? 'rgba(10,8,24,0.98)' : '#0c0e13',
+          ['--glow-color' as string]: plan.highlighted
+            ? 'rgba(124,58,237,0.15)'
+            : 'rgba(255,255,255,0.06)',
+        }}
       >
         <div className="mb-6 entrance-fade-up">
-          <h3 className="font-bold text-white text-2xl mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <h3
+            className="font-bold text-white text-2xl mb-1"
+            style={{ fontFamily: "'Outfit', sans-serif" }}
+          >
             {plan.name}
           </h3>
           <p className="text-white/38 text-sm">{plan.description}</p>
@@ -66,18 +80,22 @@ function PricingCard({ plan, annual, style }: { plan: typeof PRICING[0]; annual:
                   className="font-bold text-white"
                   style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(40px, 5vw, 52px)' }}
                 >
-                  {annual && plan.annual ? `₹${plan.annual}` : `₹${plan.monthly}`}
+                  ${displayPrice}
                 </span>
                 <span className="text-white/30 text-sm">/{annual ? 'yr' : 'mo'}</span>
               </div>
               {annual && plan.annual && (
                 <p className="text-white/22 text-xs mt-1">
-                  ≈ ₹{Math.round(plan.annual / 12)}/mo · Save ₹{plan.monthly * 12 - plan.annual}/yr
+                  ≈ ${Math.round(plan.annual / 12)}/mo · Save $
+                  {plan.monthly * 12 - (plan.annual || 0)}/yr
                 </p>
               )}
             </>
           ) : (
-            <span className="font-bold text-white" style={{ fontFamily: "'Outfit', sans-serif", fontSize: '40px' }}>
+            <span
+              className="font-bold text-white"
+              style={{ fontFamily: "'Outfit', sans-serif", fontSize: '40px' }}
+            >
               Custom
             </span>
           )}
@@ -85,10 +103,16 @@ function PricingCard({ plan, annual, style }: { plan: typeof PRICING[0]; annual:
 
         <ul className="space-y-3 mb-8 flex-1">
           {plan.features.map((f, i) => (
-            <li key={f} className="flex items-start gap-3 entrance-fade-right" style={{ animationDelay: `${i * 60}ms` }}>
+            <li
+              key={f}
+              className="flex items-start gap-3 entrance-fade-right"
+              style={{ animationDelay: `${i * 60}ms` }}
+            >
               <div
                 className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                style={{ background: plan.highlighted ? 'rgba(124,58,237,0.35)' : 'rgba(255,255,255,0.07)' }}
+                style={{
+                  background: plan.highlighted ? 'rgba(124,58,237,0.35)' : 'rgba(255,255,255,0.07)',
+                }}
               >
                 <CheckMark color={plan.highlighted ? '#c4b5fd' : 'rgba(255,255,255,0.45)'} />
               </div>
@@ -103,19 +127,23 @@ function PricingCard({ plan, annual, style }: { plan: typeof PRICING[0]; annual:
           style={
             plan.highlighted
               ? { background: '#f5f5f7', color: '#08090c' }
-              : { background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.72)', border: '1px solid rgba(255,255,255,0.09)' }
+              : {
+                  background: 'rgba(255,255,255,0.05)',
+                  color: 'rgba(255,255,255,0.72)',
+                  border: '1px solid rgba(255,255,255,0.09)',
+                }
           }
         >
           {plan.cta}
         </a>
       </div>
     </div>
-  )
+  );
 }
 
 export function PricingSection() {
-  const ref = useScrollReveal<HTMLElement>()
-  const [annual, setAnnual] = useState(true)
+  const ref = useScrollReveal<HTMLElement>();
+  const [annual, setAnnual] = useState(true);
 
   return (
     <section ref={ref} id="pricing" className="reveal relative z-10 py-32 px-6">
@@ -131,7 +159,10 @@ export function PricingSection() {
         <div className="flex justify-center mb-14 entrance-fade-up">
           <div
             className="inline-flex items-center gap-1 p-1 rounded-xl"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+            style={{
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.07)',
+            }}
           >
             {[
               { label: 'Monthly', value: false, note: null as string | null },
@@ -163,16 +194,22 @@ export function PricingSection() {
 
         <div className="grid md:grid-cols-3 gap-5 items-stretch">
           {PRICING.map((plan, i) => (
-            <PricingCard key={plan.name} plan={plan} annual={annual} style={{ animationDelay: `${i * 120}ms` }} />
+            <PricingCard
+              key={plan.name}
+              plan={plan}
+              annual={annual}
+              style={{ animationDelay: `${i * 120}ms` }}
+            />
           ))}
         </div>
 
         <p className="text-center text-white/22 text-sm mt-8 entrance-fade-up">
-          Solo plan: 6 months free. Team plan: 14-day free trial. · No credit card required · Cancel anytime
+          Solo plan: 6 months free. Team plan: 14-day free trial. · No credit card required · Cancel
+          anytime
         </p>
 
         <ROICalculator />
       </div>
     </section>
-  )
+  );
 }
