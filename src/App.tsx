@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { AmbientBackground } from './components/AmbientBackground'
 import { ChatWidget } from './components/ChatWidget'
 import { Cursor } from './components/Cursor'
@@ -23,6 +24,10 @@ import { ServicesSection } from './components/sections/ServicesSection'
 import { WorkflowDemo } from './components/sections/WorkflowDemo'
 
 export default function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div
       className="min-h-screen overflow-x-hidden"

@@ -1,10 +1,10 @@
 export const NAV_LINKS = [
   { label: 'Departments', href: '#departments' },
+  { label: 'A Core', href: '#acore' },
   { label: 'How It Works', href: '#howitworks' },
   { label: 'Industries', href: '#industries' },
   { label: 'Integrations', href: '#integrations' },
   { label: 'Pricing', href: '#pricing' },
-  { label: "Let's Talk", href: '#cta', cta: true },
 ];
 
 export const SERVICES = [

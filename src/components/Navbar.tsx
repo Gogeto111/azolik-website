@@ -25,13 +25,13 @@ export function Navbar() {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2.5 group" aria-label="Azolic AI Media Agency home">
+        <a href="#home" className="flex items-center gap-2.5 group" aria-label="Azolic home">
           <AzoliKLogo size={36} />
           <span
             className="font-semibold text-lg text-white tracking-[-0.02em] group-hover:opacity-80 transition-opacity"
             style={{ fontFamily: "'Outfit', sans-serif" }}
           >
-            Azolic AI Media Agency
+            Azolic
           </span>
         </a>
 
@@ -53,21 +53,6 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-        </div>
-
-        <div className="hidden md:flex items-center gap-3">
-          <a
-            ref={magnetic.ref}
-            href="#lets-talk"
-            className="shimmer-btn ripple px-5 py-2.5 rounded-lg text-sm font-semibold text-[#08090c] transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] magnetic"
-            style={{
-              background: '#f5f5f7',
-              boxShadow: '0 0 40px rgba(245,245,247,0.14), 0 8px 32px rgba(0,0,0,0.3)',
-              ...magnetic.style,
-            }}
-          >
-            Let's Talk
-          </a>
         </div>
 
         <button
