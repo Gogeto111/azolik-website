@@ -68,13 +68,13 @@ function PricingCard({ plan, annual, style }: { plan: typeof PRICING[0]; annual:
                   className="font-bold text-white"
                   style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(40px, 5vw, 52px)' }}
                 >
-                  ${displayPrice}
+                  ₹{displayPrice}
                 </span>
                 <span className="text-white/30 text-sm">/{annual ? 'yr' : 'mo'}</span>
               </div>
               {annual && plan.annual && (
                 <p className="text-white/22 text-xs mt-1">
-                  ≈ ${Math.round(plan.annual / 12)}/mo · Save ${plan.monthly * 12 - (plan.annual || 0)}/yr
+                  ≈ ₹{Math.round(plan.annual / 12)}/mo · Save ₹{plan.monthly * 12 - (plan.annual || 0)}/yr
                 </p>
               )}
             </>

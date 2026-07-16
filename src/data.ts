@@ -77,7 +77,7 @@ export const FAQS = [
   },
   {
     q: 'How does pricing work?',
-    a: 'Simple monthly plans: Solo at $299/mo (1 department), Team at $799/mo (5 departments), Enterprise custom. All plans include setup, integrations, and ongoing optimization. Solo gets 6 months free. Team gets 14-day trial. No contracts, cancel anytime.',
+    a: 'Simple monthly plans: Solo at ₹24,900/mo (1 department), Team at ₹66,500/mo (4 departments), Enterprise custom. All plans include setup, integrations, and ongoing optimization. Solo gets 6 months free. Team gets 14-day trial. No contracts, cancel anytime.',
   },
   {
     q: 'What if the AI makes a mistake?',
@@ -132,8 +132,8 @@ export const PRICING = [
   {
     name: 'Solo',
     description: 'One AI department for solo founders',
-    monthly: 299,
-    annual: 2990,
+    monthly: 24900,
+    annual: 249000,
     badge: null,
     highlighted: false,
     features: [
@@ -149,12 +149,12 @@ export const PRICING = [
   {
     name: 'Team',
     description: 'Full AI workforce for growing teams',
-    monthly: 799,
-    annual: 6990,
+    monthly: 66500,
+    annual: 665000,
     badge: 'Most Popular',
     highlighted: true,
     features: [
-      'All 6 AI Departments',
+      'All 4 AI Departments',
       'Unlimited integrations',
       'Priority support + Slack channel',
       '100K tasks/month',
@@ -281,50 +281,6 @@ export const DEPARTMENTS = [
     ],
     stat: 'Daily',
     statLabel: 'reconciliation',
-  },
-  {
-    id: 'operations',
-    name: 'Operations',
-    tagline: 'Coordinates vendors, manages schedules, and keeps everything running smoothly.',
-    hex: '#60a5fa',
-    tasks: [
-      'Coordinate vendor communications and follow-ups',
-      'Manage and update project timelines',
-      'Automate recurring admin and compliance tasks',
-      'Send internal status updates and summaries',
-      'Optimize workflows by spotting bottlenecks',
-    ],
-    integrations: ['Slack', 'Notion', 'Linear', 'Jira', 'Google Calendar'],
-    workflow: [
-      'New project or task lands in your system',
-      'Operations breaks it into steps with owners',
-      'Sends reminders and chases blockers automatically',
-      'Reports progress daily — you only see exceptions',
-    ],
-    stat: 'Auto',
-    statLabel: 'task coordination',
-  },
-  {
-    id: 'hr',
-    name: 'HR',
-    tagline: 'Screens candidates, onboards hires, and keeps your team running smoothly.',
-    hex: '#f472b6',
-    tasks: [
-      'Screen CVs and score candidates against your criteria',
-      'Schedule interviews and send calendar invites',
-      'Send onboarding checklists to new hires',
-      'Track leave requests and flag conflicts',
-      'Remind team of reviews and compliance deadlines',
-    ],
-    integrations: ['Greenhouse', 'Slack', 'Google Calendar', 'Notion', 'DocuSign'],
-    workflow: [
-      'Application arrives in your inbox or ATS',
-      'HR scores it against your job brief',
-      'Sends a screening email to top candidates',
-      'Books interviews and preps briefing docs for you',
-    ],
-    stat: 'Auto',
-    statLabel: 'candidate screening',
   },
 ];
 
