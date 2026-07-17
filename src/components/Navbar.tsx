@@ -2,7 +2,7 @@ import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { NAV_LINKS } from '../data'
 import { useMagnetic } from '../hooks/useAdvancedAnimations'
-import { AzoliKLogo } from './ui'
+import { AzolicLogo } from './ui'
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -26,7 +26,7 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2.5 group" aria-label="Azolic home">
-          <AzoliKLogo size={36} />
+          <AzolicLogo size={36} />
           <span
             className="font-semibold text-lg text-white tracking-[-0.02em] group-hover:opacity-80 transition-opacity"
             style={{ fontFamily: "'Outfit', sans-serif" }}

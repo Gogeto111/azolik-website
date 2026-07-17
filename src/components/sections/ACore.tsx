@@ -13,7 +13,7 @@ export function ACoreSection() {
           style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(34px, 5vw, 64px)' }}
         >
           One <GradientText>Intelligence</GradientText>.<br />
-          Six <GradientText>Departments</GradientText>.<br />
+          Four <GradientText>Departments</GradientText>.<br />
           Zero <GradientText>Management</GradientText>.
         </h2>
         <p className="text-center text-white/38 text-base max-w-lg mx-auto mb-20 leading-[1.65]">
@@ -30,7 +30,7 @@ export function ACoreSection() {
               </svg>
             </div>
             <h3 className="font-bold text-white text-xl mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>Unified Brain</h3>
-            <p className="text-white/45 text-sm leading-[1.6]">Single intelligence coordinating all six departments with shared context, memory, and goals.</p>
+            <p className="text-white/45 text-sm leading-[1.6]">Single intelligence coordinating all four departments with shared context, memory, and goals.</p>
           </div>
 
           <div className="rounded-2xl p-7 holo-card card-glow" style={{ background: 'rgba(12,14,19,0.9)', border: '1px solid rgba(255,255,255,0.06)' }}>

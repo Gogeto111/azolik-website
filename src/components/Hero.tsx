@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { HeroConsole } from './HeroConsole';
 
 /* ═══════════════════════════════════════════════════════════════
-   CINEMATIC HERO — AzoliK
+   CINEMATIC HERO — Azolic
    Pure black · Particles · Logo reveal · HUD · Fog · Grain
    ═══════════════════════════════════════════════════════════════ */
 
@@ -18,17 +18,17 @@ const COLORS = {
 const AGENTS = [
   { name: 'SUPPORT', color: COLORS.cyan },
   { name: 'SALES', color: COLORS.sapphire },
-  { name: 'FINANCE', color: COLORS.skyBlue },
-  { name: 'OPERATIONS', color: COLORS.indigo },
+  { name: 'MARKETING', color: COLORS.skyBlue },
+  { name: 'FINANCE', color: COLORS.indigo },
 ];
 
 const BOOT_LOG = [
-  '> AzoliK v3.0 — initializing core',
+  '> Azolic v3.0 — initializing core',
   '> loading AI departments...',
   '> SUPPORT agent [online]',
   '> SALES agent [online]',
+  '> MARKETING agent [online]',
   '> FINANCE agent [online]',
-  '> OPERATIONS agent [online]',
   '> all systems operational',
   '> welcome.',
 ];
@@ -623,7 +623,7 @@ function BrandingText({ phase }: { phase: number }) {
             letterSpacing: '0.5em',
           }}
         >
-          AZOLIK
+           AZOLIC
         </h1>
       </div>
 
@@ -661,7 +661,7 @@ function BrandingText({ phase }: { phase: number }) {
             fontSize: 'clamp(9px, 1.2vw, 12px)',
           }}
         >
-          SIX DEPARTMENTS · ONE INTELLIGENCE
+          FOUR DEPARTMENTS · ONE INTELLIGENCE
         </p>
       </div>
     </div>

@@ -1,5 +1,5 @@
-# Robots.txt for AzoliK
+# Robots.txt for Azolic
 User-agent: *
 Allow: /
 
-Sitemap: https://azolik.ai/sitemap.xml
+Sitemap: https://azolic.ai/sitemap.xml

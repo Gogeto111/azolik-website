@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test'
 
-test.describe('AzoliK Landing Page', () => {
+test.describe('Azolic Landing Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('networkidle')
   })
 
   test('should load the landing page successfully', async ({ page }) => {
-    await expect(page).toHaveTitle(/AzoliK/)
+    await expect(page).toHaveTitle(/Azolic/)
     await expect(page.locator('h1')).toBeVisible()
   })
 

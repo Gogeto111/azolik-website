@@ -7,11 +7,9 @@ import { CheckMark, SectionLabel } from '../ui';
 // Node positions in a 560×460 SVG
 const NODES = [
   { id: 'marketing', x: 280, y: 42, label: 'Marketing', color: '#fb923c' },
-  { id: 'support', x: 72, y: 138, label: 'Support', color: '#4fd1c5' },
-  { id: 'sales', x: 488, y: 138, label: 'Sales', color: '#a78bfa' },
-  { id: 'finance', x: 72, y: 322, label: 'Finance', color: '#34d399' },
-  { id: 'operations', x: 488, y: 322, label: 'Operations', color: '#60a5fa' },
-  { id: 'hr', x: 280, y: 418, label: 'HR', color: '#f472b6' },
+  { id: 'support', x: 72, y: 230, label: 'Support', color: '#4fd1c5' },
+  { id: 'sales', x: 488, y: 230, label: 'Sales', color: '#a78bfa' },
+  { id: 'finance', x: 280, y: 418, label: 'Finance', color: '#34d399' },
 ];
 const CORE = { x: 280, y: 230, label: 'CORE' };
 
@@ -20,9 +18,7 @@ const CROSS_CONNECTIONS = [
   { from: NODES[0], to: NODES[1] }, // marketing-support
   { from: NODES[0], to: NODES[2] }, // marketing-sales
   { from: NODES[1], to: NODES[3] }, // support-finance
-  { from: NODES[2], to: NODES[4] }, // sales-operations
-  { from: NODES[3], to: NODES[5] }, // finance-hr
-  { from: NODES[4], to: NODES[5] }, // operations-hr
+  { from: NODES[2], to: NODES[3] }, // sales-finance
 ];
 
 const BOOT_STEPS: Record<string, string[]> = {
@@ -53,20 +49,6 @@ const BOOT_STEPS: Record<string, string[]> = {
     'Loading chart of accounts...',
     'Syncing transactions...',
     'Ready — reconciling now.',
-  ],
-  operations: [
-    'Connecting Slack...',
-    'Connecting Notion...',
-    'Loading project templates...',
-    'Syncing task backlog...',
-    'Ready — coordinating now.',
-  ],
-  hr: [
-    'Connecting Greenhouse...',
-    'Connecting DocuSign...',
-    'Loading job descriptions...',
-    'Syncing candidate pipeline...',
-    'Ready — screening now.',
   ],
 };
 
@@ -403,7 +385,7 @@ export function DepartmentsSection() {
           className="text-center font-bold text-white leading-tight mb-4"
           style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(34px, 5vw, 64px)' }}
         >
-          Six departments.
+          Four departments.
           <br />
           <ScrollRevealText>One platform.</ScrollRevealText>
         </h2>

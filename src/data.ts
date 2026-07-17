@@ -40,28 +40,12 @@ export const SERVICES = [
     icon: 'Whop',
     color: '#34d399',
   },
-  {
-    id: 'ai-operations',
-    title: 'AI Operations Department',
-    description:
-      'Coordinates vendors, manages project timelines, automates admin, sends status updates, spots bottlenecks before they block you.',
-    icon: 'Automation',
-    color: '#60a5fa',
-  },
-  {
-    id: 'ai-hr',
-    title: 'AI HR Department',
-    description:
-      'Screens candidates, schedules interviews, onboards new hires, tracks leave, reminds of reviews and compliance deadlines.',
-    icon: 'Support',
-    color: '#f472b6',
-  },
 ];
 
 export const FAQS = [
   {
-    q: 'What exactly do I get with AzoliK?',
-    a: 'You get six pre-trained AI departments — Support, Sales, Marketing, Finance, Operations, HR — that handle real work autonomously. They connect to your existing tools (Slack, Gmail, HubSpot, QuickBooks, etc.) and start working within 48 hours of onboarding.',
+    q: 'What exactly do I get with Azolic?',
+    a: 'You get four pre-trained AI departments — Support, Sales, Marketing, Finance — that handle real work autonomously. They connect to your existing tools (Slack, Gmail, HubSpot, QuickBooks, etc.) and start working within 48 hours of onboarding.',
   },
   {
     q: 'Do I need engineers to set this up?',
@@ -69,7 +53,7 @@ export const FAQS = [
   },
   {
     q: 'How is this different from hiring a virtual assistant or agency?',
-    a: "Virtual assistants and agencies rely on human hours — they're limited by capacity, availability, and cost. AzoliK departments are AI agents that work 24/7, scale instantly, and cost a fraction. You're not buying hours; you're buying outcomes.",
+    a: "Virtual assistants and agencies rely on human hours — they're limited by capacity, availability, and cost. Azolic departments are AI agents that work 24/7, scale instantly, and cost a fraction. You're not buying hours; you're buying outcomes.",
   },
   {
     q: 'What tools do the AI departments integrate with?',
@@ -77,7 +61,7 @@ export const FAQS = [
   },
   {
     q: 'How does pricing work?',
-    a: 'Simple monthly plans: Solo at ₹299/mo (1 department), Team at ₹799/mo (4 departments), Enterprise custom. All plans include setup, integrations, and ongoing optimization. Solo gets 6 months free. Team gets 14-day trial. No contracts, cancel anytime.',
+    a: 'Simple monthly plans: Solo at $299/mo (1 department), Team at $799/mo (4 departments), Enterprise custom. All plans include setup, integrations, and ongoing optimization. Solo gets 6 months free. Team gets 14-day trial. No contracts, cancel anytime.',
   },
   {
     q: 'What if the AI makes a mistake?',
@@ -94,8 +78,6 @@ export const CTA_SERVICES = [
   'Sales Department',
   'Marketing Department',
   'Finance Department',
-  'Operations Department',
-  'HR Department',
 ];
 
 export const FOOTER_LINKS = {
@@ -104,8 +86,6 @@ export const FOOTER_LINKS = {
     'Sales Dept',
     'Marketing Dept',
     'Finance Dept',
-    'Operations Dept',
-    'HR Dept',
   ],
   Company: ['About', 'Pricing', 'FAQ', 'Contact'],
   Resources: ['Documentation', 'API Reference', 'Changelog', 'Blog'],
@@ -116,8 +96,6 @@ export const FOOTER_LINK_MAP: Record<string, string> = {
   'Sales Dept': '#departments',
   'Marketing Dept': '#departments',
   'Finance Dept': '#departments',
-  'Operations Dept': '#departments',
-  'HR Dept': '#departments',
   About: '#problem',
   Pricing: '#pricing',
   FAQ: '#faqs',
@@ -187,9 +165,9 @@ export const PRICING = [
 ];
 
 export const SOCIAL_LINKS = [
-  { name: 'Twitter', href: 'https://twitter.com/azolik_ai', icon: 'Twitter' },
-  { name: 'LinkedIn', href: 'https://linkedin.com/company/azolik', icon: 'LinkedIn' },
-  { name: 'GitHub', href: 'https://github.com/azolik', icon: 'GitHub' },
+  { name: 'Twitter', href: 'https://twitter.com/azolic_ai', icon: 'Twitter' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/company/azolic', icon: 'LinkedIn' },
+  { name: 'GitHub', href: 'https://github.com/azolic', icon: 'GitHub' },
   { name: 'Email', href: 'mailto:aarishvimal1@gmail.com', icon: 'Email' },
 ];
 
@@ -293,7 +271,7 @@ export const TIMELINE_STEPS = [
   {
     num: '02',
     title: 'We staff your team',
-    body: 'AzoliK deploys purpose-built AI agents for each department — pre-trained on your industry and brand voice.',
+    body: 'Azolic deploys purpose-built AI agents for each department — pre-trained on your industry and brand voice.',
   },
   {
     num: '03',
@@ -310,15 +288,15 @@ export const TIMELINE_STEPS = [
 export const INDUSTRIES = [
   {
     name: 'E-commerce',
-    text: 'Support handles returns 24/7. Marketing runs product launches. Finance reconciles Shopify payouts. Operations coordinates fulfillment partners.',
+    text: 'Support handles returns 24/7. Marketing runs product launches. Finance reconciles Shopify payouts and tracks revenue.',
   },
   {
     name: 'Legal',
-    text: 'Support triages client enquiries and books consultations. Finance tracks billable hours and chases invoices. HR manages associate scheduling.',
+    text: 'Support triages client enquiries and books consultations. Finance tracks billable hours and chases invoices.',
   },
   {
     name: 'Healthcare',
-    text: 'Support answers appointment questions and sends reminders. Operations coordinates clinic scheduling. Finance tracks insurance claims.',
+    text: 'Support answers appointment questions and sends reminders. Finance tracks insurance claims and billing.',
   },
   {
     name: 'Real Estate',
@@ -357,7 +335,7 @@ export const INTEGRATIONS = [
 
 // Real stats - update these with actual numbers when available
 export const STATS = [
-  { value: 0, suffix: '+', label: 'Businesses using AzoliK', color: '#a78bfa' },
+  { value: 0, suffix: '+', label: 'Businesses using Azolic', color: '#a78bfa' },
   { value: 0, suffix: '+', label: 'Tasks completed by AI', color: '#4fd1c5' },
   { value: 48, suffix: 'h', label: 'Average deploy time', color: '#fb923c' },
   { value: 99.9, suffix: '%', label: 'Uptime SLA', color: '#34d399' },
@@ -367,7 +345,7 @@ export const STATS = [
 export const TESTIMONIALS = [
   {
     quote:
-      "We're currently onboarding our first customers. This space will feature real testimonials from teams using AzoliK.",
+      "We're currently onboarding our first customers. This space will feature real testimonials from teams using Azolic.",
     name: '—',
     role: 'Coming soon',
     metric: '—',

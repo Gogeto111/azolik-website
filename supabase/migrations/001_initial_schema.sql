@@ -1,4 +1,4 @@
--- Initial schema for AzoliK
+-- Initial schema for Azolic
 -- Run this in Supabase SQL Editor or via CLI
 
 -- Enable UUID extension

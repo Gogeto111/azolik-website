@@ -1,6 +1,6 @@
 import { Github, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
 import { CONTACT_INFO, FOOTER_LINKS, FOOTER_LINK_MAP, SOCIAL_LINKS } from '../data';
-import { AzoliKLogo } from './ui';
+import { AzolicLogo } from './ui';
 
 function SocialIcon({ name, href }: { name: string; href: string }) {
   const icons: Record<string, React.ReactNode> = {
@@ -50,12 +50,12 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-6 gap-10 mb-14">
           <div className="col-span-2 md:col-span-2">
             <div className="flex items-center gap-2.5 mb-5">
-              <AzoliKLogo size={32} />
+              <AzolicLogo size={32} />
               <span
                 className="font-semibold text-white"
                 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '20px' }}
               >
-                AzoliK
+                Azolic
               </span>
             </div>
             <p className="text-white/28 text-sm leading-[1.65] max-w-[240px] mb-6">
@@ -99,7 +99,7 @@ export function Footer() {
           className="flex flex-col md:flex-row items-center justify-between pt-7 gap-3"
           style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
         >
-          <p className="text-white/18 text-sm">© 2025 AzoliK™. All rights reserved.</p>
+          <p className="text-white/18 text-sm">© 2025 Azolic™. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4">
               {SOCIAL_LINKS.map(social => (

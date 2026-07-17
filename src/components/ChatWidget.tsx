@@ -2,7 +2,7 @@ import { MessageCircle, Send, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const QUICK_REPLIES = [
-  'How does AzoliK work?',
+    'How does Azolic work?',
   'What are the pricing plans?',
   'Which industries do you support?',
   'How fast can I get started?',
@@ -10,14 +10,14 @@ const QUICK_REPLIES = [
 
 const AUTO_REPLIES: Record<string, string> = {
   default:
-    'Thanks for your interest! AzoliK deploys six AI departments — Support, Sales, Marketing, Finance, Operations, and HR — that work autonomously from day one. Would you like to know about pricing or how to get started?',
+    'Thanks for your interest! Azolic deploys four AI departments — Support, Sales, Marketing, and Finance — that work autonomously from day one. Would you like to know about pricing or how to get started?',
   pricing:
-    'AzoliK offers three plans: Solo at ₹299/mo (6 months free), Team at ₹799/mo (14-day free trial), and Enterprise with custom pricing. All plans include our full AI workforce.',
+    'Azolic offers three plans: Solo at $299/mo (6 months free), Team at $799/mo (14-day free trial), and Enterprise with custom pricing. All plans include our full AI workforce.',
   industries:
     "We support E-commerce, Legal, Healthcare, Real Estate, Consulting, Restaurants, and more. Each department is pre-trained on your industry's workflows.",
   started:
     "Getting started takes under 48 hours. Just describe your business, and we'll staff your AI team. No engineering required on your end.",
-  work: 'AzoliK uses purpose-built AI agents for each department. They connect to your existing tools (CRM, email, chat, etc.) and handle tasks autonomously — escalating to you only when a human decision is needed.',
+  work:     'Azolic uses purpose-built AI agents for each department. They connect to your existing tools (CRM, email, chat, etc.) and handle tasks autonomously — escalating to you only when a human decision is needed.',
 };
 
 function getReply(input: string): string {
@@ -35,7 +35,7 @@ function getReply(input: string): string {
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Array<{ from: 'user' | 'ai'; text: string }>>([
-    { from: 'ai', text: "Hi! I'm the AzoliK assistant. Ask me anything about our AI workforce." },
+    { from: 'ai', text: "Hi! I'm the Azolic assistant. Ask me anything about our AI workforce." },
   ]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
@@ -112,7 +112,7 @@ export function ChatWidget() {
                 className="text-white/80 text-sm font-semibold"
                 style={{ fontFamily: "'Outfit', sans-serif" }}
               >
-                AzoliK Assistant
+                Azolic Assistant
               </p>
               <p
                 className="text-white/30 text-[10px]"

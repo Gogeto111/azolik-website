@@ -87,7 +87,7 @@ export function QuoteSection() {
                   with you.
                 </span>
                 <br />
-                <GradientText>AzoliK works </GradientText>
+                <GradientText>Azolic works </GradientText>
                 <span
                   className="text-white"
                   style={{ transform: 'translateZ(50px)', display: 'inline-block' }}
@@ -102,7 +102,7 @@ export function QuoteSection() {
                 className="mt-10 text-white/30 text-sm tracking-[0.2em] uppercase"
                 style={{ fontFamily: "'JetBrains Mono', monospace", transform: 'translateZ(10px)' }}
               >
-                — The AzoliK principle
+                — The Azolic principle
               </p>
             </ScrollRevealText>
           </div>

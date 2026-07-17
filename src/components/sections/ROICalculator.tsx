@@ -4,7 +4,7 @@ import { useCountUp } from '../../hooks/useCountUp';
 
 export function ROICalculator() {
   const [employees, setEmployees] = useState(3);
-  const [avgSalary, setAvgSalary] = useState(400000);
+  const [avgSalary, setAvgSalary] = useState(50000);
   const [hoursPerTask, setHoursPerTask] = useState(20);
   const [ref, inView] = useInView<HTMLDivElement>();
 
@@ -30,7 +30,7 @@ export function ROICalculator() {
         Calculate your savings
       </h3>
       <p className="text-white/35 text-sm mb-8">
-        See how much you save by switching to AzoliK's AI workforce.
+        See how much you save by switching to Azolic's AI workforce.
       </p>
 
       <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -70,25 +70,25 @@ export function ROICalculator() {
               className="text-white/50 text-xs uppercase tracking-wider"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
-              Avg salary (₹/yr)
+              Avg salary ($/yr)
             </span>
             <span
               className="text-white font-bold text-lg"
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
-              ₹{(avgSalary / 100000).toFixed(1)}L
+              ${(avgSalary / 1000).toFixed(0)}K
             </span>
           </label>
           <input
             type="range"
-            min={200000}
-            max={1500000}
-            step={50000}
+            min={30000}
+            max={150000}
+            step={5000}
             value={avgSalary}
             onChange={e => setAvgSalary(Number(e.target.value))}
             className="w-full h-1 rounded-full appearance-none cursor-none"
             style={{
-              background: `linear-gradient(to right, #4fd1c5 ${(avgSalary / 1500000) * 100}%, rgba(255,255,255,0.08) ${(avgSalary / 1500000) * 100}%)`,
+              background: `linear-gradient(to right, #4fd1c5 ${(avgSalary / 150000) * 100}%, rgba(255,255,255,0.08) ${(avgSalary / 150000) * 100}%)`,
             }}
           />
         </div>
@@ -130,7 +130,7 @@ export function ROICalculator() {
             className="text-3xl font-bold mb-1"
             style={{ fontFamily: "'Outfit', sans-serif", color: '#34d399' }}
           >
-            ₹{Math.round(savings / 1000)}K
+            ${Math.round(savings / 1000)}K
           </p>
           <p
             className="text-white/30 text-xs"

@@ -175,7 +175,7 @@ export function HeroConsole() {
             className="text-xs font-medium"
             style={{ fontFamily: "'JetBrains Mono', monospace", color: 'rgba(255,255,255,0.4)' }}
           >
-            AzoliK · {scenario.department.toLowerCase()}
+            Azolic · {scenario.department.toLowerCase()}
           </span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -291,7 +291,7 @@ export function HeroConsole() {
               className="block text-[10px] text-white/22"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
-              &gt; AzoliK / {scenario.department.toLowerCase()}
+              &gt; Azolic / {scenario.department.toLowerCase()}
             </span>
             <div
               className="text-sm leading-[1.65]"

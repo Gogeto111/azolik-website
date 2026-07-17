@@ -213,7 +213,7 @@ export function WorkflowDemo() {
   return (
     <section ref={sectionRef} id="workflow" className="reveal relative z-10 py-32 px-6">
       <div className="max-w-5xl mx-auto">
-        <SectionLabel color="rgba(96,165,250,0.9)">How AzoliK works</SectionLabel>
+        <SectionLabel color="rgba(96,165,250,0.9)">How Azolic works</SectionLabel>
         <h2
           className="text-center font-bold text-white mb-4"
           style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(34px, 5vw, 60px)' }}

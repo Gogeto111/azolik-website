@@ -69,7 +69,7 @@ export function SectionLabel({
   );
 }
 
-export function AzoliKLogo({
+export function AzolicLogo({
   size = 28,
   className = '',
   ...rest
